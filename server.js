@@ -8,12 +8,6 @@ require('dotenv').config();
 let PORT = process.env.PORT
 
 
-
-
-
-
-
-
 const char = require('./characters.js');
 const loot = require('./loot.js');
 const scenario = require('./scenario.js');
@@ -41,145 +35,165 @@ io.on('connection', (socket) =>{
   console.log(counter);
   if(counter === 4){
   console.log(`all players have connected`);
-  io.emit('intro', scenario.intro)
+  io.emit('scenario', scenario.intro)
   // io.emit('theKingIntro', scenario.theKingIntro);
   }
-  
-  socket.on('introReady', ready => {
-    readyStatus(ready, 'atTheWall', scenario.atTheWall);
+  socket.on('ready', next => {
+    readyStatus(true, 'scenario', next);
   })
-
-  socket.on('atTheWallChoice', choices => {
-    console.log('I am in atTheWallChoice');
-    choiceVote(choices, 'atTheWallChosen', scenario.theOrcLord, scenario.theWoodsman, null)
+  socket.on('roll', payload => {
 
   })
-  socket.on('theWoodsmanRoll', rolls => {
-    dicePickLuck(8, 16, 0, 0, 0, rolls, 'theWoodsManResult', scenario.theWoodsman.choices.lowRoll, scenario.theWoodsman.choices.medRoll, scenario.theWoodsman.choices.highRoll);
+  socket.on('riddle', payload => {
+
   })
-  socket.on('theWoodsmanReady', ready => {
-    readyStatus(ready, 'theVillage', scenario.theVillage)
+  socket.on('choice2', payload => {
+
   })
-  socket.on('theOrcLordRoll', rolls => {
-    console.log('evaluating orc lord roll');
-    dicePick(58, 66, 10, 5, 0, rolls, 'theOrcLordResult', scenario.theOrcLord.choices.lowRoll, scenario.theOrcLord.choices.medRoll, scenario.theOrcLord.choices.highRoll)
+  socket.on('choice3', payload => {
+    
   })
-  socket.on('theOrcLordReady', ready => {
-    readyStatus(ready, 'theOldFriend', scenario.theOldFriend);
+  socket.on('choice4', payload => {
+    
   })
-  socket.on('theOldFriendReady', ready => {
-    readyStatus(ready, 'theVillage', scenario.theVillage);
+  socket.on('luck', payload => {
+
   })
-  socket.on('theVillageChoice', choices => {
-    choiceVote(choices, 'theVillageChosen', scenario.theGoblin, scenario.thePoinsonousBite, null)
-  })
-  socket.on('theGoblinRoll', rolls => {
-    dicePick(58, 66, 10, 5, 0, rolls, 'theGoblinResult', scenario.theGoblin.choices.lowRoll, scenario.theGoblin.choices.medRoll, scenario.theGoblin.choices.highRoll)
-  })
-  socket.on('theGoblinReady', ready => {
-    readyStatus(ready, 'theTroll', scenario.theTroll);
-  })
-  socket.on('thePoisonousBiteReady', ready => {
-    affectForHealth(1);
-    readyStatus(ready, 'theTroll', scenario.theTroll);
-  })
-  socket.on('theTrollRoll', rolls => {
-    dicePick(58, 66, 10, 5, 0, rolls, 'theTrollResult', scenario.theTroll.choices.lowRoll, scenario.theTroll.choices.medRoll, scenario.theTroll.choices.highRoll)
-  })
-  socket.on('theTrollReady', ready => {
-    readyStatus(ready, 'theMerchant', scenario.theMerchant);
-  })
-  socket.on('theMerchantRiddle', payload => {
-    riddleCount += riddleEvaluator(payload, scenario.theMerchant.choices, 'theMerchantRiddleAnswer')
-    if (playerCount === 4) {
-      if (riddleCount >= 2) {
-        io.emit('theMerchantResults', scenario.theMerchant.choices.choice4);
-      } else {
-        io.emit('theMerchantResults', scenario.theMerchant.choices.choice3);
-      }
-      playerCount = 0;
-      riddleCount = 0;
-    }
-  })
-  socket.on('theMerchantReady', ready => {
-    readyStatus(ready, 'theWitch', scenario.theWitch);
-  })
-  socket.on('theWitchRiddle', payload => {
-    riddleCount += riddleEvaluator(payload, scenario.theWitch.choices, 'theWitchRiddleAnswer')
-    if (playerCount === 4) {
-      if (riddleCount > 2) {
-        io.emit('theWitchResults', scenario.theWitch.choices.choice4);
-        char.wizard.activateLoot(loot.gnarledStaff);
-      } else {
-        io.emit('theWitchResults', scenario.theWitch.choices.choice3);
-      }
-      playerCount = 0;
-      riddleCount = 0;
-    }
-  })
-  socket.on('theWitchReady', ready => {
-    readyStatus(ready, 'theHydra', scenario.theHydra);
-  })
-  socket.on('theHydraRoll', rolls => {
-    dicePick(64, 78, 20, 9, 5, rolls, 'theHydraResult', scenario.theHydra.choices.lowRoll, scenario.theHydra.choices.medRoll, scenario.theHydra.choices.highRoll)
-  })
-  socket.on('theHydraReady', ready => {
-    gameOverHydra();
-    readyStatus(ready, 'rebellion', scenario.rebellion);
-  })
-  socket.on('rebellionRoll', rolls => {
-    dicePickLuck(8, 16, 0, 0, 0, rolls, 'rebellionResult', scenario.rebellion.choices.lowRoll, scenario.rebellion.choices.medRoll, scenario.rebellion.choices.highRoll);
-  })
-  socket.on('rebellionReady', ready => {
-    readyStatus(ready, 'cityAroundThePalace', scenario.cityAroundThePalace);
-  })
-  socket.on('cityAroundThePalaceChoice', choices => {
-    choiceVote(choices, 'cityAroundThePalaceChosen', scenario.cityAroundThePalace.choices.choice1, scenario.cityAroundThePalace.choices.choice2, scenario.cityAroundThePalace.choices.choice3)
-  })
-  socket.on('cityAroundThePalaceReady', ready => {
-    readyStatus(ready, 'hornedAnimal', scenario.hornedAnimal);
-  })
-  socket.on('hornedAnimalReady', ready => {
-    readyStatus(ready, 'mageSmith', scenario.mageSmith);
-  })
-  socket.on('mageSmithChoice', choices => {
-    choiceVote(choices, 'mageSmithChosen', scenario.mageSmith.choices.choice1, scenario.mageSmith.choices.choice2, scenario.mageSmith.choices.choice3)
-  })
-  socket.on('mageSmithReady', ready => {
-    readyStatus(ready, 'theKingIntro', scenario.theKingIntro);
-  })
-  socket.on('theKingIntroReady', ready => {
-    readyStatus(ready, 'theKing1', scenario.theKing1);
-  })
-  socket.on('theKing1Riddle', payload => {
-    riddleCount += riddleEvaluator(payload, scenario.theKing1.choices, 'theKing1RiddleAnswer')
-    console.log(riddleCount);
-    if (playerCount === 4) {
-      if (riddleCount > 2) {
-        io.emit('theKing1Results', scenario.theKing1.choices.choice4);
-      } else {
-        io.emit('theKing1Results', scenario.theKing1.choices.choice3);
-        gameOver(scenario.gameOverKing);
-      }
-      playerCount = 0;
-      riddleCount = 0;
-    }
-  })
-  socket.on('theKing1Ready', ready => {
-    readyStatus(ready, 'theKing2', scenario.theKing2);
-  })
-  socket.on('theKing2Roll', rolls => {
-    dicePickKing(rolls, 'theKing2Result', scenario.theKing2.choices.lowRoll, scenario.theKing2.choices.highRoll);
-  })
-  socket.on('theKing2Ready', ready => {
-    readyStatus(ready, 'theKing3', scenario.theKing3);
-  })
-  socket.on('theKing3Roll', rolls => {
-    dicePickLuck(8, 16, 0, 0, 0, rolls, 'theKing3Result', scenario.theKing3.choices.lowRoll, scenario.theKing3.choices.medRoll, scenario.theKing3.choices.highRoll)
-  });
-  socket.on('theKing3Ready', ready => {
-    gameOver(scenario.gameOverWin);
-  });
+  // socket.on('introReady', ready => {
+  //   readyStatus(ready, 'atTheWall', scenario.atTheWall);
+  // })
+
+  // socket.on('atTheWallChoice', choices => {
+  //   console.log('I am in atTheWallChoice');
+  //   choiceVote(choices, 'atTheWallChosen', scenario.theOrcLord, scenario.theWoodsman, null)
+
+  // })
+  // socket.on('theWoodsmanRoll', rolls => {
+  //   dicePickLuck(8, 16, 0, 0, 0, rolls, 'theWoodsManResult', scenario.theWoodsman.choices.lowRoll, scenario.theWoodsman.choices.medRoll, scenario.theWoodsman.choices.highRoll);
+  // })
+  // socket.on('theWoodsmanReady', ready => {
+  //   readyStatus(ready, 'theVillage', scenario.theVillage)
+  // })
+  // socket.on('theOrcLordRoll', rolls => {
+  //   console.log('evaluating orc lord roll');
+  //   dicePick(58, 66, 10, 5, 0, rolls, 'theOrcLordResult', scenario.theOrcLord.choices.lowRoll, scenario.theOrcLord.choices.medRoll, scenario.theOrcLord.choices.highRoll)
+  // })
+  // socket.on('theOrcLordReady', ready => {
+  //   readyStatus(ready, 'theOldFriend', scenario.theOldFriend);
+  // })
+  // socket.on('theOldFriendReady', ready => {
+  //   readyStatus(ready, 'theVillage', scenario.theVillage);
+  // })
+  // socket.on('theVillageChoice', choices => {
+  //   choiceVote(choices, 'theVillageChosen', scenario.theGoblin, scenario.thePoinsonousBite, null)
+  // })
+  // socket.on('theGoblinRoll', rolls => {
+  //   dicePick(58, 66, 10, 5, 0, rolls, 'theGoblinResult', scenario.theGoblin.choices.lowRoll, scenario.theGoblin.choices.medRoll, scenario.theGoblin.choices.highRoll)
+  // })
+  // socket.on('theGoblinReady', ready => {
+  //   readyStatus(ready, 'theTroll', scenario.theTroll);
+  // })
+  // socket.on('thePoisonousBiteReady', ready => {
+  //   affectForHealth(1);
+  //   readyStatus(ready, 'theTroll', scenario.theTroll);
+  // })
+  // socket.on('theTrollRoll', rolls => {
+  //   dicePick(58, 66, 10, 5, 0, rolls, 'theTrollResult', scenario.theTroll.choices.lowRoll, scenario.theTroll.choices.medRoll, scenario.theTroll.choices.highRoll)
+  // })
+  // socket.on('theTrollReady', ready => {
+  //   readyStatus(ready, 'theMerchant', scenario.theMerchant);
+  // })
+  // socket.on('theMerchantRiddle', payload => {
+  //   riddleCount += riddleEvaluator(payload, scenario.theMerchant.choices, 'theMerchantRiddleAnswer')
+  //   if (playerCount === 4) {
+  //     if (riddleCount >= 2) {
+  //       io.emit('theMerchantResults', scenario.theMerchant.choices.choice4);
+  //     } else {
+  //       io.emit('theMerchantResults', scenario.theMerchant.choices.choice3);
+  //     }
+  //     playerCount = 0;
+  //     riddleCount = 0;
+  //   }
+  // })
+  // socket.on('theMerchantReady', ready => {
+  //   readyStatus(ready, 'theWitch', scenario.theWitch);
+  // })
+  // socket.on('theWitchRiddle', payload => {
+  //   riddleCount += riddleEvaluator(payload, scenario.theWitch.choices, 'theWitchRiddleAnswer')
+  //   if (playerCount === 4) {
+  //     if (riddleCount > 2) {
+  //       io.emit('theWitchResults', scenario.theWitch.choices.choice4);
+  //       char.wizard.activateLoot(loot.gnarledStaff);
+  //     } else {
+  //       io.emit('theWitchResults', scenario.theWitch.choices.choice3);
+  //     }
+  //     playerCount = 0;
+  //     riddleCount = 0;
+  //   }
+  // })
+  // socket.on('theWitchReady', ready => {
+  //   readyStatus(ready, 'theHydra', scenario.theHydra);
+  // })
+  // socket.on('theHydraRoll', rolls => {
+  //   dicePick(64, 78, 20, 9, 5, rolls, 'theHydraResult', scenario.theHydra.choices.lowRoll, scenario.theHydra.choices.medRoll, scenario.theHydra.choices.highRoll)
+  // })
+  // socket.on('theHydraReady', ready => {
+  //   gameOverHydra();
+  //   readyStatus(ready, 'rebellion', scenario.rebellion);
+  // })
+  // socket.on('rebellionRoll', rolls => {
+  //   dicePickLuck(8, 16, 0, 0, 0, rolls, 'rebellionResult', scenario.rebellion.choices.lowRoll, scenario.rebellion.choices.medRoll, scenario.rebellion.choices.highRoll);
+  // })
+  // socket.on('rebellionReady', ready => {
+  //   readyStatus(ready, 'cityAroundThePalace', scenario.cityAroundThePalace);
+  // })
+  // socket.on('cityAroundThePalaceChoice', choices => {
+  //   choiceVote(choices, 'cityAroundThePalaceChosen', scenario.cityAroundThePalace.choices.choice1, scenario.cityAroundThePalace.choices.choice2, scenario.cityAroundThePalace.choices.choice3)
+  // })
+  // socket.on('cityAroundThePalaceReady', ready => {
+  //   readyStatus(ready, 'hornedAnimal', scenario.hornedAnimal);
+  // })
+  // socket.on('hornedAnimalReady', ready => {
+  //   readyStatus(ready, 'mageSmith', scenario.mageSmith);
+  // })
+  // socket.on('mageSmithChoice', choices => {
+  //   choiceVote(choices, 'mageSmithChosen', scenario.mageSmith.choices.choice1, scenario.mageSmith.choices.choice2, scenario.mageSmith.choices.choice3)
+  // })
+  // socket.on('mageSmithReady', ready => {
+  //   readyStatus(ready, 'theKingIntro', scenario.theKingIntro);
+  // })
+  // socket.on('theKingIntroReady', ready => {
+  //   readyStatus(ready, 'theKing1', scenario.theKing1);
+  // })
+  // socket.on('theKing1Riddle', payload => {
+  //   riddleCount += riddleEvaluator(payload, scenario.theKing1.choices, 'theKing1RiddleAnswer')
+  //   console.log(riddleCount);
+  //   if (playerCount === 4) {
+  //     if (riddleCount > 2) {
+  //       io.emit('theKing1Results', scenario.theKing1.choices.choice4);
+  //     } else {
+  //       io.emit('theKing1Results', scenario.theKing1.choices.choice3);
+  //       gameOver(scenario.gameOverKing);
+  //     }
+  //     playerCount = 0;
+  //     riddleCount = 0;
+  //   }
+  // })
+  // socket.on('theKing1Ready', ready => {
+  //   readyStatus(ready, 'theKing2', scenario.theKing2);
+  // })
+  // socket.on('theKing2Roll', rolls => {
+  //   dicePickKing(rolls, 'theKing2Result', scenario.theKing2.choices.lowRoll, scenario.theKing2.choices.highRoll);
+  // })
+  // socket.on('theKing2Ready', ready => {
+  //   readyStatus(ready, 'theKing3', scenario.theKing3);
+  // })
+  // socket.on('theKing3Roll', rolls => {
+  //   dicePickLuck(8, 16, 0, 0, 0, rolls, 'theKing3Result', scenario.theKing3.choices.lowRoll, scenario.theKing3.choices.medRoll, scenario.theKing3.choices.highRoll)
+  // });
+  // socket.on('theKing3Ready', ready => {
+  //   gameOver(scenario.gameOverWin);
+  // });
 
 
   
@@ -187,7 +201,8 @@ io.on('connection', (socket) =>{
 
 
   //------------------ READY FUNCTION ----------------//
-  function readyStatus (result, emitStr, scenario) { 
+  function readyStatus (result, emitStr, scenarioNum) { 
+    let scenario = nextScenario(scenarioNum);
     if(result){
       readyCount++;
     }
@@ -195,10 +210,7 @@ io.on('connection', (socket) =>{
       io.emit(emitStr, scenario);
       console.log('ready count has reached 4');
       readyCount = 0;
-    }
-    else{
-      console.log(readyCount, ' is the count');
-    }        
+    }     
   }
 
     
@@ -492,6 +504,14 @@ io.on('connection', (socket) =>{
     if (stats.health < 40) {
     io.emit('gameOver', scenario.gameOverHydra);
     socket.disconnect();
+    }
+  }
+
+  function nextScenario(num) {
+    for (const event in scenario) {
+      if (scenario[event].num === num) {
+        return scenario[event];
+      }
     }
   }
 

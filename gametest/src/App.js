@@ -17,8 +17,40 @@ const App = () => {
     client.on('chat', ({name, message}) => {
       setChat([...chat, { name, message }])
     })
-    client.on('intro', (scenario) => {
-      setChat([...chat, { name: scenario.name, message: scenario.dialogue }])})
+    client.on('scenario', (scenario) => {
+      setChat([...chat, { name: scenario.name, message: scenario.dialogue }])
+      switch(scenario.type) {
+        case 'roll':
+          // code block
+          break;
+        case 'choice2':
+          // code block
+          break;
+        case 'choice3':
+          // code block
+          break;
+        case 'choice4':
+          // code block
+          break;
+        case 'riddle':
+          // code block
+          break;
+        case 'ready':
+
+          // code block
+          break;
+        case 'luck':
+          // code block
+          break;
+        default:
+          // code block
+      }
+    });
+    
+    client.on('result', payload => {
+      setChat([...chat, { name: payload.name, message: payload.dialogue }])
+      // do ready check, serve payload.num
+    })
   })
 
   const onTextChange = e => {

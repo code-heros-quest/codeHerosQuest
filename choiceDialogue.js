@@ -1,4 +1,6 @@
 'use strict';
+let loot = require('./loot.js');
+const char = require('./characters.js');
 
 const dialogue = {
   atTheWallChoices1: 'Do you fight the orc, knowing that supplies are low and you don’t have any healing potions or bandages if someone gets hurt?',
@@ -55,7 +57,7 @@ const dialogue = {
   theKing3Rolls1: `Unfortunately you all have died in your confrontation with the evil King. Luck is with the kingdom though because the King lay dead beside you. You will never know the taste of victory but songs will be written for your bravery`,
   theKing3Rolls2: `Unfortunately half of your party was killed in the battle. ${char.hunter.name} was slain by the King mid-way through the fight, and ${char.assassin.name} died striking the final blow that brought the King down. ${char.wizard.name} helps revive ${char.warrior.name} and the two of your remaining band leave the castle to seek the safety of the rebellion. Your victory will be remembered forever and the surving warriors will never stop mourning their dead comrades.`,
   theKing3Rolls3: `Somehow you all miraculously survived the final encounter with the King. After the ${char.wizard.name} is able to revive the rest of your group you all leave the palace worse for wear but triumphant. You have freed the people of the kingdom and you will forever be remembered as the hero's of the realm.`,
-  
+
 }
 
 module.exports = dialogue;

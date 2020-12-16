@@ -20,6 +20,8 @@ let choiceArr = [];
 let playerCount = 0;
 let riddleCount = 0;
 
+
+
 io.on('connection', (socket) => {
   socket.on('chat', function (data) {
     io.sockets.emit('chat', data);
@@ -32,13 +34,13 @@ io.on('connection', (socket) => {
 
   counter++;
   console.log(counter);
-  if (counter === 4) {
+  if (counter === 12) {
     console.log(`all players have connected`);
     io.emit('scenario', scenario.intro)
     // io.emit('theKingIntro', scenario.theKingIntro);
   }
   socket.on('ready', next => {
-    // next will be the number 
+
     readyStatus(true, 'scenario', next);
   })
   socket.on('roll', payload => {
@@ -78,12 +80,15 @@ io.on('connection', (socket) => {
 
   //------------------ READY FUNCTION ----------------//
   function readyStatus(result, emitStr, scenarioNum) {
-    let scenario = nextScenario(scenarioNum);
+    
     if (result) {
       responseCount++;
     }
     if (responseCount === 4) {
+      let scenario = nextScenario(scenarioNum);
       io.emit(emitStr, scenario);
+      console.log(emitStr, 'emitStr');
+      console.log(scenario, 'scenario');
       console.log('response count has reached 4');
       responseCount = 0;
     }
@@ -264,7 +269,7 @@ io.on('connection', (socket) => {
 
   function nextScenario(num) {
     for (const event in scenario) {
-      if (scenario[event].num === num) {
+      if (scenario[event].number === num) {
         return scenario[event];
       }
     }

@@ -19,7 +19,7 @@ class Choice {
 class Riddle {
   constructor(num, correct, name, dialogue, lootObject, next) {
     this.num = num;
-    this.corect = correct;
+    this.correct = correct;
     this.name = name;
     this.dialogue = dialogue;
     this.lootObject = lootObject;
@@ -49,11 +49,11 @@ class Luck {
 
 class Scenario {
   constructor(number, name, dialogue, type, choiceQuestion, choices, next) {
-    this.number = number,
-      this.name = name,
-      this.dialogue = dialogue;
+    this.number = number;
+    this.name = name;
+    this.dialogue = dialogue;
     this.type = type;
-    this.choiceQuestion = choiceQuestion
+    this.choiceQuestion = choiceQuestion;
     this.choices = choices;
     this.next = next;
   }

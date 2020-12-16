@@ -3,8 +3,8 @@
 const chalk = require('chalk');
 let loot = require('./loot.js');
 const char = require('./characters.js');
-const sDialogue = require('scenarioDialogue.js');
-const cDialogue = require('choiceDialogue.js');
+const sDialogue = require('./scenarioDialogue.js');
+const cDialogue = require('./choiceDialogue.js');
 
 class Choice {
   constructor(num, name, dialogue, lootObject, next) {
@@ -50,8 +50,8 @@ class Luck {
 class Scenario {
   constructor(number, name, dialogue, type, choiceQuestion, choices, next) {
     this.number = number,
-    this.name = name,
-    this.dialogue = dialogue;
+      this.name = name,
+      this.dialogue = dialogue;
     this.type = type;
     this.choiceQuestion = choiceQuestion
     this.choices = choices;
@@ -77,15 +77,17 @@ const gameOverWin = new Scenario('GAME OVER you have won', sDialogue.gameOverWin
 // BOSS 5 : THE KING
 // fight three
 const theKing3Rolls = {
+  rollPotential: 100,
   lowRoll: new Roll(1, 'Poor Roll', cDialogue.theKing3Rolls1, null),
   medRoll: new Roll(2, 'Fair Roll', cDialogue.theKing3Rolls2, null),
   highRoll: new Roll(3, 'Good Roll', cDialogue.theKing3Rolls3, null)
 }
 
-const theKing3 = new Scenario('The King: Close Combat', sDialogue.theKing3, 'roll','Roll to see if you survived the battle', theKing3Rolls, null)
+const theKing3 = new Scenario('The King: Close Combat', sDialogue.theKing3, 'roll', 'Roll to see if you survived the battle', theKing3Rolls, null)
 
 // fight two
 const theKing2Rolls = {
+  rollPotential: 100,
   lowRoll: new Roll(1, 'Poor Roll', cDialogue.theKing2Rolls1, null),
   medRoll: null,
   highRoll: new Roll(3, 'Good Roll', cDialogue.theKing2Rolls2, null)
@@ -149,6 +151,7 @@ const rebellion = new Scenario('Rebellion', sDialogue.rebellion, 'roll', `roll f
 // BOSS 4 : Hydra
 
 const theHydraRolls = {
+  rollPotential: 100,
   lowRoll: new Roll(1, 'Poor Roll', cDialogue.theHydraRolls1, null),
   medRoll: new Roll(2, 'Fair Roll', cDialogue.theHydraRolls2, null),
   highRoll: new Roll(3, 'Good Roll', cDialogue.theHydraRolls3, null)
@@ -219,10 +222,11 @@ const forkInTheRoadChoices = {
   choice2: new Choice(2, 'Follow the Hammer', cDialogue.forkInTheRoad2, null)
 };
 
-const forkInTheRoad = new Scenario('Fork in the Road', sDialogue.forkInTheRoad, 'choice2', `Will you follow the coins or the hammer?`, forkInTheRoadChoices )
+const forkInTheRoad = new Scenario('Fork in the Road', sDialogue.forkInTheRoad, 'choice2', `Will you follow the coins or the hammer?`, forkInTheRoadChoices)
 
 // BOSS 3 : Troll
 const theTrollRolls = {
+  rollPotential: 100,
   lowRoll: new Roll(1, 'Poor Roll', cDialogue.theTrollRolls1, [loot.falcon]),
   medRoll: new Roll(2, 'Fair Roll', cDialogue.theTrollRolls2, [loot.falcon]),
   highRoll: new Roll(3, 'Good Roll', cDialogue.theTrollRolls3, [loot.falcon])
@@ -232,14 +236,15 @@ const theTroll = new Scenario(`The Troll`, sDialogue.theTroll, 'roll', 'Roll to 
 
 // BOSS 2 : Goblin
 const theGoblinRolls = {
+  rollPotential: 100,
   lowRoll: new Roll(1, 'Poor Roll', cDialogue.theGoblinRolls1, [loot.strongBandages], 9),
   medRoll: new Roll(2, 'Fair Roll', cDialogue.theGoblinRolls2, [loot.strongBandages], 9),
   highRoll: new Roll(3, 'Good Roll', cDialogue.theGoblinRolls3, [loot.strongBandages], 9)
 }
-const theGoblin = new Scenario(7, 'The Goblin', sDialogue.theGoblin,'roll', 'Roll to determine the fate of your battle', theGoblinRolls, null);
+const theGoblin = new Scenario(7, 'The Goblin', sDialogue.theGoblin, 'roll', 'Roll to determine the fate of your battle', theGoblinRolls, null);
 
 // poisonous bite
-const thePoinsonousBite = new Scenario(8, 'The Poisonous Bite', sDialogue.thePoinsonousBite,'ready', null, null, 9);
+const thePoinsonousBite = new Scenario(8, 'The Poisonous Bite', sDialogue.thePoinsonousBite, 'ready', null, null, 9);
 
 // the village
 const theVillageChoices = {
@@ -261,6 +266,7 @@ const theOldFriend = new Scenario(4, 'The Old Friend', sDialogue.theOldFriend, '
 
 //BOSS 1 : Orc Lord
 const theOrcLordRoll = {
+  rollPotential: 100,
   lowRoll: new Roll(1, 'Poor Roll', cDialogue.theOrcLordRoll1, null, 5),
   medRoll: new Roll(2, 'Fair Roll', cDialogue.theOrcLordRoll2, [loot.orcLordMace], 4),
   highRoll: new Roll(3, 'Good Roll', cDialogue.theOrcLordRoll3, [loot.orcLordMace], 4)
@@ -274,12 +280,12 @@ const atTheWallChoices = {
   choice2: new Choice(2, 'Go Around', cDialogue.atTheWallChoices2, null, 5)
 }
 
-const atTheWall = new Scenario(2, 'At the Wall', sDialogue.atTheWall, 'choice2' `Your group stops to discuss your options…`, atTheWallChoices, null);
+const atTheWall = new Scenario(2, 'At the Wall', sDialogue.atTheWall, 'choice2', `Your group stops to discuss your options…`, atTheWallChoices, null);
 
 
 // intro
-const intro = new Scenario(1, 'Introduction', sDialogue.intro, 'ready',null, null, 2);
- 
+const intro = new Scenario(1, 'Introduction', sDialogue.intro, 'ready', null, null, 2);
+
 
 
 module.exports = {

@@ -1,95 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import { io } from 'socket.io-client';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
+
+import './App.css';
+import React, {useState, useEffect} from 'react';
+import Loot from './Loot.js';
+import Chat from './Chat.js';
+import Scenes from './Scenes.js';
+import { io, Socket } from 'socket.io-client';
 
 const client = io.connect('http://localhost:3001', {transports: ['websocket']});
 client.on('connect', () => {
   console.log('connected');
 });
 
-const App = () => {
-  const [state, setState] = useState({message: '', name: ''});
-  const [chat, setChat] = useState([]);
+let count = 0; 
+let sceneCount = 1;
 
-  useEffect(() => {
-    client.on('chat', ({name, message}) => {
-      setChat([...chat, { name, message }])
-    })
-    client.on('scenario', (scenario) => {
-      setChat([...chat, { name: scenario.name, message: scenario.dialogue }])
-      switch(scenario.type) {
-        case 'roll':
-          // code block
-          break;
-        case 'choice2':
-          // code block
-          break;
-        case 'choice3':
-          // code block
-          break;
-        case 'choice4':
-          // code block
-          break;
-        case 'riddle':
-          // code block
-          break;
-        case 'ready':
 
-          // code block
-          break;
-        case 'luck':
-          // code block
-          break;
-        default:
-          // code block
-      }
-    });
-    
-    client.on('result', payload => {
-      setChat([...chat, { name: payload.name, message: payload.dialogue }])
-      // do ready check, serve payload.num
-    })
-  })
 
-  const onTextChange = e => {
-    setState({...state, [e.target.name]: e.target.value})
+function App() {
+  const welcome = <h1 style={{ color: 'gray'}}>Welcome to Code Quest. Press the next scene to start the game. Good luck on your journey.</h1>
+  // const intro = <video autoPlay src='./Videos/CodeQuestIntro.mp4' placeholder="./images/axe.png" style={{ width: '100%', height: '700px'}} ></video>
+  const [scene, setScene] = useState(welcome);
+
+
+  function emitReady(){
+    sceneCount++;
+    client.emit('ready', sceneCount);
+    alert('ready');
   }
 
-  const onMessageSubmit = (e) => {
-    e.preventDefault();
-    const { message, name } = state;
-    console.log(name, message);
-    client.emit('chat', {name, message});
-    setState({ message: '', name });
-  }
+  // function changeScene(){
 
-  const renderChat = () => {
-    return chat.map(({ name, message }, index) => (
-      <div key={index}>
-        <h3>
-          {name}: <span>{message}</span>
-        </h3>
-      </div>
-    ))
-  }
+  //   if(count === 0){
+  //     count++;
+  //     let title = Scenarios.intro.name;
+  //     let intro = Scenarios.intro.dialogue;
+  //     return setScene(intro)
+  //   }
+  //   if(count === 1){
+  //     const scene1 = <video controls autoPlay src='./Videos/scene1.mp4' style={{ width: '100%', height: 'auto'}} ></video>
+  //     count++;
+  //    return setScene(scene1);
+  //   }
+  //   if(count === 2){
+  //     const scene2 = <video autoPlay src='./Videos/swamp.mp4' style={{ width: '100%', height: 'auto'}} ></video>
+  //     count++;
+  //     return setScene(scene2);
+  //   }
+  // }
+
+  
 
   return (
-    <div id="mario-chat">
-      <h2>Kingdom chat</h2>
-      <div id="chat-window">
-        <div>{renderChat()}</div>
+    <>
+        <section style={{ display:'grid', gridTemplateColumns: '4fr 1fr'}}>
+        <div id='sceneWindow' style={{ backgroundColor: 'black', width: '1250px', height: '700px', margin: 'auto', alignSelf: 'center'}}>
+        <div style={{ display: 'inline-block'}}>
+        {scene}
+        </div>
+        </div>
+        <Loot/>
+        </section>
+      <button  onClick={emitReady} style={{ display: 'block', margin: 'auto', marginTop: '10px'}} name="ready">Next Scene</button>
+      <div style={{display: 'inline-block', margin: 'auto', marginLeft: '400px'}}>
+      <Scenes/>
+
       </div>
-      <form onSubmit={onMessageSubmit}>
-        <input id="name" name="name" type="text" placeholder="Name" onChange={(e) => onTextChange(e)}/>
-        <input id="message" name="message" type="text" placeholder="Message" onChange={(e) => onTextChange(e)}/>
-        <button id="send">Send</button>
-      </form>
-    </div>
-  )
+        <div style={{display: 'inline-block', margin: 'auto', marginLeft: '400px'}}>
+       <Chat/>
+
+        </div>
+
+    </>
+  );
 }
 
 export default App;
-
-

@@ -3,15 +3,13 @@ import { io } from 'socket.io-client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
-
-const Scenes = (props) => {
-  const client = props.client;
+const SceneVideo = (props) => {
+    const client = props.client;
   const [scene, setScene] = useState([]);
 
   
     client.on('scenario', (scenario) => {
-      setScene([{ name: scenario.name, message: scenario.dialogue }])
+      setScene([...scene, { video: scenario.video }])
       switch(scenario.type) {
         case 'roll':
           // code block
@@ -42,14 +40,9 @@ const Scenes = (props) => {
 
     
 
-  const renderScene = () => {
-    return scene.map(({ name, message }, index) => (
-      <div key={index}>
-        <h3 style={{display: 'block', textAlign: 'center', textDecoration: 'underline'}}>
-          {name}
-        </h3>
-        <span style={{ width: '650px', height: 'auto'}}>{message}</span>
-      </div>
+  const renderSceneVideo = () => {
+    return scene.map(({ video }, index) => (  
+      <video autoPlay src={video} key={index} style={{ width: '1250px', height: 'auto'}} autoPlay></video>
     ))
   }
 
@@ -57,11 +50,11 @@ const Scenes = (props) => {
 
   return (
 
-      <div id="dialogue-window" style={{ backgroundColor: 'lightgray', borderRadius: '10px', fontSize: '1.7em', color: 'black', display: 'inline-block', width: '750px', minHeight: '500px', height: 'auto', border: '6px solid black', padding: '5px 10px 10px 10px'}}>
-        {renderScene()}``
+      <div id="video-window" >
+        {renderSceneVideo()}
       </div>
 
   )
 }
 
-export default Scenes;
+export default SceneVideo;

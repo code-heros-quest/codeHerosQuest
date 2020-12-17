@@ -48,8 +48,9 @@ class Luck {
 }
 
 class Scenario {
-  constructor(number, name, dialogue, type, choiceQuestion, choices, next) {
+  constructor(number, video, name, dialogue, type, choiceQuestion, choices, next) {
     this.number = number;
+    this.video = video;
     this.name = name;
     this.dialogue = dialogue;
     this.type = type;
@@ -280,11 +281,11 @@ const atTheWallChoices = {
   choice2: new Choice(2, 'Go Around', cDialogue.atTheWallChoices2, null, 5)
 }
 
-const atTheWall = new Scenario(2, 'At the Wall', sDialogue.atTheWall, 'choice2', `Your group stops to discuss your options…`, atTheWallChoices, null);
+const atTheWall = new Scenario(2, './Videos/scene1.mp4', 'At the Wall', sDialogue.atTheWall, 'choice2', `Your group stops to discuss your options…`, atTheWallChoices, null);
 
 
 // intro
-const intro = new Scenario(1, 'Introduction', sDialogue.intro, 'ready', null, null, 2);
+const intro = new Scenario(1, './Videos/intro.mp4', 'Introduction', sDialogue.intro, 'ready', null, null, 2);
 
 
 

@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
 
   counter++;
   console.log(counter);
-  if (counter === 12) {
+  if (counter === 4) {
     console.log(`all players have connected`);
     io.emit('scenario', scenario.intro)
     // io.emit('theKingIntro', scenario.theKingIntro);

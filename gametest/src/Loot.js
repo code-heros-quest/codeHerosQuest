@@ -19,7 +19,7 @@ function Loot(){
 
 
     return(
-        <div id='loot-container'>
+        <div id='loot-container' style={{display: 'inline-block', float: 'right'}}>
         <section style={{ backgroundImage: 'url(./images/Loot.png)', backgroundSize: '100% 100%', padding: '2px 20px 2px 20px', height: '500px', width: '250px', margin: 'auto', backgroundRepeat: 'no-repeat', borderRadius: '7px', display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr 1fr 1fr', border: '1px solid black', backgroundColor: 'gray'}}>
         <div style={styleLoot}><img style={styleImg} src='./images/icons/axe.png'></img></div>
         <div style={styleLoot}><img style={styleImg} src='./images/icons/book.png'></img></div>
@@ -37,8 +37,3 @@ function Loot(){
 export default Loot;
 
 
-{/* <ul style={{ listStyle: 'none', margin: 'auto', padding: '0'}}>
-                <img src='./images/axe.png' style={{ height: '75px'}}></img>
-            </ul> */}
-
-            // <div style={{ borderRadius: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '7px solid rgb(29.8, 29.8, 29.8)'}}>8</div>

@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-const Scenes = (props) => {
+const Dialogue = (props) => {
   const client = props.client;
   const [scene, setScene] = useState([]);
 
@@ -44,11 +44,14 @@ const Scenes = (props) => {
 
   const renderScene = () => {
     return scene.map(({ name, message }, index) => (
-      <div key={index}>
-        <h3 style={{display: 'block', textAlign: 'center', textDecoration: 'underline'}}>
+      <div key={index} style={{ display: 'flex', flexDirection: 'column'}}>
+        <h3 style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto', fontSize: '1em', paddingTop: '35px', textAlign: 'center', fontFamily: 'fantasy'}}>
           {name}
         </h3>
-        <span style={{ width: '650px', height: 'auto'}}>{message}</span>
+        <div style={{ padding: '15px 30px 0px 30px', objectFit: 'contain', fontSize: '1em'}}>
+      {message}
+        </div>
+
       </div>
     ))
   }
@@ -57,11 +60,11 @@ const Scenes = (props) => {
 
   return (
 
-      <div id="dialogue-window" style={{ backgroundColor: 'lightgray', borderRadius: '10px', fontSize: '1.7em', color: 'black', display: 'inline-block', width: '750px', minHeight: '500px', height: 'auto', border: '6px solid black', padding: '5px 10px 10px 10px'}}>
+      <div id="dialogue-window" style={{ backgroundImage: 'url(./images/textBox/text2.png)', backgroundSize: '100% 100%', borderRadius: '10px', fontSize: '1.7em', color: 'black', display: 'inline-block', width: '778px', minHeight: '510px', height: 'auto', border: '6px solid black', padding: '5px 10px 10px 10px'}}>
         {renderScene()}``
       </div>
 
   )
 }
 
-export default Scenes;
+export default Dialogue;

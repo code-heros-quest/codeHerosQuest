@@ -16,6 +16,10 @@ let orcLordMace = new Loot('Orc Lord Mace', ['Warrior'], 0, 2);
 let herbalSalve = new Loot('Herbal Salve', ['Warrior', 'Wizard', 'Assassin', 'Hunter'], 2, 0);
 let strongBandages = new Loot('Strong Bandages', ['Warrior', 'Wizard', 'Assassin', 'Hunter'], 6, 0);
 let falcon = new Loot('Falcon', ['Hunter'], 0, 0);
+let enchantedRing = new Loot('Enchanted Ring', ['Hunter'], 2, 3)
+let roseLocket = new Loot('Rose Locket', ['Wizard'], 3, 2);
+let travelRations = new Loot('Travel Rations', ['Warrior', 'Wizard', 'Assassin', 'Hunter'], 2, 0);
+let woolBandages = new Loot('Wool Bandages', ['Warrior', 'Wizard', 'Assassin', 'Hunter'], 2, 0)
 let sheild = new Loot('Sheild', ['Warrior'], 3, 2);
 let poisonousBerries = new Loot('Poinsonous Berries', ['Assassin'], 0, 3);
 let magicalAmulet = new Loot('Magical Amulet', ['Wizard'], 3, 2);
@@ -34,6 +38,10 @@ module.exports = {
   herbalSalve,
   strongBandages,
   falcon,
+  woolBandages,
+  travelRations,
+  roseLocket,
+  enchantedRing,
   sheild,
   poisonousBerries,
   magicalAmulet,

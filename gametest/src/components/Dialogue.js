@@ -48,8 +48,8 @@ const Dialogue = (props) => {
         <h3 style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto', fontSize: '1em', paddingTop: '35px', textAlign: 'center', fontFamily: 'fantasy'}}>
           {name}
         </h3>
-        <div style={{ padding: '15px 30px 0px 30px', objectFit: 'contain', fontSize: '1em'}}>
-      {message}
+        <div style={{ padding: '15px 30px 0px 30px', objectFit: 'contain', fontSize: '1em', textAlign: 'left'}}>
+        {message}
         </div>
 
       </div>

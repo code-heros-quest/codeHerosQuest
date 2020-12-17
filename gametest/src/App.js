@@ -1,82 +1,29 @@
-
 import './App.css';
-import React, {useState, useEffect} from 'react';
-import SceneVideo from './SceneVideo.js';
-import Loot from './Loot.js';
-import Dialogue from './Dialogue.js';
-import Chat from './Chat.js';
-import { io } from 'socket.io-client';
-
-
-const client = io.connect('http://localhost:3001', {transports: ['websocket']});
-client.on('connect', () => {
-  console.log('connected');
-});
-
-let count = 0; 
-let sceneCount = 0;
-
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import WelcomeScreen from './screens/WelcomeScreen.js';
+import GameScreen from './screens/GameScreen.js';
+import CreateScreen from './screens/CreateScreen.js';
+import JoinScreen from './screens/JoinScreen.js';
 
 
 function App() {
-  const welcome = <h1 style={{ color: 'gray'}}>Click next to start the game!</h1>
-  const [scene, setScene] = useState(welcome);
 
-  client.on('scenario', (scenario) => {
-    setScene([{ video: scenario.video }])
-    switch(scenario.type) {
-      case 'roll':
-        // code block
-        break;
-      case 'choice2':
-        // code block
-        break;
-      case 'choice3':
-        // code block
-        break;
-      case 'choice4':
-        // code block
-        break;
-      case 'riddle':
-        // code block
-        break;
-      case 'ready':
 
-        // code block
-        break;
-      case 'luck':
-        // code block
-        break;
-      default:
-        // code block
-    }
-  });
-
-  function emitReady(){
-    sceneCount++;
-    client.emit('ready', sceneCount);
-    alert('ready');
-  }
-
-  
+  // function startGame(){
+  //   return (
+  //     <Route path='/game' component={GameScreen} />
+  //   )
+  // }
 
   return (
-    <>
-      <div style={{  display: 'block', textAlign: 'center'}}>
-      <div id='sceneWindow' style={{ display: 'inline-block', backgroundColor: 'black', width: '1250px', height: '700px', margin: 'auto'}}>
-      <SceneVideo client={client}/>
-      </div>
-      <div style={{ display: 'inline-block', paddingLeft: '20px'}}>
-      <Loot />
-      </div>
-      </div>
-      <button  onClick={emitReady} style={{ display: 'block', margin: 'auto', marginTop: '10px'}} name="ready">Next Scene</button>
-      <section style={{ display: 'grid', gridTemplateRows: '1fr', gridTemplateColumns: '1fr 1fr', margin: 'auto'}}>
-      <div style={{ textAlign: 'right'}}><Dialogue client={client}/></div>
-      <div style={{ marginLeft: '0', paddingLeft: '50px'}}><Chat client={client}/></div>
-      </section>
-    </>
+    <Router>
+      <Route path='/' component={WelcomeScreen} exact/>
+      <Route path='/create' component={CreateScreen} />
+      <Route path='/join' component={JoinScreen} />
+      {/* <Route path='/game' component={GameScreen} /> */}
+    </Router>
   );
 }
-
 export default App;

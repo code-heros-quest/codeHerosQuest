@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
     // io.emit('theKingIntro', scenario.theKingIntro);
   }
   socket.on('ready', next => {
-
+      console.log(next)
     readyStatus(true, 'scenario', next);
   })
   socket.on('roll', payload => {

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const SceneVideo = (props) => {
-    const client = props.client;
+  const client = props.client;
   const [scene, setScene] = useState([]);
 
   
@@ -27,7 +27,6 @@ const SceneVideo = (props) => {
           // code block
           break;
         case 'ready':
-
           // code block
           break;
         case 'luck':
@@ -41,8 +40,8 @@ const SceneVideo = (props) => {
     
 
   const renderSceneVideo = () => {
-    return scene.map(({ video }, index) => (  
-      <video autoPlay src={video} key={index} style={{ width: '1250px', height: 'auto'}} autoPlay></video>
+    return scene.map(({ video }, index) => ( 
+     <iframe autoPlay src={video} key={index} style={{ width: '1250px', height: '750px', border: 'none'}} controls></iframe>
     ))
   }
 

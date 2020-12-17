@@ -46,31 +46,20 @@ const Chat = (props) => {
     ))
   }
 
-  // const renderScene = () => {
-  //   return scene.map(({ name, message }, index) => (
-  //     <div key={index}>
-  //       <h3 style={{display: 'block'}}>
-  //         {name}
-  //       </h3>
-  //       <span style={{ width: '650px', height: 'auto'}}>{message}</span>
-  //     </div>
-  //   ))
-  // }
-
   return (
     <div id="mario-chat" style={{backgroundImage: 'url(./images/scrolly.png)', backgroundAttachment: 'scroll', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '550px', marginRight: '0'}} >
       <h2 style={{ fontSize: '2em', width: '300px', paddingLeft: '35px', paddingTop: '100px', margin: 'auto', textDecoration: 'underline', fontFamily: 'fantasy'}}><strong>Kingdom chat</strong></h2>
-      <div id="chat-window" style={{ paddingTop: '5px', width: '520px', minHeight: '260px', height: '100%', padding: '30px'}}>
+      <div id="chat-window" style={{ paddingTop: '5px', width: '520px', minHeight: '260px', height: 'auto', padding: '30px 0 30px 30px'}}>
         {renderChat()}
       </div>
       <Form onSubmit={onMessageSubmit}>
       <Form.Label style={{ fontSize: '1.4em', paddingLeft: '50px'}}><strong>Player Name:</strong></Form.Label>
-        <input style={{backgroundColor: 'beige', borderRadius: '7px', fontSize: '1.4em', marginLeft: '5px'}} size="lg" id="name" name="name" type="text" placeholder="Name..." onChange={(e) => onTextChange(e)}/>
+        <input style={{backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.4em', marginLeft: '5px'}} size="lg" id="name" name="name" type="text" placeholder="Name..." onChange={(e) => onTextChange(e)}/>
         <p />
         <Form.Label style={{ fontSize: '1.4em', paddingLeft: '50px'}}><strong>Type Message:</strong></Form.Label>
-        <input style={{backgroundColor: 'beige', borderRadius: '7px', fontSize: '1.4em', marginLeft: '5px', marginBottom: '15px'}} id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)}/>
+        <input style={{backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.4em', marginLeft: '5px', marginBottom: '15px'}} id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)}/>
         <p/>
-        <button id="send" variant="dark" type="submit" style={{ color: 'white', backgroundColor: '#595959', marginLeft: '45%', padding: '10px 15px', marginBottom: '35px', borderRadius: '10px'}}>Send</button>
+        <button id="send" type="submit" style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', marginLeft: '45%', padding: '10px 15px', marginBottom: '35px', borderRadius: '10px'}}>Send</button>
       </Form>
       <p/>
     </div>
@@ -79,4 +68,3 @@ const Chat = (props) => {
 
 export default Chat;
 
-// style={{ backgroundColor: 'lightgray', border: '3px solid lightgray', borderRadius: '9px', width: '500px', minHeight: '200px', height: 'auto', margin: 'auto', display: 'inline-block'}}

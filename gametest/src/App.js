@@ -5,7 +5,7 @@ import SceneVideo from './SceneVideo.js';
 import Loot from './Loot.js';
 import Dialogue from './Dialogue.js';
 import Chat from './Chat.js';
-import { io, Socket } from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 
 const client = io.connect('http://localhost:3001', {transports: ['websocket']});

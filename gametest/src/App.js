@@ -62,16 +62,18 @@ function App() {
 
   return (
     <>
-      <div style={{  marginTop: '160px', width: '100%'}}>
+      <div style={{  display: 'block', textAlign: 'center'}}>
       <div id='sceneWindow' style={{ display: 'inline-block', backgroundColor: 'black', width: '1250px', height: '700px', margin: 'auto'}}>
       <SceneVideo client={client}/>
+      </div>
+      <div style={{ display: 'inline-block', paddingLeft: '20px'}}>
       <Loot />
       </div>
       </div>
       <button  onClick={emitReady} style={{ display: 'block', margin: 'auto', marginTop: '10px'}} name="ready">Next Scene</button>
       <section style={{ display: 'grid', gridTemplateRows: '1fr', gridTemplateColumns: '1fr 1fr', margin: 'auto'}}>
-      <div style={{ margin: 'auto'}}><Dialogue client={client}/></div>
-      <Chat client={client}/>
+      <div style={{ textAlign: 'right'}}><Dialogue client={client}/></div>
+      <div style={{ marginLeft: '0', paddingLeft: '50px'}}><Chat client={client}/></div>
       </section>
     </>
   );

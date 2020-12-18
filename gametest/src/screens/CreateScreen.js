@@ -49,28 +49,28 @@ const CreateScreen = () => {
   const chosenCharacter = (e) =>{
     e.preventDefault();
     setCharInfo({...charInfo, [e.target.name]: e.target.alt}) 
-    if(e.target.alt === 'hunter'){
+    if(e.target.alt === 'Hunter'){
       setCharTheme(styleHide);
       setNameTheme(styleShow);
-       characterPicked = <img src='./images/Hunter.png' style={{height: '150px', marginTop: '110px'}} name="char" alt="hunter"/>;
+       characterPicked = <img src='./images/Hunter.png' style={{height: '150px', marginTop: '110px'}} name="char" alt="Hunter"/>;
       return characterPicked;
     }
-    if(e.target.alt === 'assassin'){
+    if(e.target.alt === 'Assassin'){
       setCharTheme(styleHide);
       setNameTheme(styleShow);
-      characterPicked = <img src='./images/Assassin.png' style={{height: '120px', marginTop: '131px'}} name="char" alt="assassin" />;
+      characterPicked = <img src='./images/Assassin.png' style={{height: '120px', marginTop: '131px'}} name="char" alt="Assassin" />;
       return characterPicked;
     }
-    if(e.target.alt === 'wizard'){
+    if(e.target.alt === 'Wizard'){
       setCharTheme(styleHide);
       setNameTheme(styleShow);
-      characterPicked = <img src='./images/Wizard.png' style={{height: '150px', marginTop: '110px'}} name="char" alt="wizard"/>;
+      characterPicked = <img src='./images/Wizard.png' style={{height: '150px', marginTop: '110px'}} name="char" alt="Wizard"/>;
       return characterPicked;
     }
-    if(e.target.alt === 'warrior'){
+    if(e.target.alt === 'Warrior'){
       setCharTheme(styleHide);
       setNameTheme(styleShow);
-      characterPicked = <img src='./images/Warrior.png' style={{height: '150px', paddingRight: '10px', marginTop: '110px'}} name="char" alt="warrior" />;
+      characterPicked = <img src='./images/Warrior.png' style={{height: '150px', paddingRight: '10px', marginTop: '110px'}} name="char" alt="Warrior" />;
       return characterPicked;
     }
     else{
@@ -81,7 +81,6 @@ const CreateScreen = () => {
 
   const onTextChange = (e) => {
     setState(e.target.value);
-    console.log(state)
   }
   const createGameHandler = (e) => {
     e.preventDefault();
@@ -127,11 +126,10 @@ const CreateScreen = () => {
       <div style={charTheme}>
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '150px'}}>CHOOSE YOUR CHARACTER</Card.Title>
         <br></br>
-          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Hunter.png' style={{height: '150px'}} name="char" alt="hunter"/><p style={{cursor: 'no-drop'}}>Hunter</p></button>
-          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Assassin.png' style={{height: '150px'}} name="char" alt="assassin" /><p style={{cursor: 'no-drop'}}>Assassin</p></button>
-          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Wizard.png' style={{height: '120px', marginTop: '30px'}} name="char" alt="wizard"/><p style={{cursor: 'no-drop'}}>Wizard</p></button>
-          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Warrior.png' style={{height: '150px', paddingRight: '10px'}} name="char" alt="warrior" /><p style={{cursor: 'no-drop'}}>Warrior</p></button>
-          {/* <p style={{ color: 'gray'}}>__________</p> */}
+          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Hunter.png' style={{height: '150px'}} name="char" alt="Hunter"/><p style={{cursor: 'no-drop'}}>Hunter</p></button>
+          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Assassin.png' style={{height: '150px'}} name="char" alt="Assassin" /><p style={{cursor: 'no-drop'}}>Assassin</p></button>
+          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Wizard.png' style={{height: '120px', marginTop: '30px'}} name="char" alt="Wizard"/><p style={{cursor: 'no-drop'}}>Wizard</p></button>
+          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Warrior.png' style={{height: '150px', paddingRight: '10px'}} name="char" alt="Warrior" /><p style={{cursor: 'no-drop'}}>Warrior</p></button>
       </div>
 
       <div style={nameTheme}>

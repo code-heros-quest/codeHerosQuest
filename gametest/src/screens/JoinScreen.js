@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import socket from '../components/connect.js';
+
 const styleShow = {
   margin: 'auto', 
   backgroundImage: 'url(./images/scroll.png)', 
@@ -30,6 +31,7 @@ const JoinScreen = () => {
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
 // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
+
   const changeTheme = () =>{
     setStartTheme(styleHide);
     setCharTheme(styleShow);
@@ -112,6 +114,7 @@ const JoinScreen = () => {
           </Form>
         </Card.Body>
       </div>
+
       <div style={charTheme}>
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '150px'}}>CHOOSE YOUR CHARACTER</Card.Title>
         <br></br>
@@ -120,6 +123,7 @@ const JoinScreen = () => {
           <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Wizard.png' style={{height: '120px', marginTop: '30px'}} name="char" alt="Wizard"/><p style={{cursor: 'no-drop'}}>Wizard</p></button>
           <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Warrior.png' style={{height: '150px', paddingRight: '10px'}} name="char" alt="Warrior" /><p style={{cursor: 'no-drop'}}>Warrior</p></button>
       </div>
+
       <div style={nameTheme}>
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '190px'}}>Choose Your Character Name and role</Card.Title>
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'white' }}>{gameData}</Card.Title>
@@ -137,6 +141,7 @@ const JoinScreen = () => {
         <button type="submit" style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}}>Start</button>
       </Link>
       </div>
+
     </div>
   )
 }

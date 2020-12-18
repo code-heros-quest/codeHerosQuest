@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
 import socket from '../components/connect.js';
 
 
@@ -35,8 +34,7 @@ const CreateScreen = () => {
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
-  const changeTheme = (e) =>{
-    e.preventDefault();
+  const changeTheme = () =>{
     setStartTheme(styleHide);
     setCharTheme(styleShow);
   }
@@ -81,15 +79,17 @@ const CreateScreen = () => {
   }
 
 
-  const onTextChange = e => {
+  const onTextChange = (e) => {
     setState(e.target.value);
+    console.log(state)
   }
   const createGameHandler = (e) => {
     e.preventDefault();
     socket.emit('create game', state);
+    changeTheme();
   }
   
-  const onNameChange = e => {
+  const onNameChange = (e) => {
     e.preventDefault();
     setCharInfo({...charInfo, [e.target.name]: e.target.value}) 
     console.log(charInfo.name, charInfo.char);
@@ -119,7 +119,7 @@ const CreateScreen = () => {
               <p></p>
               <Form.Control style={{width: '40%', margin: 'auto'}} type="text" placeholder="name..." onChange={(e) => onTextChange(e)}/>
             </Form.Group>
-            <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit" onClick={changeTheme}>Submit</button>
+            <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit">Submit</button>
           </Form>
         </Card.Body>
       </div>

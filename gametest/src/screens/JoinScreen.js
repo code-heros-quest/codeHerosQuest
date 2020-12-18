@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import socket from '../components/connect.js';
 
-
 const styleShow = {
   margin: 'auto', 
   backgroundImage: 'url(./images/scroll.png)', 
@@ -23,7 +22,6 @@ const styleHide = {
   display: 'none'
 }
 let characterPicked = null;
-
 const JoinScreen = () => {
   const[state, setState] = useState('')
   const [gameData, setGameData] = useState('');
@@ -32,21 +30,17 @@ const JoinScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
-
 // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
   const changeTheme = () =>{
     setStartTheme(styleHide);
     setCharTheme(styleShow);
   }
-
   const showGameLink = () =>{
     setNameTheme(styleHide);
     setGameTheme(styleShow);
   }
-
   //-------------- CHOSEN CHARACTER FUNCTION ---------- //
-
   const chosenCharacter = (e) =>{
     e.preventDefault();
     setCharInfo({...charInfo, [e.target.name]: e.target.alt}) 
@@ -78,8 +72,6 @@ const JoinScreen = () => {
       return alert('error in character picked function')
     }
   }
-
-
   const onTextChange = e => {
     setState(e.target.value);
   }
@@ -123,7 +115,6 @@ const JoinScreen = () => {
         </Card.Body>
       </div>
 
-
       <div style={charTheme}>
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '150px'}}>CHOOSE YOUR CHARACTER</Card.Title>
         <br></br>
@@ -142,7 +133,6 @@ const JoinScreen = () => {
         <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit" onClick={showGameLink}>Submit</button>
         </Form>
       </div>
-
       <div style={gameTheme}>
         <div style={{ margin: '0'}}>{characterPicked}</div>
         <h3>{charInfo.char}:  {charInfo.name}</h3>
@@ -156,7 +146,6 @@ const JoinScreen = () => {
   )
 }
 export default JoinScreen
-
 
 
 

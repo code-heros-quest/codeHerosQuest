@@ -6,11 +6,16 @@ import Ready from './Ready';
 import Choice4 from './Choice4'
 import Riddle from './Riddle'
 import Luck from './Luck';
+import Start from './Start';
+
+let count = 0;
 
 const GameButtons = (props) => {
   const [scenario, setScenario] = useState({})
   useEffect(() => {
     setScenario(props.scenario)
+    count++;
+    console.log(count);
   }, [props])
   console.log(scenario);
   switch(scenario.type) {
@@ -44,7 +49,7 @@ const GameButtons = (props) => {
       )
     default:
       return (
-        <Ready scenario={scenario}/>
+        <Start scenario={scenario}/>
       )
   }
 }

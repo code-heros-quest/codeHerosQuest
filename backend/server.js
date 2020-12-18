@@ -117,9 +117,9 @@ io.on('connection', (socket) => {
       let sDialogue = game.sDialogue;
       let cDialogue = game.cDialogue;
       game.scenarios = createScenarios(sDialogue, cDialogue, loot);
-      for (let player of game.players) {
-        player.emit('scenario', game.scenarios.intro);
-      }
+      // for (let player of game.players) {
+      //   player.emit('scenario', game.scenarios.intro);
+      // }
       game.responseCount = 0;
     }
     console.log(game);

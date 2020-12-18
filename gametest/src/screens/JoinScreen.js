@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
@@ -8,7 +9,7 @@ import socket from '../components/connect.js';
 const JoinScreen = () => {
   const[state, setState] = useState('')
   const [gameData, setGameData] = useState('');
-  const [charInfo, setCharInfo] = useState({ name: '', char: ''});
+  const [charInfo, setCharInfo] = useState({char: 'hunter', name: 'michael'});
   const onTextChange = e => {
     setState(e.target.value);
   }
@@ -57,11 +58,14 @@ const JoinScreen = () => {
       <Card style={{ width: '30rem' }}>
         <Card.Title>Choose Your Character Name and role</Card.Title>
         <Form onSubmit={submitChar}>
-          <Form.Control type="text" placeholder="name" onChange={(e) => onNameChange(e)}/>
-          <Form.Control type="text" placeholder="char" onChange={(e) => onNameChange(e)}/>
-        <Button variant="primary" type="submit">Submit</Button>
+          <Form.Control type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)}/>
+          <Form.Control type="text" placeholder="role" name="char" onChange={(e) => onNameChange(e)}/>
+          <Button variant="primary" type="submit">Submit</Button>
         </Form>
       </Card>
+      <Link to='/game'>
+        <Button variant="primary" type="submit">Go to game</Button>
+      </Link>
     </div>
   )
 }

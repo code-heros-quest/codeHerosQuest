@@ -23,7 +23,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
   }
   
   class Roll {
-    constructor(num, name, dialogue, lootObject, next) {
+    constructor(num, name, damage, dialogue, lootObject, next) {
       this.num = num;
       this.name = name;
       this.damage = damage;

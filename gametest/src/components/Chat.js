@@ -17,10 +17,10 @@ const Chat = (props) => {
       setChat([...chat, { name, message }])
     })
     
-    client.on('result', payload => {
-      setChat([...payload, { name: payload.name, message: payload.dialogue }])
-      // do ready check, serve payload.num
-    })
+    // client.on('result', payload => {
+    //   setChat([...payload, { name: payload.name, message: payload.dialogue }])
+    //   // do ready check, serve payload.num
+    // })
   })
 
   const onTextChange = e => {

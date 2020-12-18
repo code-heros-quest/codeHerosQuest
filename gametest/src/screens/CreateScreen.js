@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
@@ -26,6 +27,7 @@ const CreateScreen = () => {
     e.preventDefault();
     console.log(charInfo)
     socket.emit('start game', charInfo);
+    <Link to='/game'>Join a game</Link>
   }
   
   useEffect(() => {
@@ -63,6 +65,9 @@ const CreateScreen = () => {
         <Button variant="primary" type="submit">Submit</Button>
         </Form>
       </Card>
+      <Link to='/game'>
+        <Button variant="primary" type="submit">Go to game</Button>
+      </Link>
     </div>
   )
 }

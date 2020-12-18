@@ -6,20 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Dialogue = (props) => {
-  const client = props.client;
-  const [scene, setScene] = useState([]);
-
-  
-    client.on('scenario', (scenario) => {
-      setScene([{ name: scenario.name, message: scenario.dialogue }])
-    });
-    client.on('result', result => {
-      setScene([{ name: result.name, message: result.dialogue }])
-    });
+  const [scene, setScene] = useState([])
+  useEffect(() => {
+    setScene([{ name: props.scenario.name, message: props.scenario.dialogue }])
+  }, [props])
 
 
-
-    
 
   const renderScene = () => {
     return scene.map(({ name, message }, index) => (

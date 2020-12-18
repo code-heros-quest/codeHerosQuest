@@ -110,7 +110,7 @@ io.on('connection', (socket) => {
   function startGame(charInfo) {
     console.log(charInfo.char);
     const game = liveGames[socket.gameId];
-    game.char[charInfo.char].name = charInfo.name;
+    game.char[charInfo.char.toLowerCase()].name = charInfo.name;
     socket.charType = [charInfo.char];
     socket.charName = [charInfo.name];
     console.log(socket);

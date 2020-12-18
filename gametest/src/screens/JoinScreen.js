@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button'
 import socket from '../components/connect.js';
 
 
-
 const styleShow = {
   margin: 'auto', 
   backgroundImage: 'url(./images/scroll.png)', 
@@ -36,8 +35,7 @@ const JoinScreen = () => {
 
 // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
-  const changeTheme = (e) =>{
-    e.preventDefault();
+  const changeTheme = () =>{
     setStartTheme(styleHide);
     setCharTheme(styleShow);
   }
@@ -88,6 +86,7 @@ const JoinScreen = () => {
   const createGameHandler = (e) => {
     e.preventDefault();
     socket.emit('join game', state);
+    changeTheme();
   }
   const onNameChange = e => {
     console.log(e.target.name, e.target.char);
@@ -110,38 +109,49 @@ const JoinScreen = () => {
   return (
     <div style={{background: 'none', marginTop: '350px', textAlign: 'center'}}>
       <div style={startTheme}>
-      <Card.Body style={{ marginLeft: '70px', marginTop: '100px', width: '750px'}}>
+      <Card.Body style={{ marginLeft: '70px', marginTop: '170px', width: '750px'}}>
       <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive'}}>JOIN A NEW GAME</Card.Title>
           <Form onSubmit={createGameHandler}>
             <Form.Group>
               <Form.Label>Enter your game code</Form.Label>
               <Form.Control style={{width: '40%', margin: 'auto'}} type="text" placeholder="name" onChange={(e) => onTextChange(e)}/>
             </Form.Group>
-            <button  style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit" onClick={changeTheme}>
+            <button  style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit">
               Submit
             </button>
           </Form>
         </Card.Body>
       </div>
 
+
       <div style={charTheme}>
+        <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '150px'}}>CHOOSE YOUR CHARACTER</Card.Title>
+        <br></br>
+          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Hunter.png' style={{height: '150px'}} name="char" alt="Hunter"/><p style={{cursor: 'no-drop'}}>Hunter</p></button>
+          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Assassin.png' style={{height: '150px'}} name="char" alt="Assassin" /><p style={{cursor: 'no-drop'}}>Assassin</p></button>
+          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Wizard.png' style={{height: '120px', marginTop: '30px'}} name="char" alt="Wizard"/><p style={{cursor: 'no-drop'}}>Wizard</p></button>
+          <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px'}} onClick={chosenCharacter}> <img src='./images/Warrior.png' style={{height: '150px', paddingRight: '10px'}} name="char" alt="Warrior" /><p style={{cursor: 'no-drop'}}>Warrior</p></button>
+      </div>
+
+      <div style={nameTheme}>
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '190px'}}>Choose Your Character Name and role</Card.Title>
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'white' }}>{gameData}</Card.Title>
         <Form onSubmit={submitChar}>
         <Form.Control style={{width: '40%', margin: '50px auto 10px auto'}} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)}/>
-        <Form.Control style={{width: '40%', margin: '10px auto 10px auto'}} type="text" placeholder="role" name="char" onChange={(e) => onNameChange(e)}/>
+        {/* <Form.Control style={{width: '40%', margin: '10px auto 10px auto'}} type="text" placeholder="role" name="char" onChange={(e) => onNameChange(e)}/> */}
         <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit" onClick={showGameLink}>Submit</button>
         </Form>
       </div>
 
       <div style={gameTheme}>
-      <section style={{marginTop: '25%'}}>
-      <h1 style={{ paddingBottom: '30px', fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '190px'}}>Start Your Quest</h1>
+        <div style={{ margin: '0'}}>{characterPicked}</div>
+        <h3>{charInfo.char}:  {charInfo.name}</h3>
+      <h1 style={{ paddingBottom: '30px', fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px'}}>Start Your Quest</h1>
       <Link to='/game'>
         <button type="submit" style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}}>Start</button>
       </Link>
-      </section>
       </div>
+
     </div>
   )
 }

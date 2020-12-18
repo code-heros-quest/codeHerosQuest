@@ -12,33 +12,12 @@ const Dialogue = (props) => {
   
     client.on('scenario', (scenario) => {
       setScene([{ name: scenario.name, message: scenario.dialogue }])
-      switch(scenario.type) {
-        case 'roll':
-          // code block
-          break;
-        case 'choice2':
-          // code block
-          break;
-        case 'choice3':
-          // code block
-          break;
-        case 'choice4':
-          // code block
-          break;
-        case 'riddle':
-          // code block
-          break;
-        case 'ready':
-
-          // code block
-          break;
-        case 'luck':
-          // code block
-          break;
-        default:
-          // code block
-      }
     });
+    client.on('result', result => {
+      setScene([{ name: result.name, message: result.dialogue }])
+    });
+
+
 
     
 

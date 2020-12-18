@@ -63,11 +63,13 @@ io.on('connection', (socket) => {
   socket.on('ready', next => {
     const game = liveGames[socket.gameId];
     game.readyStatus(next);
+    console.log('recieved ready');
   })
 
   socket.on('roll', payload => {
     const game = liveGames[socket.gameId];
     game.rollEvaluator(payload);
+    console.log('recieved roll');
     // payload will have .scenario and .roll whcih will be that players roll
     // will emit a result with the rollResult attached
   })
@@ -75,6 +77,7 @@ io.on('connection', (socket) => {
   socket.on('riddle', payload => {
     const game = liveGames[socket.gameId];
     game.riddleEvaluator(payload);
+    console.log('recieved riddle');
     // payload will have .scenario and .answer which is their answer to the riddle, and .char with hunter/assasin/warr/or wizard so I can evaluate for individual rewards
     // if they get their answer correct we will emit a single player response
     // the choice will be determined on the total number of players to answer correctly
@@ -83,6 +86,7 @@ io.on('connection', (socket) => {
   socket.on('choice', payload => {
     const game = liveGames[socket.gameId];
     game.choiceVote(payload);
+    console.log('recieved choice');
     // payload.vote, payload.scenario
     // payload that has the scenario, AND that players vote
     // if we get three votes for one choice it wins, we serve back the dialogue for that choice
@@ -97,6 +101,7 @@ io.on('connection', (socket) => {
   socket.on('luck', payload => {
     const game = liveGames[socket.gameId];
     game.luckEvaluator(payload);
+    console.log('recieved luck');
     // payload will have .scenario and .luck whcih will 0 or 1 depending on that players luck
     // will emit a result with the luckResult attached
   })
@@ -105,7 +110,7 @@ io.on('connection', (socket) => {
   function startGame(charInfo) {
     console.log(charInfo.char);
     const game = liveGames[socket.gameId];
-    game.char[charInfo.char].name = charInfo.name;
+    game.char[charInfo.char.toLowerCase()].name = charInfo.name;
     socket.charType = [charInfo.char];
     socket.charName = [charInfo.name];
     console.log(socket);

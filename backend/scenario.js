@@ -223,7 +223,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'Cut your losses and head out', cDialogue.curiosityChoices2, null, 21)
   }
   
-  const curiosityKilledTheCat = new Scenario(13, 'Curiosity Killed the Cat', sDialogue.curiosityKilledTheCat, 'choice2', `Do you head to the Neutral Zone or leave town?`, curiosityKilledTheCatChoices, null);
+  const curiosityKilledTheCat = new Scenario(13, null, 'Curiosity Killed the Cat', sDialogue.curiosityKilledTheCat, 'choice2', `Do you head to the Neutral Zone or leave town?`, curiosityKilledTheCatChoices, null);
   
   
   // Tin Town ************
@@ -233,7 +233,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice3: new Choice(3, 'Cut your losses', cDialogue.tinTownChoices3, null, 21)
   };
   
-  const tinTown = new Scenario(12, 'Tin Town', sDialogue.tinTown, 'choice3', `Do you head further in seeking supplies, try to get more information before deciding, or cut your losses and follow the road winding south-east out of here?`, tinTownChoices, null);
+  const tinTown = new Scenario(12, null, 'Tin Town', sDialogue.tinTown, 'choice3', `Do you head further in seeking supplies, try to get more information before deciding, or cut your losses and follow the road winding south-east out of here?`, tinTownChoices, null);
   
   
   // NPC 3 : Merchant
@@ -245,7 +245,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
   
   }
   
-  const theMerchant = new Scenario(11, 'The Merchant', sDialogue.theMerchant, 'riddle', `"The more you take, the more you leave behind. What am I?"`, theMerchantRiddle, null);
+  const theMerchant = new Scenario(11, null, 'The Merchant', sDialogue.theMerchant, 'riddle', `"The more you take, the more you leave behind. What am I?"`, theMerchantRiddle, null);
   
   // FORK IN THE ROAD *****
   const forkInTheRoadChoices = {
@@ -253,47 +253,47 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'Follow the Hammer', cDialogue.forkInTheRoad2, null, 15)
   };
   
-  const forkInTheRoad = new Scenario(10, 'Fork in the Road', sDialogue.forkInTheRoad, 'choice2', `Will you follow the coins or the hammer?`, forkInTheRoadChoices, null)
+  const forkInTheRoad = new Scenario(10, null, 'Fork in the Road', sDialogue.forkInTheRoad, 'choice2', `Will you follow the coins or the hammer?`, forkInTheRoadChoices, null)
   
   // BOSS 3 : Troll
   const theTrollRolls = {
-    rollPotential: 100,
+    attackPotential: {low: 48, high: 52},
     lowRoll: new Roll(1, 'Poor Roll', 10, cDialogue.theTrollRolls1, [loot.falcon], 10),
     medRoll: new Roll(2, 'Fair Roll', 5, cDialogue.theTrollRolls2, [loot.falcon], 10),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theTrollRolls3, [loot.falcon], 10)
   }
   
-  const theTroll = new Scenario(9, `The Troll`, sDialogue.theTroll, 'roll', 'Roll to determine the fate of your battle', theTrollRolls, null);
+  const theTroll = new Scenario(9, null, `The Troll`, sDialogue.theTroll, 'roll', 'Roll to determine the fate of your battle', theTrollRolls, null);
   
   // BOSS 2 : Goblin
   const theGoblinRolls = {
-    rollPotential: 100,
+    attackPotential: {low: 48, high: 52},
     lowRoll: new Roll(1, 'Poor Roll', 10, cDialogue.theGoblinRolls1, [loot.strongBandages], 9),
     medRoll: new Roll(2, 'Fair Roll', 5, cDialogue.theGoblinRolls2, [loot.strongBandages], 9),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theGoblinRolls3, [loot.strongBandages], 9)
   }
-  const theGoblin = new Scenario(7, 'The Goblin', sDialogue.theGoblin, 'roll', 'Roll to determine the fate of your battle', theGoblinRolls, null);
+  const theGoblin = new Scenario(7, null, 'The Goblin', sDialogue.theGoblin, 'roll', 'Roll to determine the fate of your battle', theGoblinRolls, null);
   
   // poisonous bite
-  const thePoinsonousBite = new Scenario(8, 'The Poisonous Bite', sDialogue.thePoinsonousBite, 'ready', null, null, 9);
+  const thePoinsonousBite = new Scenario(8, null, 'The Poisonous Bite', sDialogue.thePoinsonousBite, 'ready', null, null, 9);
   
   // the village
   const theVillageChoices = {
     choice1: new Choice(1, 'Yes, these villagers need your help!', cDialogue.theVillageChoices1, null, 7),
     choice2: new Choice(2, 'No, you have a more important mission ahead and can not afford to waste any time', cDialogue.theVillageChoices2, null, 8)
   }
-  const theVillage = new Scenario(6, 'The Village', sDialogue.theVillage, 'choice2', `Will you risk your lives to help us with this other matter.`, theVillageChoices, null)
+  const theVillage = new Scenario(6, null, 'The Village', sDialogue.theVillage, 'choice2', `Will you risk your lives to help us with this other matter.`, theVillageChoices, null)
   
   // NPC 1
   const theWoodsmanLuck = {
     badLuck: new Luck(1, 'Poor Luck', cDialogue.theWoodsmanLuck1, null, 6),
     goodLuck: new Luck(2, 'Good Luck', cDialogue.theWoodsmanLuck2, [loot.herbalSalve], 6)
   }
-  const theWoodsman = new Scenario(5, 'Find Another Way In', sDialogue.theWoodsman, 'luck', 'Since you were kind enough to carry wood back to the village the woodsman has much more than normal. Maybe if you are lucky he will reward you for your help. Roll for luck:', theWoodsmanLuck, null)
+  const theWoodsman = new Scenario(5, null, 'Find Another Way In', sDialogue.theWoodsman, 'luck', 'Since you were kind enough to carry wood back to the village the woodsman has much more than normal. Maybe if you are lucky he will reward you for your help. Roll for luck:', theWoodsmanLuck, null)
   
   
   // NPC 2
-  const theOldFriend = new Scenario(4, 'The Old Friend', sDialogue.theOldFriend, 'ready', null, null, 6);
+  const theOldFriend = new Scenario(4, null, 'The Old Friend', sDialogue.theOldFriend, 'ready', null, null, 6);
   
   //BOSS 1 : Orc Lord
   const theOrcLordRoll = {
@@ -302,7 +302,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     medRoll: new Roll(2, 'Fair Roll', 5, cDialogue.theOrcLordRoll2, [loot.orcLordMace], 4),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theOrcLordRoll3, [loot.orcLordMace], 4)
   }
-  const theOrcLord = new Scenario(3, 'Battling the Orc Lord', sDialogue.theOrcLord, 'roll', 'roll the dice', theOrcLordRoll, null)
+  const theOrcLord = new Scenario(3, null, 'Battling the Orc Lord', sDialogue.theOrcLord, 'roll', 'roll the dice', theOrcLordRoll, null)
   
   
   // At the wall

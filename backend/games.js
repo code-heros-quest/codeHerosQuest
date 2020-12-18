@@ -26,7 +26,7 @@ class Games{
   // ------------------ CHOICE SCENARIOS ----------------//
   //expecting votes and scenario from paylod of socket.on 'choice'
   choiceVote(payload) {
-    this.tempArr.push(payload.vote);
+    this.tempArr.push(Number(payload.vote));
     let ch1 = 0;
     let ch2 = 0;
     let ch3 = 0;
@@ -50,7 +50,7 @@ class Games{
         var choice = payload.scenario.choices.choice3
       }
       else {
-        let random = this.tempArr[Math.floor(Math.random() * tempArr.length)]
+        let random = this.tempArr[Math.floor(Math.random() * this.tempArr.length)]
         if (random === 1) {
           var choice = payload.scenario.choices.choice1
         }
@@ -64,6 +64,7 @@ class Games{
       this.tempArr = [];
       this.players.forEach(player => {
         player.emit(`result`, choice);
+        console.log('emited', choice);
       });
     }
   }

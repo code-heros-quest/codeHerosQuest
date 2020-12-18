@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
     liveGames[game.id] = game;
     joinGame(socket, game);
     console.log(liveGames);
-    // socket.emit('choose character', game);
+    socket.emit('choose character', game.id);
     // use the game.id passed to give your friends the game code to join, use game.name to render a title to the users page? Do we need to give the client less of this info? like only the id and name?
   })
 
@@ -36,12 +36,13 @@ io.on('connection', (socket) => {
     const game = liveGames[gameId];
     joinGame(socket, game);
     console.log(game);
-    // socket.emit('choose character', game);
+    // socket.emit('choose character', gameId);
     // use the game.id passed to give your friends the game code to join, use game.name to render a title to the users page? Do we need to give the client less of this info? like only the id and name?
   })
 
   // ---- all players chose a character and send back name ---- //
   socket.on('start game', charInfo => {
+    console.log(charInfo);
     // charInfo will be an object with a .name and .char which will create characters and assign them to the socket. 
     //this function takes in charInfo, and renames the games char to the new name. It also adds the char name and type to the socket. Once all four players have returned their char type and name the game dialogue and scenarios are created and added to the game instance. Each socket emits a scenario with into attached.
     startGame(charInfo);
@@ -102,6 +103,7 @@ io.on('connection', (socket) => {
 
   //---------------- start game ------------------//
   function startGame(charInfo) {
+    console.log(charInfo.char);
     const game = liveGames[socket.gameId];
     game.char[charInfo.char].name = charInfo.name;
     socket.charType = [charInfo.char];
@@ -120,16 +122,19 @@ io.on('connection', (socket) => {
       }
       game.responseCount = 0;
     }
+    console.log(game);
 
   }
 
   // -------------Joins Game--------------//
   function joinGame(socket, game) {
     game.players.push(socket);
-    socket.join(game.id, () => {
-      socket.gameId = game.id;
-      console.log(socket.id + ' joined ' + game.id);
-    })
+    console.log('player joined the game', game.id);
+    let id = game.id;
+    socket.join(id)
+    console.log(game.id);
+    socket.gameId = id;
+    console.log(socket.id + ' joined ' + id);
   }
   
   // -------------creates character instance--------------- //

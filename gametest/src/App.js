@@ -11,18 +11,14 @@ import JoinScreen from './screens/JoinScreen.js';
 function App() {
 
 
-  // function startGame(){
-  //   return (
-  //     <Route path='/game' component={GameScreen} />
-  //   )
-  // }
+
 
   return (
     <Router>
       <Route path='/' component={WelcomeScreen} exact/>
       <Route path='/create' component={CreateScreen} />
       <Route path='/join' component={JoinScreen} />
-      {/* <Route path='/game' component={GameScreen} /> */}
+      <Route path='/game' component={GameScreen} />
     </Router>
   );
 }

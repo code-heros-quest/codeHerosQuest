@@ -3,8 +3,12 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import socket from '../components/connect.js';
+
+
 const JoinScreen = () => {
   const[state, setState] = useState('')
+  const [gameData, setGameData] = useState('');
+  const [charInfo, setCharInfo] = useState({ name: '', char: ''});
   const onTextChange = e => {
     setState(e.target.value);
   }
@@ -12,6 +16,23 @@ const JoinScreen = () => {
     e.preventDefault();
     socket.emit('join game', state);
   }
+  const onNameChange = e => {
+    console.log(e.target.name, e.target.char);
+    setCharInfo({...charInfo, [e.target.name]: e.target.value })
+    console.log(charInfo.name, charInfo.char);
+  }
+  const submitChar = (e) => {
+    e.preventDefault();
+    console.log(charInfo);
+    socket.emit('start game', charInfo);
+  }
+  
+  useEffect(() => {
+    socket.on('choose character', game => {
+      setGameData(game.id);
+    })
+    
+  })
   
   return (
     <div>
@@ -29,6 +50,17 @@ const JoinScreen = () => {
             </Button>
           </Form>
         </Card.Body>
+      </Card>
+      <br></br>
+      <p>{gameData}/</p>
+      <br></br>
+      <Card style={{ width: '30rem' }}>
+        <Card.Title>Choose Your Character Name and role</Card.Title>
+        <Form onSubmit={submitChar}>
+          <Form.Control type="text" placeholder="name" onChange={(e) => onNameChange(e)}/>
+          <Form.Control type="text" placeholder="char" onChange={(e) => onNameChange(e)}/>
+        <Button variant="primary" type="submit">Submit</Button>
+        </Form>
       </Card>
     </div>
   )

@@ -24,7 +24,7 @@ const styleHide = {
 }
 let characterPicked = null;
 const JoinScreen = () => {
-  const [availableCharacters, setAvailableCharacters] = useState([{ role: 'Hunter', img: './images/Hunter.png' }, { role: 'Assassin', img: './images/Assassin.png' }, { role: 'Warrior', img: './images/Warrior.png' }, { role: 'Wizard', img: './images/Wizard.png' }]);
+  const [availableCharacters, setAvailableCharacters] = useState([]);
   //img, name, role
   const [state, setState] = useState('')
   const [gameData, setGameData] = useState('');
@@ -37,16 +37,12 @@ const JoinScreen = () => {
   // ------------- Updates joined characters --------------//
   useEffect(() => {
     client.on('char array', charArray => {
-      let tempArray = [];
-      availableCharacters.forEach(char => {
-        if (charArray.includes(char.role) === false) {
-          tempArray.push(char);
-          console.log(tempArray)
-        }
-      })
-      setAvailableCharacters(tempArray);
+      setAvailableCharacters(charArray);
     })
   })
+  useEffect(() => {
+    console.log(availableCharacters)
+  }, [availableCharacters])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 

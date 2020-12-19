@@ -24,7 +24,7 @@ const styleHide = {
 let characterPicked = null;
 
 const CreateScreen = () => {
-  const[state, setState] = useState('');
+  const [state, setState] = useState('');
   const [gameData, setGameData] = useState('');
   const [charInfo, setCharInfo] = useState({ char: '', name: ''});
   const [startTheme, setStartTheme] = useState(styleShow);

@@ -1,0 +1,34 @@
+.choiceButtons{
+    color: white;
+    box-shadow: -1px -1px 20px 1px white, 4px 4px 20px 2px gray;
+    background-color: #636363;
+    padding: 8px 20px;
+    margin-bottom: 35px;
+    border-radius: 10px;
+    margin: 50px 25px auto 25px;
+    font-weight: bolder;
+    font-size: 1.3em;
+    font-family: cursive;
+    cursor: pointer;
+}
+
+.choiceButtons:hover{
+    transform: scale(1.1);
+    background-color: black;
+}
+
+.disabled{
+    opacity: 0.75; 
+    cursor: not-allowed;
+    box-shadow: none;
+    color: white;
+    background-color: black;
+    padding: 8px 20px;
+    margin-bottom: 35px;
+    border-radius: 10px;
+    margin: 50px 25px auto 25px;
+    font-weight: bolder;
+    font-size: 1.3em;
+    font-family: cursive;
+}
+

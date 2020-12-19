@@ -1,6 +1,6 @@
 'use strict';
 
-class Games{
+class Games {
   constructor(gameName, createCharacters) {
     this.name = gameName;
     this.id = Math.floor(Math.random() * Math.floor(2000));
@@ -152,7 +152,7 @@ class Games{
 
   // ---------- Update Character Stats --------- //
   updatePlayerStats(socket) {
-    for (const character in this.char) { 
+    for (const character in this.char) {
       if (socket.charType === this.char[character].charClass.toLowerCase()) {
         let payload = this.char[character]
         socket.emit('character', payload);
@@ -183,11 +183,11 @@ class Games{
           this.char[character].activateLoot(loot);
         });
       }
-      let data = {name: 'Loot Announcement', message: lootMessage};
+      let data = { name: 'Loot Announcement', message: lootMessage };
       // console.log(data); this can be changed into a chat emit!
     }
   }
-  
+
   evaluateForLootRiddle(lootArray, payload) {
     if (lootArray !== null) {
       let lootMessage = '';
@@ -203,11 +203,11 @@ class Games{
           lootArray.forEach(loot => this.char[character].activateLoot(loot));
         }
       }
-      let data = {name: 'Loot Announcement', message: lootMessage};
+      let data = { name: 'Loot Announcement', message: lootMessage };
       // console.log(data); this can be changed into a chat emit! only emit if message is not an empty string
     }
   }
-  
+
   affectForHealth(value) {
     for (const character in this.char) {
       this.char[character].loseHealth(value)
@@ -216,7 +216,7 @@ class Games{
       }
     }
   }
-  
+
   nextScenario(num) {
     for (const scenario in this.scenarios) {
       if (this.scenarios[scenario].number === num) {
@@ -224,7 +224,7 @@ class Games{
       }
     }
   }
-  
+
   percentageEvaluator(stats, payload) {
     let baseNumber = stats.attack - payload.scenario.choices.attackPotential.low;
     let totalNumber = payload.scenario.choices.attackPotential.high - payload.scenario.choices.attackPotential.low;
@@ -239,9 +239,24 @@ class Games{
     }
     return extraRoll;
   }
-  
-  offerCharacters(charInfo) {
+
+  storeCharacters(charInfo) {
     this.charArray.push(charInfo.char);
+  }
+
+  offerCharacters() {
+    const availableCharacters = [{ role: 'Hunter', img: './images/Hunter.png' }, { role: 'Assassin', img: './images/Assassin.png' }, { role: 'Warrior', img: './images/Warrior.png' }, { role: 'Wizard', img: './images/Wizard.png' }];
+    availableCharacters.forEach(char => {
+      if (this.charArray.includes(char.role) === false) {
+        this.tempArr.push(char);
+      }
+    })
+    this.players.forEach(player => {
+      player.emit(`char array`, this.tempArr);
+      console.log('emitted to ', player);
+      console.log(this.tempArr);
+    });
+    this.tempArr = [];
   }
 
   // ----------- disconect functions ---------- //

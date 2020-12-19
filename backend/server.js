@@ -33,16 +33,15 @@ io.on('connection', (socket) => {
   socket.on('join game', gameId => {
     const game = liveGames[gameId];
     // if game id is not valid do we emit an error messgae?
-    socket.emit('char array', game.charArray)
     joinGame(socket, game);
-    console.log(game);
+    game.offerCharacters();
   })
 
   // ---- all players chose a character and send back name ---- //
   socket.on('start game', charInfo => {
     console.log(charInfo);
     const game = liveGames[socket.gameId];
-    game.offerCharacters(charInfo);
+    game.storeCharacters(charInfo);
     startGame(charInfo);
   })
 
@@ -142,9 +141,9 @@ io.on('connection', (socket) => {
     socket.gameId = id;
     console.log(socket.id + ' joined ' + id);
   }
-  
-  
-  
+
+
+
   // -------------creates character instance--------------- //
   function createCharacters(charInfo) {
     let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 15)

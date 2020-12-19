@@ -35,7 +35,7 @@ function Luck(props) {
       <div className="container">
         <p>{luckTag}</p>
       </div>
-      <div id="coin">
+      <div id="coin" style={{ margin: 'auto', position: 'absolute'}}>
         <div className={heads} style={{backgroundImage: 'url(./images/heads.png)', height: '202px', width: '198px',}}/>
         <div className={tails} style={{backgroundImage: 'url(./images/tails.png)', height: '202px', width: '198px',}}/>
       </div>

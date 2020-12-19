@@ -3,7 +3,6 @@ import client from './connect.js';
 import './Buttons.css'
 
 
-
 const Choice2 = (props) => {
   const [style, setStyle] = useState('choiceButtons');
   const [show, setShow] = useState('');

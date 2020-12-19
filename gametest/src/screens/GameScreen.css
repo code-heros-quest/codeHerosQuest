@@ -1,0 +1,13 @@
+#dialogue{
+    margin: auto;
+}
+
+#chat{
+    margin: auto;
+}
+
+#dc-container{
+    display: flex;
+    overflow: auto;
+
+}

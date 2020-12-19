@@ -8,6 +8,7 @@ import Choice4 from './Choice4'
 import Riddle from './Riddle'
 import Luck from './Luck';
 import Start from './Start';
+import Luck3 from './Luck3';
 
 
 let count = 0;
@@ -52,6 +53,10 @@ const GameButtons = (props) => {
     case 'luck':
       return (
         <Luck scenario={scenario} />
+      )
+    case 'luck3':
+      return (
+        <Luck3 scenario={scenario} />
       )
     case 'none':
       return (

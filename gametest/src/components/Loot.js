@@ -25,6 +25,8 @@ function Loot(props){
     return(
         <div id='loot-container' style={{display: 'inline-block', float: 'right'}}>
             <h1>{character.name}</h1>
+            <h2>Health: {character.stats.health}</h2>
+            <h2>Attack: {character.stats.attack}</h2>
             <section style={{ backgroundImage: 'url(./images/Loot.png)', backgroundSize: '100% 100%', padding: '2px 20px 2px 20px', height: '500px', width: '250px', margin: 'auto', backgroundRepeat: 'no-repeat', borderRadius: '7px', display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr 1fr 1fr', border: '1px solid black', backgroundColor: 'gray'}}>
                 <div style={styleLoot}><img style={styleImg} src='./images/icons/axe.png'></img></div>
                 <div style={styleLoot}><img style={styleImg} src='./images/icons/book.png'></img></div>

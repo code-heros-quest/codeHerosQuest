@@ -146,10 +146,10 @@ io.on('connection', (socket) => {
 
   // -------------creates character instance--------------- //
   function createCharacters(charInfo) {
-    let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 15)
-    let hunter = new Character('Silent Crash', 'Elf', 'Hunter', 20, 15);
-    let warrior = new Character('Bristle Beard', 'Ogre', 'Warrior', 30, 10);
-    let wizard = new Character('Ibus', 'Hobbit', 'Wizard', 30, 10)
+    let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 25, 15)
+    let hunter = new Character('Silent Crash', 'Elf', 'Hunter', 20, 25, 15);
+    let warrior = new Character('Bristle Beard', 'Ogre', 'Warrior', 30, 25, 10);
+    let wizard = new Character('Ibus', 'Hobbit', 'Wizard', 30, 25, 10)
     let char = new Char(assassin, hunter, warrior, wizard);
     return char;
   }

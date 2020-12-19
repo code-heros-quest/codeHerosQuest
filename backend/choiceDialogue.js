@@ -30,6 +30,8 @@ function choiceDialogue(char) {
     tinTownChoices3: `You've already lost time and are very low on supplies. You can't afford to waste any more wandering through this place. There is clearly nothing they have to part with and plenty of oportunities for trouble. You thank her for her time and head out on to the road again.`,
     curiosityChoices1: `You need supplies or you won't make it any further. You will have to be on guard for any looking to take advantage of outsiders. Your group begins to head deeper into the Tin Town`,
     curiosityChoices2: `You've already lost time and are very low on supplies. You can't afford to waste any more wandering through this place. There is clearly nothing they have to part with and plenty of oportunities for trouble. You thank her for her time and head out on to the road again.`,
+    neutralZoneLuck1: 'You only got one coin up, you will leave with some food to sustain you but no bandages',
+    neutralZoneLuck2: 'You have had great luck. All three coins face up. You leave with food, and bandages',
     theWitchRiddle1: 'Hahaha, of course a stupid mortal like you could not answer a simple question.',
     theWitchRiddle2: 'You clever mortal... You are the first to ever correctly answer my riddle.',
     theWitchRiddle3: 'You are not as smart as you think you are at least half of you answered my riddle incorrectly. You will have to be very careful with the king, if you make it that far! Keep moving west until you get to the swamp. After you pass the swamp land you will make it out to the village.',

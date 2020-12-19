@@ -114,12 +114,12 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
 
   // wishing well ******
-  // const wishingWellChoices = {
-  //   choice1: new Choice(1, 'Bad Luck', ``, null, 27),
-  //   choice2: new Choice(2, 'Good Luck', `Early the next morning your team packs up and stashes everything you don’t need for your mission in Halbert’s barn. The cow moo’s in surprise at having unknown guests, but continues chewing her hay before long. If you survive you will be able to come back and get your packs. If you don’t return Halbert has been instructed to turn them in to the city guard as suspicious “lost and found” so he will not be accused of aiding you. You plan to split up about half way to the palace and approach from different directions.`, null, 27)
+  // const wishingWellLuck = {
+  //   luck1: new Luck(1, 'Bad Luck', ``, null, 27),
+  //   luck2: new Luck(2, 'Good Luck', `Early the next morning your team packs up and stashes everything you don’t need for your mission in Halbert’s barn. The cow moo’s in surprise at having unknown guests, but continues chewing her hay before long. If you survive you will be able to come back and get your packs. If you don’t return Halbert has been instructed to turn them in to the city guard as suspicious “lost and found” so he will not be accused of aiding you. You plan to split up about half way to the palace and approach from different directions.`, null, 27)
   // }
 
-  // const wishingWell = new Scenario(26, 'The Wishing Well', `You sleep the night in Halberts barn but are up with the roosters to get on the road. You leave the city on a small path headed northwest. Within 30 minutes of travel your band of warriors is out of site range of the city. Surrounded by the beautiful country side it is hard to remember why you are here. Little things break the illusion of peace - fields left fallow and growing weeds, bits of ground torn up and scraps of armor laying beside the road where travelers have been ambushed. ${char.wizard.name} reminds you all to keep a sharp eye for bandits.`, 'luck', ``, wishingWellChoices, null);
+  const wishingWell = new Scenario(26, null, 'The Wishing Well', sDialogue.wishingWell, 'luck', `You hope for luck as you fall asleep`, wishingWellLuck, null);
 
   // horned animal
   const hornedAnimalChoices = {
@@ -207,13 +207,12 @@ function createScenarios(sDialogue, cDialogue, loot) {
   const ironForge = new Scenario(15, 'Iron Forge', sDialogue.ironForge, 'choice2', `What supplies do you want to ask for?`, ironForgeChoices, null);
 
   // neutralGround *******
-  // const neutralZoneChoices = {
-  //   choice1: new Choice(1, 'Play a game of chance', '', null, 21),
-  //   choice2: new Choice(2, 'Find a cloth merchant to trade with', '', null, 21),
-  //   choice3: new Choice(3, 'Find someone selling food staples', '', null, 21)
-  // }
+  const neutralZoneLuck = {
+    Luck1: new Luck(1, 'Poor Luck', cDialogue.neutralZoneLuck1, null, 21),
+    Luck2: new Luck(2, 'Good Luck', cDialogue.neutralZoneLuck2, [loot.tinTownBandages], 21)
+  }
 
-  // const neutralZone = new Scenario(14, 'Neutral Zone', sDialogue.neutralZone, 'choice3', 'Where will you try to find supplies?', neutralZoneChoices, null);
+  const neutralZone = new Scenario(14, 'Neutral Zone', sDialogue.neutralZone, 'luck3', 'Flip three coins for a chance to purchase supplies', neutralZoneLuck, null);
 
 
 
@@ -258,7 +257,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
   // BOSS 3 : Troll
   const theTrollRolls = {
     attackPotential: { low: 48, high: 52 },
-    lowRoll: new Roll(1, 'Poor Roll', 10, cDialogue.theTrollRolls1, [loot.falcon], 10),
+    lowRoll: new Roll(1, 'Poor Roll', 10, cDialogue.theTrollRolls1, [loot.falcon, loot.shimmeringVial], 10),
     medRoll: new Roll(2, 'Fair Roll', 5, cDialogue.theTrollRolls2, [loot.falcon], 10),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theTrollRolls3, [loot.falcon], 10)
   }
@@ -331,7 +330,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     theMerchant,
     tinTown,
     curiosityKilledTheCat,
-    // neutralZone,
+    neutralZone,
     ironForge,
     theBoisterousBaker,
     theShepherdsHouse,
@@ -343,7 +342,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     rebellion,
     cityAroundThePalace,
     hornedAnimal,
-    // wishingWell,
+    wishingWell,
     mageSmith,
     theKingIntro,
     theKing1,

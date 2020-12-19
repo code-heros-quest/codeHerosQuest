@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import socket from '../components/connect.js';
+import client from '../components/connect.js';
 
 const styleShow = {
   margin: 'auto', 
@@ -23,6 +24,7 @@ const styleHide = {
 }
 let characterPicked = null;
 const JoinScreen = () => {
+  const [joinedCharacters, setJoinedCharacters] = useState([]);
   const[state, setState] = useState('')
   const [gameData, setGameData] = useState('');
   const [charInfo, setCharInfo] = useState({char: 'hunter', name: 'michael'});
@@ -30,6 +32,15 @@ const JoinScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
+
+// ------------- Updates joined characters --------------//
+useEffect(() => {
+  client.on('char array', charArray => {
+    setJoinedCharacters(charArray);
+    console.log(charArray);
+  })
+})
+
 // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
   const changeTheme = () =>{

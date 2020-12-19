@@ -22,32 +22,28 @@ io.on('connection', (socket) => {
   console.log('a client has connected', socket.id);
   // ---- creates a new game room ---- //
   socket.on('create game', gameName => {
-    console.log(gameName);
     const game = new Games(gameName, createCharacters);
     liveGames[game.id] = game;
     joinGame(socket, game);
-    console.log(liveGames);
+    console.log(game);
     socket.emit('choose character', game.id);
-    // use the game.id passed to give your friends the game code to join, use game.name to render a title to the users page? Do we need to give the client less of this info? like only the id and name?
   })
 
   // ---- adds players to an open game room ---- //
   socket.on('join game', gameId => {
-    console.log(gameId);
     const game = liveGames[gameId];
+    // if game id is not valid do we emit an error messgae?
+    socket.emit('char array', game.charArray)
     joinGame(socket, game);
     console.log(game);
-    // socket.emit('choose character', gameId);
-    // use the game.id passed to give your friends the game code to join, use game.name to render a title to the users page? Do we need to give the client less of this info? like only the id and name?
   })
 
   // ---- all players chose a character and send back name ---- //
   socket.on('start game', charInfo => {
     console.log(charInfo);
-    // charInfo will be an object with a .name and .char which will create characters and assign them to the socket. 
-    //this function takes in charInfo, and renames the games char to the new name. It also adds the char name and type to the socket. Once all four players have returned their char type and name the game dialogue and scenarios are created and added to the game instance. Each socket emits a scenario with into attached.
+    const game = liveGames[socket.gameId];
+    game.offerCharacters(charInfo);
     startGame(charInfo);
-
   })
 
   socket.on('chat', function (data) {
@@ -146,6 +142,8 @@ io.on('connection', (socket) => {
     socket.gameId = id;
     console.log(socket.id + ' joined ' + id);
   }
+  
+  
   
   // -------------creates character instance--------------- //
   function createCharacters(charInfo) {

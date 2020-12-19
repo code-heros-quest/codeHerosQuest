@@ -1,5 +1,7 @@
 'use strict';
 
+const { roseLocket } = require("./loot");
+
 function createScenarios(sDialogue, cDialogue, loot) {
   class Choice {
     constructor(num, name, dialogue, lootObject, next) {
@@ -62,32 +64,32 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
   // Scenarios in reverse order, choices first
   // Game Over - death
-  const gameOverDeath = new Scenario('GAME OVER due to death', sDialogue.gameOverDeath, null, null, null);
+  const gameOverDeath = new Scenario(35, 'GAME OVER due to death', sDialogue.gameOverDeath, null, null, null);
 
   // Game Over - hydra
-  const gameOverHydra = new Scenario('GAME OVER due to diminished health', sDialogue.gameOverHydra, null, null, null);
+  const gameOverHydra = new Scenario(34, 'GAME OVER due to diminished health', sDialogue.gameOverHydra, null, null, null);
 
-  const gameOverKing = new Scenario('GAME OVER the King has defeated you', sDialogue.gameOverKing, null, null, null);
+  const gameOverKing = new Scenario(33, 'GAME OVER the King has defeated you', sDialogue.gameOverKing, null, null, null);
 
-  const gameOverWin = new Scenario('GAME OVER you have won', sDialogue.gameOverWin, null, null, null)
+  const gameOverWin = new Scenario(32, 'GAME OVER you have won', sDialogue.gameOverWin, null, null, null)
 
   // BOSS 5 : THE KING
   // fight three
   const theKing3Rolls = {
-    attackPotential: { low: 48, high: 52 },
-    lowRoll: new Roll(1, 'Poor Roll', cDialogue.theKing3Rolls1, null),
-    medRoll: new Roll(2, 'Fair Roll', cDialogue.theKing3Rolls2, null),
-    highRoll: new Roll(3, 'Good Roll', cDialogue.theKing3Rolls3, null)
+    attackPotential: { low: 50, high: 84 },
+    lowRoll: new Roll(1, null, 'Poor Roll', cDialogue.theKing3Rolls1, null, 35),
+    medRoll: new Roll(2, null, 'Fair Roll', cDialogue.theKing3Rolls2, null, 32),
+    highRoll: new Roll(3, null, 'Good Roll', cDialogue.theKing3Rolls3, null, 32)
   }
 
   const theKing3 = new Scenario(31, 'The King: Close Combat', sDialogue.theKing3, 'roll', 'Roll to see if you survived the battle', theKing3Rolls, null)
 
   // fight two
   const theKing2Rolls = {
-    attackPotential: { low: 48, high: 52 },
-    lowRoll: new Roll(1, 'Poor Roll', cDialogue.theKing2Rolls1, null, 31),
-    medRoll: null,
-    highRoll: new Roll(3, 'Good Roll', cDialogue.theKing2Rolls2, null, 31)
+    attackPotential: { low: 50, high: 84 },
+    lowRoll: new Roll(1, null, 'Poor Roll', cDialogue.theKing2Rolls1, null, 33),
+    medRoll: new Roll(2, 5, 'Fair Roll', cDialogue.theKing2Rolls2, null, 31),
+    highRoll: new Roll(3, 2, 'Good Roll', cDialogue.theKing2Rolls2, null, 31)
   }
 
   const theKing2 = new Scenario(30, null, 'The King: Ranged Battle', sDialogue.theKing2, 'roll', `Roll to see the outcome of your first engagement with the King`, theKing2Rolls, null);
@@ -96,7 +98,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
   const theKing1Riddle = {
     riddle1: new Riddle(1, null, 'Wrong Answer', cDialogue.theKing1Riddle1, null, 30),
     riddle2: new Riddle(2, ['nothing'], 'Correct Answer', cDialogue.theKing1Riddle2, null, 30),
-    riddle3: new Riddle(3, null, 'Less than half of you were corect', cDialogue.theKing1Riddle3, null, 30),
+    riddle3: new Riddle(3, null, 'Less than half of you were corect', cDialogue.theKing1Riddle3, null, 33),
     riddle4: new Riddle(4, null, 'Half or more answered correctly', cDialogue.theKing1Riddle4, null, 30),
   }
   const theKing1 = new Scenario(29, null, 'The King: Battle of the Wits', sDialogue.theKing1, 'riddle', 'What a poor man has, a rich man wants, and if you eat it you die. What am I?', theKing1Riddle, null);
@@ -142,13 +144,13 @@ function createScenarios(sDialogue, cDialogue, loot) {
     badLuck: new Luck(1, 'Poor Luck', cDialogue.rebellionLuck1, [loot.brittleHeirloomBow, loot.rebelBandagesSmall, loot.rebelBandagesLarge], 24),
     goodLuck: new Luck(2, 'Good Luck', cDialogue.rebellionLuck2, [loot.strongHeirloomBow, loot.rebelBandagesSmall, loot.rebelBandagesLarge], 24)
   }
-  const rebellion = new Scenario(23, null, 'Rebellion', sDialogue.rebellion, 'roll', `roll for a chance to add your luck to the enchantress' spell`, rebellionLuck, null);
+  const rebellion = new Scenario(23, null, 'Rebellion', sDialogue.rebellion, 'luck', `flip for a chance to add your luck to the enchantress' spell`, rebellionLuck, null);
 
 
   // BOSS 4 : Hydra
 
   const theHydraRolls = {
-    attackPotential: { low: 48, high: 52 },
+    attackPotential: { low: 50, high: 68 },
     lowRoll: new Roll(1, 'Poor Roll', 20, cDialogue.theHydraRolls1, null, 23),
     medRoll: new Roll(2, 'Fair Roll', 9, cDialogue.theHydraRolls2, null, 23),
     highRoll: new Roll(3, 'Good Roll', 5, cDialogue.theHydraRolls3, null, 23)
@@ -257,8 +259,8 @@ function createScenarios(sDialogue, cDialogue, loot) {
   // BOSS 3 : Troll
   const theTrollRolls = {
     attackPotential: { low: 48, high: 52 },
-    lowRoll: new Roll(1, 'Poor Roll', 10, cDialogue.theTrollRolls1, [loot.falcon, loot.shimmeringVial], 10),
-    medRoll: new Roll(2, 'Fair Roll', 5, cDialogue.theTrollRolls2, [loot.falcon], 10),
+    lowRoll: new Roll(1, 'Poor Roll', 8, cDialogue.theTrollRolls1, [loot.falcon, loot.shimmeringVial], 10),
+    medRoll: new Roll(2, 'Fair Roll', 4, cDialogue.theTrollRolls2, [loot.falcon], 10),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theTrollRolls3, [loot.falcon], 10)
   }
 
@@ -267,8 +269,8 @@ function createScenarios(sDialogue, cDialogue, loot) {
   // BOSS 2 : Goblin
   const theGoblinRolls = {
     attackPotential: { low: 48, high: 52 },
-    lowRoll: new Roll(1, 'Poor Roll', 10, cDialogue.theGoblinRolls1, [loot.strongBandages], 9),
-    medRoll: new Roll(2, 'Fair Roll', 5, cDialogue.theGoblinRolls2, [loot.strongBandages], 9),
+    lowRoll: new Roll(1, 'Poor Roll', 8, cDialogue.theGoblinRolls1, [loot.strongBandages], 9),
+    medRoll: new Roll(2, 'Fair Roll', 4, cDialogue.theGoblinRolls2, [loot.strongBandages], 9),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theGoblinRolls3, [loot.strongBandages], 9)
   }
   const theGoblin = new Scenario(7, null, 'The Goblin', sDialogue.theGoblin, 'roll', 'Roll to determine the fate of your battle', theGoblinRolls, null);
@@ -297,8 +299,8 @@ function createScenarios(sDialogue, cDialogue, loot) {
   //BOSS 1 : Orc Lord
   const theOrcLordRoll = {
     attackPotential: { low: 40, high: 50 },
-    lowRoll: new Roll(1, 'Poor Roll', 10, cDialogue.theOrcLordRoll1, null, 5),
-    medRoll: new Roll(2, 'Fair Roll', 5, cDialogue.theOrcLordRoll2, [loot.orcLordMace], 4),
+    lowRoll: new Roll(1, 'Poor Roll', 6, cDialogue.theOrcLordRoll1, null, 5),
+    medRoll: new Roll(2, 'Fair Roll', 3, cDialogue.theOrcLordRoll2, [loot.orcLordMace], 4),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theOrcLordRoll3, [loot.orcLordMace], 4)
   }
   const theOrcLord = new Scenario(3, null, 'Battling the Orc Lord', sDialogue.theOrcLord, 'roll', 'roll the dice', theOrcLordRoll, null)

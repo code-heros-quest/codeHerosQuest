@@ -11,6 +11,7 @@ import GameButtons from '../components/GameButtons';
 
 function GameScreen() {
   const [scenarioState, setScenarioState] = useState({})
+  const [characterState, setCharacterState] = useState({})
 
   useEffect(() => {
     client.on('scenario', (scenario) => {
@@ -20,7 +21,14 @@ function GameScreen() {
       result.type = 'ready';
       setScenarioState(result);
     })
-    
+    client.on('single result', result => {
+      result.type = 'none';
+      setScenarioState(result);
+    })
+    client.on('character', charPayload => {
+      setCharacterState(charPayload);
+      console.log('char', charPayload);
+    })
   })
 
   // refactor passing client as props. Call it as an import
@@ -28,24 +36,23 @@ function GameScreen() {
 
   return (
     <>
-      {/* <div style={{  display: 'block', textAlign: 'center'}}>
+      <div style={{  display: 'block', textAlign: 'center'}}>
         <div id='sceneWindow' style={{ display: 'inline-block', backgroundColor: 'black', width: '1250px', height: 'auto', margin: 'auto'}}>
-          <SceneVideo client={client}/>
+          <SceneVideo scenario={scenarioState}/>
         </div>
         <div style={{ display: 'inline-block', paddingLeft: '20px'}}>
-          <Loot />
+          <Loot character={characterState}/>
         </div>
-      </div> */}
+      </div>
       <GameButtons scenario={scenarioState} />
-      {/* <button  onClick={emitReady} style={{ display: 'block', margin: 'auto', marginTop: '10px'}} name="ready">Next Scene</button> */}
-      {/* <section style={{ display: 'grid', gridTemplateRows: '1fr', gridTemplateColumns: '1fr 1fr', margin: 'auto'}}> */}
+      <section style={{ display: 'grid', gridTemplateRows: '1fr', gridTemplateColumns: '1fr 1fr', margin: 'auto'}}>
         <div style={{ textAlign: 'right'}}>
           <Dialogue scenario={scenarioState}/>
         </div>
-        {/* <div style={{ marginLeft: '0', paddingLeft: '50px'}}>
-          <Chat client={client}/>
-        </div> */}
-      {/* </section> */}
+        <div style={{ marginLeft: '0', paddingLeft: '50px'}}>
+          <Chat character={characterState}/>
+        </div>
+      </section>
       
     </>
   );

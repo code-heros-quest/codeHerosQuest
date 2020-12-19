@@ -275,7 +275,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
   const theGoblin = new Scenario(7, null, 'The Goblin', sDialogue.theGoblin, 'roll', 'Roll to determine the fate of your battle', theGoblinRolls, null);
   
   // poisonous bite
-  const thePoinsonousBite = new Scenario(8, null, 'The Poisonous Bite', sDialogue.thePoinsonousBite, 'ready', null, null, 9);
+  const thePoinsonousBite = new Scenario(8, null, 'The Poisonous Bite', sDialogue.thePoisonousBite, 'ready', null, null, 9);
   
   // the village
   const theVillageChoices = {

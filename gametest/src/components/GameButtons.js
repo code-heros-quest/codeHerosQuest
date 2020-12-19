@@ -47,6 +47,11 @@ const GameButtons = (props) => {
       return (
         <Luck scenario={scenario}/>
       )
+    case 'none':
+      return (
+        <>
+        </>
+      )
     default:
       return (
         <Start scenario={scenario}/>

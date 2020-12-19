@@ -125,7 +125,7 @@ const JoinScreen = () => {
       </div>
 
       <div style={nameTheme}>
-        <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '190px'}}>Choose Your Character Name and role</Card.Title>
+        <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '190px'}}>What is your Character's Name?</Card.Title>
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'white' }}>{gameData}</Card.Title>
         <Form onSubmit={submitChar}>
         <Form.Control style={{width: '40%', margin: '50px auto 10px auto'}} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)}/>

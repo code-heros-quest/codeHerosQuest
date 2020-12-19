@@ -70,18 +70,18 @@ class Games{
   }
 
   // ---------- riddle eval ------------- //
-  riddleEvaluator(payload) {
+  riddleEvaluator(socket, payload) {
     this.responseCount++
     let possibleLoot = payload.scenario.choices.riddle2.lootObject;
     let answerArray = payload.scenario.choices.riddle2.correct;
-    let correctDialogue = payload.scenario.choices.riddle2.dialogue;
-    let incorrectDialogue = payload.scenario.choices.riddle1.dialogue;
+    let correctDialogue = payload.scenario.choices.riddle2;
+    let incorrectDialogue = payload.scenario.choices.riddle1;
     if (answerArray.includes(payload.answer.toLowerCase())) {
-      socket.emit('singleResult', correctDialogue);
+      socket.emit('single result', correctDialogue);
       this.evaluateForLootRiddle(possibleLoot, payload);
       this.count++
     } else {
-      socket.emit('singleResult', incorrectDialogue);
+      socket.emit('single result', incorrectDialogue);
     }
     if (this.responseCount === 4) {
       if (this.count >= 2) {
@@ -146,6 +146,16 @@ class Games{
       this.count = 0;
       this.responseCount = 0;
       // add damage to each roll, add attackEval obj to each roll result
+    }
+  }
+
+  // ---------- Update Character Stats --------- //
+  updatePlayerStats(socket) {
+    for (const character in this.char) { 
+      if (socket.charType === this.char[character].charClass.toLowerCase()) {
+        let payload = this.char[character]
+        socket.emit('character', payload);
+      }
     }
   }
 

@@ -15,6 +15,7 @@ const Games = require('./games.js');
 
 
 
+
 const liveGames = {};
 
 io.on('connection', (socket) => {
@@ -46,6 +47,7 @@ io.on('connection', (socket) => {
     // charInfo will be an object with a .name and .char which will create characters and assign them to the socket. 
     //this function takes in charInfo, and renames the games char to the new name. It also adds the char name and type to the socket. Once all four players have returned their char type and name the game dialogue and scenarios are created and added to the game instance. Each socket emits a scenario with into attached.
     startGame(charInfo);
+
   })
 
   socket.on('chat', function (data) {
@@ -64,6 +66,8 @@ io.on('connection', (socket) => {
     const game = liveGames[socket.gameId];
     game.readyStatus(next);
     console.log('recieved ready');
+    game.updatePlayerStats(socket);
+    console.log('emited character update');
   })
 
   socket.on('roll', payload => {
@@ -75,8 +79,9 @@ io.on('connection', (socket) => {
   })
 
   socket.on('riddle', payload => {
+    console.log(payload);
     const game = liveGames[socket.gameId];
-    game.riddleEvaluator(payload);
+    game.riddleEvaluator(socket, payload);
     console.log('recieved riddle');
     // payload will have .scenario and .answer which is their answer to the riddle, and .char with hunter/assasin/warr/or wizard so I can evaluate for individual rewards
     // if they get their answer correct we will emit a single player response
@@ -111,8 +116,8 @@ io.on('connection', (socket) => {
     console.log(charInfo.char);
     const game = liveGames[socket.gameId];
     game.char[charInfo.char.toLowerCase()].name = charInfo.name;
-    socket.charType = [charInfo.char];
-    socket.charName = [charInfo.name];
+    socket.charType = charInfo.char.toLowerCase();
+    socket.charName = charInfo.name;
     console.log(socket);
     game.responseCount++;
     if (game.responseCount === 4) {
@@ -153,8 +158,6 @@ io.on('connection', (socket) => {
   }
 
 })
-
-
 
 http.listen(PORT, function () {
   console.log(`listening for requests on port ${PORT}`);

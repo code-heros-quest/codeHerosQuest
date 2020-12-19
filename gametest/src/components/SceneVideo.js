@@ -4,39 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const SceneVideo = (props) => {
-  const client = props.client;
   const [scene, setScene] = useState([]);
 
-  
-    client.on('scenario', (scenario) => {
-      setScene([{ video: scenario.video }])
-      switch(scenario.type) {
-        case 'roll':
-          // code block
-          break;
-        case 'choice2':
-          // code block
-          break;
-        case 'choice3':
-          // code block
-          break;
-        case 'choice4':
-          // code block
-          break;
-        case 'riddle':
-          // code block
-          break;
-        case 'ready':
-          // code block
-          break;
-        case 'luck':
-          // code block
-          break;
-        default:
-          // code block
-      }
-    });
-
+  useEffect(() => {
+    setScene([{ video: props.scenario.video }])
+  }, [props])
     
 
   const renderSceneVideo = () => {

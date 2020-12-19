@@ -9,6 +9,7 @@ class Games{
     this.count = 0;
     this.tempArr = [];
     this.char = createCharacters();
+    this.charArray = [];
   }
 
   //------------------ READY FUNCTION ----------------//
@@ -237,6 +238,10 @@ class Games{
       extraRoll = 1;
     }
     return extraRoll;
+  }
+  
+  offerCharacters(charInfo) {
+    this.charArray.push(charInfo.char);
   }
 
   // ----------- disconect functions ---------- //

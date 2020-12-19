@@ -246,9 +246,9 @@ class Games {
   }
 
   offerCharacters() {
-    const availableCharacters = [{ role: 'Hunter', img: './images/Hunter.png' }, { role: 'Assassin', img: './images/Assassin.png' }, { role: 'Warrior', img: './images/Warrior.png' }, { role: 'Wizard', img: './images/Wizard.png' }];
+    const availableCharacters = [{ role: 'Hunter', img: './images/Hunter.png', }, { role: 'Assassin', img: './images/Assassin.png' }, { role: 'Warrior', img: './images/Warrior.png' }, { role: 'Wizard', img: './images/Wizard.png' }];
     availableCharacters.forEach(char => {
-      if (this.charArray.includes(char.role) === false) {
+      if (!this.charArray.includes(char.role)) {
         this.tempArr.push(char);
       }
     })

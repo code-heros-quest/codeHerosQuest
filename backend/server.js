@@ -33,7 +33,9 @@ io.on('connection', (socket) => {
   socket.on('join game', gameId => {
     const game = liveGames[gameId];
     // if game id is not valid do we emit an error messgae?
-    socket.emit('char array', game.charArray)
+    game.players.forEach(player => {
+      player.emit('char array', game.charArray);
+    });
     joinGame(socket, game);
     console.log(game);
   })

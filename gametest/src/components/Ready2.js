@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import client from './connect.js';
 import './Buttons.css';
 
-const Ready = (props) => {
+const Ready2 = (props) => {
   const [show, setShow] = useState('');
   const [style, setStyle] = useState('choiceButtons');
 
@@ -22,4 +22,4 @@ const Ready = (props) => {
   )
 }
 
-export default Ready
+export default Ready2

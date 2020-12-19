@@ -121,6 +121,7 @@ const CreateScreen = () => {
             <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit">Submit</button>
           </Form>
         </Card.Body>
+      
       </div>
 
       <div style={charTheme}>

@@ -28,7 +28,7 @@ function choiceDialogue(char) {
     tinTownChoices1: `The woman seems unwilling to say anything else so you thank her for he time and head further down the path to seek supplies.`,
     tinTownChoices2: `You decide to see if she can give you any more information before moving on.`,
     tinTownChoices3: `You've already lost time and are very low on supplies. You can't afford to waste any more wandering through this place. There is clearly nothing they have to part with and plenty of oportunities for trouble. You thank her for her time and head out on to the road again.`,
-    curiosityChoices1: `You need supplies or you won't make it any further. You will have to be on guard for any looking to take advantage of outsiders. Your group begins to head deeper into the Tin Town`,
+    curiosityChoices1: `You need supplies or you won't make it any further. You will have to be on guard for any one looking to take advantage of outsiders. Your group begins to head deeper into the Tin Town`,
     curiosityChoices2: `You've already lost time and are very low on supplies. You can't afford to waste any more wandering through this place. There is clearly nothing they have to part with and plenty of oportunities for trouble. You thank her for her time and head out on to the road again.`,
     neutralZoneLuck1: 'You only got one coin up, you will leave with some food to sustain you but no bandages',
     neutralZoneLuck2: 'You have had great luck. All three coins face up. You leave with food, and bandages',

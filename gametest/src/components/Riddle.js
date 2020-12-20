@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import client from './connect.js';
+import './Buttons.css';
 
 const Riddle = (props) => {
   const [answer, setAnswer] = useState('')
@@ -15,11 +16,15 @@ const Riddle = (props) => {
     client.emit('riddle', payload);
   }
   
+  
   return (
-    <div>
+    <div style={{ paddingTop: '5px'}}>
       <form onSubmit={submitRiddle}>
-        <input onChange={updateAnswer} type="text" placeholder="Enter your guess"/>
-        <button>Submit</button>
+      <div style={{ padding: '10px 5px 5px 5px', borderRadius: '8px', border: '9px solid #945429', width: '50%', height: 'auto', margin: 'auto', backgroundImage: 'url(./images/textBox/text1.png)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}}>
+      <h5 style={{ color: 'black'}}>{props.scenario.choiceQuestion}</h5>
+      </div>
+        <input style={{borderRadius: '7px', padding: '5px 5px'}} onChange={updateAnswer} type="text" placeholder="Enter your guess"/>
+        <button className='riddleButtons'>Submit</button>
       </form>
     </div>
   )

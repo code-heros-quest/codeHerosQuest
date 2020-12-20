@@ -107,10 +107,19 @@ const CreateScreen = () => {
     
   })
 
+  const buttonStyle={
+    color: 'white', 
+    boxShadow: '5px 5px 10px black', 
+    backgroundColor: '#595959', 
+    borderRadius: '10px', 
+    fontSize: '1em',
+    padding: '5px 10px',
+  }
+
   return (
-    <div style={{background: 'none', marginTop: '350px', textAlign: 'center'}}>
+    <div style={{background: 'none', marginTop: '250px', textAlign: 'center'}}>
       <div style={startTheme}>
-      <Card.Body style={{ marginLeft: '70px', marginTop: '100px', width: '750px'}}>
+      <Card.Body style={{ marginLeft: '70px', marginTop: '140px', width: '750px'}}>
       <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive'}}>START A NEW GAME</Card.Title>
           <Form onSubmit={createGameHandler}>
             <Form.Group>
@@ -118,7 +127,7 @@ const CreateScreen = () => {
               <p></p>
               <Form.Control style={{width: '40%', margin: 'auto'}} type="text" placeholder="name..." onChange={(e) => onTextChange(e)}/>
             </Form.Group>
-            <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit">Submit</button>
+            <button style={buttonStyle} type="submit">Submit</button>
           </Form>
         </Card.Body>
       
@@ -136,11 +145,11 @@ const CreateScreen = () => {
       <div style={nameTheme}>
       <div>{characterPicked}</div>
       <h3>{charInfo.char}: {charInfo.name} </h3>
-        <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive'}}>Type Your Character Name</Card.Title>   
+        <Card.Title style={{ fontSize: '1.5em', marginTop: '10px', fontWeight: 'bolder', fontFamily: 'cursive'}}>Type Your Character Name</Card.Title>   
           <Form onSubmit={submitChar}>
-          <Form.Control style={{width: '40%', margin: '40px auto 10px auto'}} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)}/>
+          <Form.Control style={{width: '40%', margin: '30px auto 10px auto'}} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)}/>
           {/* <Form.Control style={{width: '40%', margin: '10px auto 10px auto'}} type="text" placeholder="role" name="char" onChange={(e) => onNameChange(e)}/> */}
-          <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}} type="submit" onClick={showGameLink}>Submit</button>
+          <button  style={buttonStyle} type="submit" onClick={showGameLink}>Submit</button>
         </Form>
       </div>
 
@@ -148,10 +157,10 @@ const CreateScreen = () => {
       <div style={gameTheme}>
         <div style={{ margin: '0'}}>{characterPicked}</div>
         <h3>{charInfo.char}:  {charInfo.name}</h3>
-        <h1 style={{ paddingBottom: '30px', fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px'}}>Start Your Quest</h1>
-        <Link to='/game'>
+        <h1 style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px'}}>Start Your Quest</h1>
         <Card.Title style={{ fontSize: '1.3em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'black' }}>Share your game code with 3 friends: {gameData}</Card.Title>
-        <button type="submit" style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px' , fontSize: '1em'}}>Start</button>
+        <Link to='/game' >
+        <button type="submit"  style={buttonStyle}>Start</button>
         </Link>
       </div>
 

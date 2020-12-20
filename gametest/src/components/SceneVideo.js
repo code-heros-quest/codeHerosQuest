@@ -13,7 +13,7 @@ const SceneVideo = (props) => {
 
   const renderSceneVideo = () => {
     return scene.map(({ video }, index) => ( 
-     <iframe autoPlay src={video} key={index} style={{ width: '1250px', height: '750px', border: 'none'}} controls></iframe>
+     <iframe autoPlay src={video} key={index} style={{ width: '100%', minHeight: '500px', height: '30vw', border: 'none'}} autoPlay></iframe>
     ))
   }
 

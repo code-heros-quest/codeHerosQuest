@@ -7,7 +7,7 @@ import Dialogue from '../components/Dialogue.js';
 import Chat from '../components/Chat.js';
 import client from '../components/connect.js';
 import GameButtons from '../components/GameButtons';
-
+import './GameScreen.css';
 
 function GameScreen() {
   const [scenarioState, setScenarioState] = useState({})
@@ -35,26 +35,29 @@ function GameScreen() {
   // import client from '../components/connect.js';
 
   return (
-    <>
-      <div style={{  display: 'block', textAlign: 'center'}}>
-        <div id='sceneWindow' style={{ display: 'inline-block', backgroundColor: 'black', width: '1250px', height: 'auto', margin: 'auto'}}>
+    <div>
+      <div style={{ textAlign: 'center'}}>
+        <img src="./images/banner.png" alt="codeQuest" style={{ width: '40%'}}></img>
+        <div id='sceneWindow' style={{ display: 'inline-block', backgroundColor: 'black', width: '60vw', minWidth: '750px', height: 'auto', margin: 'auto', objectFit: 'contain'}}>
           <SceneVideo scenario={scenarioState}/>
         </div>
-        <div style={{ display: 'inline-block', paddingLeft: '20px'}}>
+          <div style={{display: 'inline-block', paddingLeft: '40px'}}>
           <Loot character={characterState}/>
-        </div>
-      </div>
+          </div>
+      <div id='gameButtons' style={{ textAlign: 'center', verticalAlign: 'middle', paddingBottom: '20px'}}>
       <GameButtons scenario={scenarioState} />
-      <section style={{ display: 'grid', gridTemplateRows: '1fr', gridTemplateColumns: '1fr 1fr', margin: 'auto'}}>
-        <div style={{ textAlign: 'right'}}>
+      </div>
+      </div>
+      <section id='dc-container'>
+        <div id='dialogue'>
           <Dialogue scenario={scenarioState}/>
         </div>
-        <div style={{ marginLeft: '0', paddingLeft: '50px'}}>
+        <div id='chat'>
           <Chat character={characterState}/>
         </div>
       </section>
       
-    </>
+    </div>
   );
 }
 

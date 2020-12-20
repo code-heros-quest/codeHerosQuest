@@ -3,9 +3,7 @@ import { io } from 'socket.io-client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form'
 import client from './connect.js';
-
-
-
+import './Scroll.css'
 
 const Chat = (props) => {
   const [character, setCharacter] = useState({});
@@ -57,7 +55,7 @@ const Chat = (props) => {
   return (
     <div id="mario-chat" style={{backgroundImage: 'url(./images/scrolly.png)', backgroundAttachment: 'scroll', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '550px', marginRight: '0'}} >
       <h2 style={{ fontSize: '2em', width: '300px', paddingLeft: '35px', paddingTop: '100px', margin: 'auto', textDecoration: 'underline', fontFamily: 'fantasy'}}><strong>Kingdom chat</strong></h2>
-      <div id="chat-window" style={{ paddingTop: '5px', width: '520px', minHeight: '260px', height: 'auto', padding: '30px 0 30px 30px'}}>
+      <div id="chat-window" className='scrollChat'>
         {renderChat()}
       </div>
       <Form onSubmit={onMessageSubmit}>

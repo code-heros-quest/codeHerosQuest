@@ -16,7 +16,7 @@ const Ready2 = (props) => {
   }
 
   return (
-    <div>
+    <div >
       <button className={style} onClick={ready} id="ready" disabled={show}> Ready </button>
     </div>
   )

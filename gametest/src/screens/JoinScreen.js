@@ -112,8 +112,17 @@ const JoinScreen = () => {
 
   })
 
+  const buttonStyle={
+    color: 'white', 
+    boxShadow: '5px 5px 10px black', 
+    backgroundColor: '#595959', 
+    borderRadius: '10px', 
+    fontSize: '1em',
+    padding: '5px 10px',
+  }
+
   return (
-    <div style={{ background: 'none', marginTop: '350px', textAlign: 'center' }}>
+    <div style={{ background: 'none', marginTop: '250px', textAlign: 'center' }}>
       <div style={startTheme}>
         <Card.Body style={{ marginLeft: '70px', marginTop: '170px', width: '750px' }}>
           <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive' }}>JOIN A NEW GAME</Card.Title>
@@ -122,7 +131,7 @@ const JoinScreen = () => {
               <Form.Label>Enter your game code</Form.Label>
               <Form.Control style={{ width: '40%', margin: 'auto' }} type="text" placeholder="name" onChange={(e) => onTextChange(e)} />
             </Form.Group>
-            <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px', fontSize: '1em' }} type="submit">
+            <button style={buttonStyle} type="submit">
               Submit
             </button>
           </Form>
@@ -145,7 +154,7 @@ const JoinScreen = () => {
         <Form onSubmit={submitChar}>
           <Form.Control style={{ width: '40%', margin: '50px auto 10px auto' }} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)} />
           {/* <Form.Control style={{width: '40%', margin: '10px auto 10px auto'}} type="text" placeholder="role" name="char" onChange={(e) => onNameChange(e)}/> */}
-          <button style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px', fontSize: '1em' }} type="submit" onClick={showGameLink}>Submit</button>
+          <button style={buttonStyle} type="submit" onClick={showGameLink}>Submit</button>
         </Form>
       </div>
       <div style={gameTheme}>
@@ -153,7 +162,7 @@ const JoinScreen = () => {
         <h3>{charInfo.char}:  {charInfo.name}</h3>
         <h1 style={{ paddingBottom: '30px', fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px' }}>Start Your Quest</h1>
         <Link to='/game'>
-          <button type="submit" style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', borderRadius: '10px', fontSize: '1em' }}>Start</button>
+          <button type="submit" style={buttonStyle}>Start</button>
         </Link>
       </div>
 

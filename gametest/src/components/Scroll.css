@@ -9,3 +9,12 @@
     font-size: 1em;
     text-align: left;
 }
+
+.scrollChat{
+    padding-top: 5px;
+     width: 520px; 
+     height: 260px; 
+     padding: 30px 0 30px 30px;
+     scrollbar-color: black gray;
+     overflow: auto;
+}

@@ -5,6 +5,10 @@ import './Buttons.css';
 const Ready2 = (props) => {
   const [show, setShow] = useState('');
   const [style, setStyle] = useState('choiceButtons');
+  const [buttonText, setButtonText] = useState('Ready');
+  
+  
+
 
   const ready = () => {
     if (props.scenario.next) {
@@ -12,12 +16,13 @@ const Ready2 = (props) => {
       client.emit('ready', payload);
       setShow('true');
       setStyle('disabled');
+      setButtonText('Waiting for other players...');
     }
   }
 
   return (
     <div >
-      <button className={style} onClick={ready} id="ready" disabled={show}> Ready </button>
+      <button className={style} onClick={ready} id="ready" disabled={show}>{buttonText}</button>
     </div>
   )
 }

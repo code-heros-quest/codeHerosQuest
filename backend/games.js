@@ -79,7 +79,7 @@ class Games {
     let incorrectDialogue = payload.scenario.choices.riddle1;
     if (answerArray.includes(payload.answer.toLowerCase())) {
       socket.emit('single result', correctDialogue);
-      this.evaluateForLootRiddle(possibleLoot, payload);
+      this.evaluateForLootRiddle(socket, possibleLoot, payload);
       this.count++
     } else {
       socket.emit('single result', incorrectDialogue);
@@ -104,15 +104,15 @@ class Games {
 
   // ---------- LUCK Evaluator ------------- //
   luckEvaluator(socket, payload) {
-    // payload.luck 1/2
-    let singleResult = { name: 'Personal Results', dialogue: '' };
-    if (payload.luck === 0) {
-      singleResult.dialogue = 'Sorry, your luck was bad. Hopefully the other members of your team faired better'
-    }
-    if (payload.luck === 0) {
-      singleResult.dialogue = 'Congratulations, you had good luck. Hopefully the rest of your team does as well'
-    }
-    socket.emit('single result', singleResult);
+    // console.log(payload);
+    // let singleResult = { name: 'Personal Results', dialogue: '' };
+    // if (payload.luck === 0) {
+    //   singleResult.dialogue = 'Sorry, your luck was bad. Hopefully the other members of your team faired better'
+    // }
+    // if (payload.luck === 1) {
+    //   singleResult.dialogue = 'Congratulations, you had good luck. Hopefully the rest of your team does as well'
+    // }
+    // socket.emit('single result', singleResult);
     this.responseCount++;
     this.count += payload.luck;
     if (this.responseCount === 4) {
@@ -197,18 +197,24 @@ class Games {
       }
       let data = { name: 'Loot Announcement', message: lootMessage };
       console.log(data);
-      for (let player of this.players) {
-        player.emit('chat', data);
+      if (data.message !== '') {
+        for (let player of this.players) {
+          player.emit('chat', data);
+        }
       }
     }
   }
 
-  evaluateForLootRiddle(lootArray, payload) {
+  evaluateForLootRiddle(socket, lootArray, payload) {
+    console.log('in evaluate for Loot Riddle');
+    console.log('loot', lootArray);
+    console.log(payload, 'payload');
+    let charRole = socket.charType;
     if (lootArray !== null) {
       let lootMessage = '';
       lootArray.forEach(item => {
         item.role.forEach(reciever => {
-          if (payload.char === reciever.toLowerCase()) {
+          if (charRole === reciever.toLowerCase()) {
             lootMessage += `The ${reciever} recieved ${item.name}. `;
           }
         });
@@ -220,8 +226,10 @@ class Games {
       }
       let data = { name: 'Loot Announcement', message: lootMessage };
       console.log(data);
-      for (let player of this.players) {
-        player.emit('chat', data);
+      if (data.message !== '') {
+        for (let player of this.players) {
+          player.emit('chat', data);
+        }
       }
     }
   }

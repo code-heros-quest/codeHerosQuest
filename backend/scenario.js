@@ -117,8 +117,8 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
   // wishing well ******
   const wishingWellLuck = {
-    luck1: new Luck(1, 'Bad Luck', cDialogue.wishingWellLuck1, null, 27),
-    luck2: new Luck(2, 'Good Luck', cDialogue.wishingWellLuck2, [loot.blessedWater], 27)
+    goodLuck: new Luck(1, 'Bad Luck', cDialogue.wishingWellLuck1, null, 27),
+    badLuck: new Luck(2, 'Good Luck', cDialogue.wishingWellLuck2, [loot.blessedWater], 27)
   }
 
   const wishingWell = new Scenario(26, null, 'The Wishing Well', sDialogue.wishingWell, 'luck', `You hope for luck as you fall asleep`, wishingWellLuck, null);
@@ -210,11 +210,11 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
   // neutralGround *******
   const neutralZoneLuck = {
-    luck1: new Luck(1, 'Poor Luck', cDialogue.neutralZoneLuck1, null, 21),
-    luck2: new Luck(2, 'Good Luck', cDialogue.neutralZoneLuck2, [loot.tinTownBandages], 21)
+    badLuck: new Luck(1, 'Poor Luck', cDialogue.neutralZoneLuck1, null, 21),
+    goodLuck: new Luck(2, 'Good Luck', cDialogue.neutralZoneLuck2, [loot.tinTownBandages], 21)
   }
 
-  const neutralZone = new Scenario(14, null, 'Neutral Zone', sDialogue.neutralZone, 'luck3', 'Flip three coins for a chance to purchase supplies', neutralZoneLuck, null);
+  const neutralZone = new Scenario(14, null, 'Neutral Zone', sDialogue.neutralZone, 'luck', 'Flip three coins for a chance to purchase supplies', neutralZoneLuck, null);
 
 
 

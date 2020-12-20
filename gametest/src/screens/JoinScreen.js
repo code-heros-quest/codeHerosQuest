@@ -110,6 +110,10 @@ const JoinScreen = () => {
       setGameData(game.id);
     })
 
+    // this is to emit an error if a player enters an invalid game code
+    socket.on('error', message => {
+      console.log(message);
+    })
   })
 
   const buttonStyle={
@@ -129,7 +133,7 @@ const JoinScreen = () => {
           <Form onSubmit={createGameHandler}>
             <Form.Group>
               <Form.Label>Enter your game code</Form.Label>
-              <Form.Control style={{ width: '40%', margin: 'auto' }} type="text" placeholder="name" onChange={(e) => onTextChange(e)} />
+              <Form.Control style={{ width: '40%', margin: 'auto' }} type="text" placeholder="code" onChange={(e) => onTextChange(e)} />
             </Form.Group>
             <button style={buttonStyle} type="submit">
               Submit

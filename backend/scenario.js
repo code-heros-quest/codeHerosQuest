@@ -1,7 +1,5 @@
 'use strict';
 
-const { roseLocket } = require("./loot");
-
 function createScenarios(sDialogue, cDialogue, loot) {
   class Choice {
     constructor(num, name, dialogue, lootObject, next) {
@@ -56,22 +54,18 @@ function createScenarios(sDialogue, cDialogue, loot) {
       this.choices = choices;
       this.next = next;
     }
-    updateDialogue(char) {
-      this.dialogue = this.dialogue;
-      this.choices.dialogue = this.choices.dialogue;
-    }
   }
 
   // Scenarios in reverse order, choices first
   // Game Over - death
-  const gameOverDeath = new Scenario(35, 'GAME OVER due to death', sDialogue.gameOverDeath, null, null, null);
+  const gameOverDeath = new Scenario(35, null, 'GAME OVER due to death', sDialogue.gameOverDeath, 'none', null, null);
 
   // Game Over - hydra
-  const gameOverHydra = new Scenario(34, 'GAME OVER due to diminished health', sDialogue.gameOverHydra, null, null, null);
+  const gameOverHydra = new Scenario(34, null, 'GAME OVER due to diminished health', sDialogue.gameOverHydra, 'none', null, null);
 
-  const gameOverKing = new Scenario(33, 'GAME OVER the King has defeated you', sDialogue.gameOverKing, null, null, null);
+  const gameOverKing = new Scenario(33, null, 'GAME OVER the King has defeated you', sDialogue.gameOverKing, 'none', null, null);
 
-  const gameOverWin = new Scenario(32, 'GAME OVER you have won', sDialogue.gameOverWin, null, null, null)
+  const gameOverWin = new Scenario(32, null, 'GAME OVER you have won', sDialogue.gameOverWin, 'none', null, null)
 
   // BOSS 5 : THE KING
   // fight three
@@ -260,8 +254,8 @@ function createScenarios(sDialogue, cDialogue, loot) {
   const theTrollRolls = {
     attackPotential: { low: 48, high: 52 },
     lowRoll: new Roll(1, 'Poor Roll', 8, cDialogue.theTrollRolls1, [loot.falcon, loot.shimmeringVial], 10),
-    medRoll: new Roll(2, 'Fair Roll', 4, cDialogue.theTrollRolls2, [loot.falcon], 10),
-    highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theTrollRolls3, [loot.falcon], 10)
+    medRoll: new Roll(2, 'Fair Roll', 4, cDialogue.theTrollRolls2, [loot.falcon, loot.shimmeringVial], 10),
+    highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theTrollRolls3, [loot.falcon, loot.shimmeringVial], 10)
   }
 
   const theTroll = new Scenario(9, null, `The Troll`, sDialogue.theTroll, 'roll', 'Roll to determine the fate of your battle', theTrollRolls, null);

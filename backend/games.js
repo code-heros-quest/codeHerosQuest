@@ -103,7 +103,16 @@ class Games {
 
 
   // ---------- LUCK Evaluator ------------- //
-  luckEvaluator(payload) {
+  luckEvaluator(socket, payload) {
+    // payload.luck 1/2
+    let singleResult = { name: 'Personal Results', dialogue: '' };
+    if (payload.luck === 0) {
+      singleResult.dialogue = 'Sorry, your luck was bad. Hopefully the other members of your team faired better'
+    }
+    if (payload.luck === 0) {
+      singleResult.dialogue = 'Congratulations, you had good luck. Hopefully the rest of your team does as well'
+    }
+    socket.emit('single result', singleResult);
     this.responseCount++;
     this.count += payload.luck;
     if (this.responseCount === 4) {
@@ -124,7 +133,9 @@ class Games {
 
 
   // ---------- NEW Dice Roll ------------//
-  rollEvaluator(payload) {
+  rollEvaluator(socket, payload) {
+    let singleResult = { name: 'Your Roll', dialogue: `You rolled a ${payload.roll}. Your roll will be combined with the rest of your team to determine the outcome of your battle.` };
+    socket.emit('single result', singleResult);
     this.responseCount++;
     this.count += payload.roll;
     if (this.responseCount === 4) {
@@ -171,6 +182,7 @@ class Games {
   }
 
   evaluateForLoot(lootArray) {
+    console.log('evaluating for loot');
     if (lootArray !== null) {
       let lootMessage = '';
       lootArray.forEach(item => {
@@ -184,7 +196,10 @@ class Games {
         });
       }
       let data = { name: 'Loot Announcement', message: lootMessage };
-      // console.log(data); this can be changed into a chat emit!
+      console.log(data);
+      for (let player of this.players) {
+        player.emit('chat', data);
+      }
     }
   }
 
@@ -204,7 +219,10 @@ class Games {
         }
       }
       let data = { name: 'Loot Announcement', message: lootMessage };
-      // console.log(data); this can be changed into a chat emit! only emit if message is not an empty string
+      console.log(data);
+      for (let player of this.players) {
+        player.emit('chat', data);
+      }
     }
   }
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 
 function Loot(props) {
-    const [character, setCharacter] = useState({})
+    const [character, setCharacter] = useState({ stats: {health: 0, attack: 0}})
     const [tempNums, setTempNums] = useState([15, 10]);
 
 
@@ -34,11 +34,11 @@ function Loot(props) {
             <h1>{character.name}</h1>
             <div >
             <h5 style={style}>Health:</h5>
-            <meter min="0" low="10" optimum="25" high="18" max="30" value={tempNums[0]} />
+            <meter min="0" low="10" optimum="25" high="18" max={character.maxHealth} value={character.stats.health} />
             </div>
             <div >
             <h5 style={style}>Attack:</h5>
-            <meter min="0" low="9" optimum="23" high="17" max="27" value={tempNums[1]} />
+            <meter min="0" low="9" optimum="23" high="17" max="27" value={character.stats.attack} />
             </div>
             {/* <h2>Health: {character.stats.health}</h2>
             <h2>Attack: {character.stats.attack}</h2> */}

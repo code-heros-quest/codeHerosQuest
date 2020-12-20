@@ -31,10 +31,13 @@ io.on('connection', (socket) => {
 
   // ---- adds players to an open game room ---- //
   socket.on('join game', gameId => {
-    const game = liveGames[gameId];
-    // if game id is not valid do we emit an error messgae?
-    joinGame(socket, game);
-    game.offerCharacters();
+    if (liveGames[gameId]) {
+      const game = liveGames[gameId];
+      joinGame(socket, game);
+      game.offerCharacters();
+    } else {
+      socket.emit('error', 'Incorrect game code');
+    }
   })
 
   // ---- all players chose a character and send back name ---- //
@@ -104,6 +107,13 @@ io.on('connection', (socket) => {
     console.log('recieved luck');
     // payload will have .scenario and .luck whcih will 0 or 1 depending on that players luck
     // will emit a result with the luckResult attached
+  })
+
+  socket.on('end', () => {
+    socket.disconnect()
+    if (liveGames[socket.gameId]) {
+      delete liveGames[socket.gameId]
+    }
   })
 
   //---------------- start game ------------------//

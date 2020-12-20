@@ -11,7 +11,11 @@ import './GameScreen.css';
 
 function GameScreen() {
   const [scenarioState, setScenarioState] = useState({})
-  const [characterState, setCharacterState] = useState({})
+  const [characterState, setCharacterState] = useState({ stats: {health: 0, attack: 0}})
+
+  useEffect(() => {
+    client.emit('ready', 1);
+  }, [])
 
   useEffect(() => {
     client.on('scenario', (scenario) => {
@@ -28,6 +32,10 @@ function GameScreen() {
     client.on('character', charPayload => {
       setCharacterState(charPayload);
       console.log('char', charPayload);
+    })
+    client.on('game over', payload => {
+      setCharacterState(payload);
+      client.emit('end');
     })
   })
 

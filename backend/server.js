@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
 
   socket.on('roll', payload => {
     const game = liveGames[socket.gameId];
-    game.rollEvaluator(payload);
+    game.rollEvaluator(socket, payload);
     console.log('recieved roll');
     // payload will have .scenario and .roll whcih will be that players roll
     // will emit a result with the rollResult attached
@@ -100,7 +100,7 @@ io.on('connection', (socket) => {
 
   socket.on('luck', payload => {
     const game = liveGames[socket.gameId];
-    game.luckEvaluator(payload);
+    game.luckEvaluator(socket, payload);
     console.log('recieved luck');
     // payload will have .scenario and .luck whcih will 0 or 1 depending on that players luck
     // will emit a result with the luckResult attached

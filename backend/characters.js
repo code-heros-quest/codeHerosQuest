@@ -11,12 +11,15 @@ class Char {
 }
 
 class Character {
-  constructor(name, race, charClass, health, maxHealth, highHealth, lowHealth, attack) {
+  constructor(name, race, charClass, health, maxHealth, highHealth, lowHealth, attack, img) {
     this.name = name;
     this.race = race;
     this.charClass = charClass;
     this.stats = { health: health, attack: attack };
-    this.healthBar= { max: maxHealth, low: lowHealth, high: highHealth}
+    this.maxHealth = maxHealth;
+    this.lowHealth = lowHealth;
+    this.highHealth = highHealth;
+    this.img = img;
     this.loot = [];
   }
 

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const SceneVideo = (props) => {
-  const [scene, setScene] = useState([]);
+  const [scene, setScene] = useState([{ video: null}]);
 
   useEffect(() => {
     setScene([{ video: props.scenario.video }])

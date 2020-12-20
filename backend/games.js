@@ -238,7 +238,7 @@ class Games {
     for (const character in this.char) {
       this.char[character].loseHealth(value)
       if (this.char[character].stats.health < 1) {
-        gameOver(scenario.gameOverDeath);
+        this.gameOver(this.scenarios.gameOverDeath);
       }
     }
   }

@@ -92,8 +92,8 @@ function createScenarios(sDialogue, cDialogue, loot) {
   const theKing1Riddle = {
     riddle1: new Riddle(1, null, 'Wrong Answer', cDialogue.theKing1Riddle1, null, 30),
     riddle2: new Riddle(2, ['nothing'], 'Correct Answer', cDialogue.theKing1Riddle2, null, 30),
-    riddle3: new Riddle(3, null, 'Group Win', cDialogue.theKing1Riddle3, null, 33),
-    riddle4: new Riddle(4, null, 'Group Loss', cDialogue.theKing1Riddle4, null, 30),
+    riddle3: new Riddle(3, null, 'Group Loss', cDialogue.theKing1Riddle3, null, 33),
+    riddle4: new Riddle(4, null, 'Group Win', cDialogue.theKing1Riddle4, null, 30),
   }
   const theKing1 = new Scenario(29, null, 'Battle of Wits', sDialogue.theKing1, 'riddle', 'What a poor man has, a rich man wants, and if you eat it you die. What am I?', theKing1Riddle, null);
 

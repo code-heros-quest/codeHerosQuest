@@ -11,19 +11,19 @@ class Char {
 }
 
 class Character {
-  constructor(name, race, charClass, health, maxHealth, attack) {
+  constructor(name, race, charClass, health, maxHealth, highHealth, lowHealth, attack) {
     this.name = name;
     this.race = race;
     this.charClass = charClass;
     this.stats = { health: health, attack: attack };
-    this.maxHealth = maxHealth;
+    this.healthBar= { max: maxHealth, low: lowHealth, high: highHealth}
     this.loot = [];
   }
 
   addHealth(value) {
     let newHealth = this.stats.health += value;
-    if (newHealth > this.maxHealth) {
-      this.stats.health = this.maxHealth;
+    if (newHealth > this.healthBar.max) {
+      this.stats.health = this.healthBar.max;
     } else {
       this.stats.health = newHealth;
     }

@@ -110,10 +110,10 @@ io.on('connection', (socket) => {
   })
 
   socket.on('end', () => {
-    socket.disconnect()
     if (liveGames[socket.gameId]) {
       delete liveGames[socket.gameId]
     }
+    socket.disconnect()
   })
 
   //---------------- start game ------------------//

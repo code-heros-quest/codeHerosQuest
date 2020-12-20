@@ -104,15 +104,15 @@ class Games {
 
   // ---------- LUCK Evaluator ------------- //
   luckEvaluator(socket, payload) {
-    // console.log(payload);
-    // let singleResult = { name: 'Personal Results', dialogue: '' };
-    // if (payload.luck === 0) {
-    //   singleResult.dialogue = 'Sorry, your luck was bad. Hopefully the other members of your team faired better'
-    // }
-    // if (payload.luck === 1) {
-    //   singleResult.dialogue = 'Congratulations, you had good luck. Hopefully the rest of your team does as well'
-    // }
-    // socket.emit('single result', singleResult);
+    console.log(payload);
+    let singleResult = { name: 'Result Announcement', message: '' };
+    if (payload.luck === 0) {
+      singleResult.message = 'Sorry, your luck was bad. Hopefully the other members of your team faired better'
+    }
+    if (payload.luck === 1) {
+      singleResult.message = 'Congratulations, you had good luck. Hopefully the rest of your team does as well'
+    }
+    socket.emit('chat', singleResult);
     this.responseCount++;
     this.count += payload.luck;
     if (this.responseCount === 4) {
@@ -134,8 +134,8 @@ class Games {
 
   // ---------- NEW Dice Roll ------------//
   rollEvaluator(socket, payload) {
-    let singleResult = { name: 'Your Roll', dialogue: `You rolled a ${payload.roll}. Your roll will be combined with the rest of your team to determine the outcome of your battle.` };
-    socket.emit('single result', singleResult);
+    let singleResult = { name: 'Result Annoucement', message: `You rolled a ${payload.roll}. Your roll will be combined with the rest of your team to determine the outcome of your battle.` };
+    socket.emit('chat', singleResult);
     this.responseCount++;
     this.count += payload.roll;
     if (this.responseCount === 4) {
@@ -154,10 +154,11 @@ class Games {
       this.evaluateForLoot(rollResult.lootObject);
       this.players.forEach(player => {
         player.emit(`result`, rollResult);
+        let data = {name: 'Health Announcement', message: `Your health decreased by ${rollResult.damage} in this battle`}
+        player.emit('chat', data);
       });
       this.count = 0;
       this.responseCount = 0;
-      // add damage to each roll, add attackEval obj to each roll result
     }
   }
 
@@ -187,7 +188,7 @@ class Games {
       let lootMessage = '';
       lootArray.forEach(item => {
         item.role.forEach(reciever => {
-          lootMessage += `The ${reciever} recieved ${item.name}. `;
+          lootMessage += `The ${reciever} recieved ${item.name}. Item stats: Health ${item.health} Attack ${item.attack}. `;
         });
       });
       for (const character in this.char) {
@@ -215,7 +216,7 @@ class Games {
       lootArray.forEach(item => {
         item.role.forEach(reciever => {
           if (charRole === reciever.toLowerCase()) {
-            lootMessage += `The ${reciever} recieved ${item.name}. `;
+            lootMessage += `The ${reciever} recieved ${item.name}. Item stats: Health ${item.health} Attack ${item.attack}. `;
           }
         });
       });

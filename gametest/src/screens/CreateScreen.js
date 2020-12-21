@@ -31,20 +31,22 @@ const CreateScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
-  const [startButton, setStartButton] = useState(true);
-  const [availableCharacters, setAvailableCharacters] = useState([]);
+  const [startButton, setStartButton] = useState('true');
+  const [buttonText, setButtonText] = useState('Waiting for other players to join...')
+  // const [availableCharacters, setAvailableCharacters] = useState([]);
 
+  // useEffect(() => {
+  //   socket.on('char array', charArray => {
+  //     setAvailableCharacters(charArray);
+  //   }, [setAvailableCharacters])
+  // })
   useEffect(() => {
-    socket.on('char array', charArray => {
-      setAvailableCharacters(charArray);
-    }, [setAvailableCharacters])
-  })
-  useEffect(() => {
-    console.log(availableCharacters, 'available')
-    if (availableCharacters.length === 0) {
-      setStartButton();
-    }
-  }, [availableCharacters, setStartButton])
+    socket.on('begin game', () => {
+      setStartButton('');
+      setButtonText('Start Game');
+    })
+    
+  }, [setStartButton, setButtonText])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
@@ -179,6 +181,7 @@ const CreateScreen = () => {
         <Card.Title style={{ fontSize: '1.3em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'black' }}>Share your game code with 3 friends: {gameData}</Card.Title>
         <Link to='/game' >
           <button type="submit" style={buttonStyle}>Start</button>
+
         </Link>
       </div>
 

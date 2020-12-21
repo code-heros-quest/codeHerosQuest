@@ -47,10 +47,13 @@ function GameScreen() {
   // import client from '../components/connect.js';
 
   return (
-    <div>
+
+    <div id='screen'>
       <div style={{ textAlign: 'center' }}>
+     <header>
         <img src="./images/banner.png" alt="codeQuest" style={{ width: '40%' }}></img>
-        <div id='sceneWindow' style={{ display: 'inline-block', backgroundColor: 'black', width: '60vw', minWidth: '750px', height: 'auto', margin: 'auto', objectFit: 'contain' }}>
+    </header>
+        <div id='sceneWindow'>
           <SceneVideo scenario={scenarioState} />
         </div>
         <div style={{ display: 'inline-block', paddingLeft: '40px' }}>

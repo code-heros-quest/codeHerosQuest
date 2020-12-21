@@ -17,10 +17,13 @@ h2{
 }
 
 #chat-window{
-  height: 400px;
+  height: 80%;
+  width: 100%;
   overflow: auto;
   background: #f9f9f9;
 }
+
+
 
 #output p{
   padding: 14px 0px;

@@ -42,11 +42,11 @@ const JoinScreen = () => {
     })
   })
   useEffect(() => {
-    console.log(availableCharacters, 'available')
-    if (availableCharacters.length === 0) {
-      setStartButton(false);
-    }
-  }, [availableCharacters, setStartButton])
+    client.on('begin game', () => {
+      setStartButton();
+    })
+    
+  }, [setStartButton])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 

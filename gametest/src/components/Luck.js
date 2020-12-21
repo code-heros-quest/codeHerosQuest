@@ -16,6 +16,8 @@ function Luck(props) {
     if(count === 1){
         setHeads('animate-tails');
         setTails('animate-heads');
+        setHeads('animate-heads');
+        setTails('animate-tails');
         luckTag = 'You had poor luck';
         setStyle('disabled')
         setShow('false')
@@ -26,8 +28,8 @@ function Luck(props) {
         }, 1500);
     }
     else{
-        setHeads('animate-heads');
-        setTails('animate-tails');
+      setHeads('animate-tails');
+      setTails('animate-heads');
         luckTag = 'You had good luck';
         setStyle('disabled')
         setShow('false')

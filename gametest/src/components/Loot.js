@@ -30,7 +30,7 @@ function Loot(props) {
 
     return (
         <div id='loot-container' style={{ display: 'inline-block', float: 'right' }}>
-            <h1 style={{color: 'white', fontSize: '1.2em', fontFamily: 'cursive', textDecoration: 'underline lightgray'}}>{character.name}</h1>
+            <h1 style={{color: 'white', fontSize: '1.4em', fontFamily: 'cursive', textDecoration: 'underline lightgray'}}>{character.name}</h1>
             <div >
             <h5 style={style}>Health:</h5>
             <meter min="0" low={character.lowHealth} optimum={character.maxHealth} high={character.highHealth} max={character.maxHealth} value={character.stats.health} />

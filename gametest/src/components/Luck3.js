@@ -8,7 +8,7 @@ function Luck3(props) {
   let luckTag = '';
   const [tails, setTails] = useState('tails')
   const [heads, setHeads] = useState('heads')
-
+  const [buttonText, setButtonText] = useState('Toss Coin');
   
   function tossCoin(){  
     let count = Math.floor(Math.random() * 5) + 1; 
@@ -28,6 +28,7 @@ function Luck3(props) {
         let payload = { luck , scenario: props.scenario }
         client.emit('luck', payload);
       }
+      setButtonText('Waiting for other players...');
   }
 
   return (
@@ -39,7 +40,7 @@ function Luck3(props) {
         <div className={heads} style={{backgroundImage: 'url(./images/heads.png)', height: '202px', width: '198px',}}/>
         <div className={tails} style={{backgroundImage: 'url(./images/tails.png)', height: '202px', width: '198px',}}/>
       </div>
-        <button onClick={tossCoin} className='choiceButtons'>Toss coin</button>
+        <button onClick={tossCoin} className='choiceButtons'>{buttonText}</button>
     </div>
   )
 }

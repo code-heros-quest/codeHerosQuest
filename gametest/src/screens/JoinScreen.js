@@ -33,7 +33,8 @@ const JoinScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
-  const [startButton, setStartButton] = useState(true);
+  const [startButton, setStartButton] = useState('true');
+  const [buttonText, setButtonText] = useState('Waiting for other players to join...')
 
   // ------------- Updates joined characters --------------//
   useEffect(() => {
@@ -43,10 +44,11 @@ const JoinScreen = () => {
   })
   useEffect(() => {
     client.on('begin game', () => {
-      setStartButton();
+      setStartButton('');
+      setButtonText('Start Game')
     })
     
-  }, [setStartButton])
+  }, [setStartButton, setButtonText])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
@@ -124,17 +126,17 @@ const JoinScreen = () => {
     })
   })
 
-  const buttonStyle={
-    color: 'white', 
-    boxShadow: '5px 5px 10px black', 
-    backgroundColor: '#595959', 
-    borderRadius: '10px', 
+  const buttonStyle = {
+    color: 'white',
+    boxShadow: '5px 5px 10px black',
+    backgroundColor: '#595959',
+    borderRadius: '10px',
     fontSize: '1em',
     padding: '5px 10px',
   }
 
   return (
-    <div style={{ background: 'none', marginTop: '250px', textAlign: 'center' }}>
+    <div style={{ background: 'none', marginTop: '125px', textAlign: 'center' }}>
       <div style={startTheme}>
         <Card.Body style={{ marginLeft: '70px', marginTop: '170px', width: '750px' }}>
           <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive' }}>JOIN A NEW GAME</Card.Title>
@@ -154,10 +156,6 @@ const JoinScreen = () => {
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '150px' }}>CHOOSE YOUR CHARACTER</Card.Title>
         <br></br>
         <ChooseCharacterButton characters={availableCharacters} chosenCharacter={chosenCharacter} />
-        {/* <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px' }} onClick={chosenCharacter}> <img src='./images/Hunter.png' style={{ height: '150px' }} name="char" alt="Hunter" /><p style={{ cursor: 'no-drop' }}>Hunter</p></button>
-        <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px' }} onClick={chosenCharacter}> <img src='./images/Assassin.png' style={{ height: '150px' }} name="char" alt="Assassin" /><p style={{ cursor: 'no-drop' }}>Assassin</p></button>
-        <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px' }} onClick={chosenCharacter}> <img src='./images/Wizard.png' style={{ height: '120px', marginTop: '30px' }} name="char" alt="Wizard" /><p style={{ cursor: 'no-drop' }}>Wizard</p></button>
-        <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px' }} onClick={chosenCharacter}> <img src='./images/Warrior.png' style={{ height: '150px', paddingRight: '10px' }} name="char" alt="Warrior" /><p style={{ cursor: 'no-drop' }}>Warrior</p></button> */}
       </div>
 
       <div style={nameTheme}>
@@ -165,7 +163,6 @@ const JoinScreen = () => {
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'white' }}>{gameData}</Card.Title>
         <Form onSubmit={submitChar}>
           <Form.Control style={{ width: '40%', margin: '50px auto 10px auto' }} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)} />
-          {/* <Form.Control style={{width: '40%', margin: '10px auto 10px auto'}} type="text" placeholder="role" name="char" onChange={(e) => onNameChange(e)}/> */}
           <button style={buttonStyle} type="submit" onClick={showGameLink}>Submit</button>
         </Form>
       </div>
@@ -174,7 +171,7 @@ const JoinScreen = () => {
         <h3>{charInfo.char}:  {charInfo.name}</h3>
         <h1 style={{ paddingBottom: '30px', fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px' }}>Start Your Quest</h1>
         <Link to='/game'>
-          <button type="submit" style={buttonStyle}>Start</button>
+          <button type="submit" style={buttonStyle} disabled={startButton}>{buttonText}</button>
         </Link>
       </div>
 

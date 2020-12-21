@@ -23,7 +23,6 @@ const Chat = (props) => {
     client.on('chat', ({ name, message }) => {
       chatArr.unshift({ name, message })
       setChat(chatArr.slice(0))
-      //setChat([...chat, { name, message }])
       console.log('setting chat')
     })
 
@@ -57,9 +56,6 @@ const Chat = (props) => {
         {renderChat()}
       </div>
       <Form onSubmit={onMessageSubmit}>
-        {/* <Form.Label style={{ fontSize: '1.4em', paddingLeft: '50px'}}><strong>Player Name:</strong></Form.Label>
-        <input style={{backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.4em', marginLeft: '5px'}} size="lg" id="name" name="name" type="text" placeholder="Name..." onChange={(e) => onTextChange(e)}/>
-        <p /> */}
         <Form.Label style={{ fontSize: '1.4em', paddingLeft: '50px' }}><strong>Type Message:</strong></Form.Label>
         <input style={{ backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.4em', marginLeft: '5px', marginBottom: '15px' }} id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)} />
         <p />

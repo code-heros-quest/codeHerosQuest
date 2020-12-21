@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import client from './connect.js';
 
 const Choice4 = (props) => {
@@ -12,13 +12,16 @@ const Choice4 = (props) => {
 
   const makeChoice = (e) => {
     let vote = e.target.id;
-    let payload = { vote , scenario: props.scenario }
+    let payload = { vote, scenario: props.scenario }
     client.emit('choice', payload);
     setStyle('disabled')
     setShow('false')
   }
   return (
     <div>
+      <div style={{ padding: '10px 5px 5px 5px', borderRadius: '8px', border: '9px solid #854215', width: '50%', height: 'auto', margin: 'auto', backgroundImage: 'url(./images/textBox/text1.png)', backgroundSize: 'cover', backgroundAttachment: 'fixed' }}>
+        <h5 style={{ color: 'black' }}>{props.scenario.choiceQuestion}</h5>
+      </div>
       <button className={style} id="1" onClick={makeChoice} disabled={show}>{choice1}</button>
       <button className={style} id="2" onClick={makeChoice} disabled={show}>{choice2}</button>
       <button className={style} id="3" onClick={makeChoice} disabled={show}>{choice3}</button>

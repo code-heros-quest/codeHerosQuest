@@ -33,13 +33,8 @@ const CreateScreen = () => {
   const [nameTheme, setNameTheme] = useState(styleHide);
   const [startButton, setStartButton] = useState('true');
   const [buttonText, setButtonText] = useState('Waiting for other players to join...')
-  // const [availableCharacters, setAvailableCharacters] = useState([]);
 
-  // useEffect(() => {
-  //   socket.on('char array', charArray => {
-  //     setAvailableCharacters(charArray);
-  //   }, [setAvailableCharacters])
-  // })
+
   useEffect(() => {
     socket.on('begin game', () => {
       setStartButton('');
@@ -163,13 +158,13 @@ const CreateScreen = () => {
       </div>
 
       <div style={nameTheme}>
-        <div>{characterPicked}</div>
-        <h3>{charInfo.char}: {charInfo.name} </h3>
-        <Card.Title style={{ fontSize: '1.5em', marginTop: '10px', fontWeight: 'bolder', fontFamily: 'cursive' }}>Type Your Character Name</Card.Title>
-        <Form onSubmit={submitChar}>
-          <Form.Control style={{ width: '40%', margin: '30px auto 10px auto' }} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)} />
-          {/* <Form.Control style={{width: '40%', margin: '10px auto 10px auto'}} type="text" placeholder="role" name="char" onChange={(e) => onNameChange(e)}/> */}
-          <button style={buttonStyle} type="submit" onClick={showGameLink}>Submit</button>
+
+      <div>{characterPicked}</div>
+      <h3>{charInfo.char}: {charInfo.name} </h3>
+        <Card.Title style={{ fontSize: '1.5em', marginTop: '10px', fontWeight: 'bolder', fontFamily: 'cursive'}}>Type Your Character Name</Card.Title>   
+          <Form onSubmit={submitChar}>
+          <Form.Control style={{width: '40%', margin: '30px auto 10px auto'}} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)}/>
+          <button  style={buttonStyle} type="submit" onClick={showGameLink}>Submit</button>
         </Form>
       </div>
 

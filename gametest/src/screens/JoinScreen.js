@@ -33,6 +33,7 @@ const JoinScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
+  const [startButton, setStartButton] = useState(true);
 
   // ------------- Updates joined characters --------------//
   useEffect(() => {
@@ -41,8 +42,11 @@ const JoinScreen = () => {
     })
   })
   useEffect(() => {
-    console.log(availableCharacters)
-  }, [availableCharacters])
+    console.log(availableCharacters, 'available')
+    if (availableCharacters.length === 0) {
+      setStartButton(false);
+    }
+  }, [availableCharacters, setStartButton])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
@@ -62,24 +66,28 @@ const JoinScreen = () => {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Hunter.png' style={{ height: '150px', marginTop: '110px' }} name="char" alt="Hunter" />;
+      client.emit('choose character', 'Hunter')
       return characterPicked;
     }
     if (e.target.alt === 'Assassin') {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Assassin.png' style={{ height: '120px', marginTop: '131px' }} name="char" alt="Assassin" />;
+      client.emit('choose character', 'Assassin')
       return characterPicked;
     }
     if (e.target.alt === 'Wizard') {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Wizard.png' style={{ height: '150px', marginTop: '110px' }} name="char" alt="Wizard" />;
+      client.emit('choose character', 'Wizard')
       return characterPicked;
     }
     if (e.target.alt === 'Warrior') {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Warrior.png' style={{ height: '150px', paddingRight: '10px', marginTop: '110px' }} name="char" alt="Warrior" />;
+      client.emit('choose character', 'Warrior')
       return characterPicked;
     }
     else {

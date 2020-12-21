@@ -11,7 +11,7 @@ import './GameScreen.css';
 
 function GameScreen() {
   const [scenarioState, setScenarioState] = useState({})
-  const [characterState, setCharacterState] = useState({ stats: {health: 0, attack: 0}})
+  const [characterState, setCharacterState] = useState({loot: [], stats: {health: 0, attack: 0}})
 
   useEffect(() => {
     client.emit('ready', 1);

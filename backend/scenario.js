@@ -58,22 +58,22 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
   // Scenarios in reverse order, choices first
   // Game Over - death
-  const gameOverDeath = new Scenario(35, null, 'GAME OVER', sDialogue.gameOverDeath, 'none', null, null);
+  const gameOverDeath = new Scenario(35, null, 'GAME OVER', sDialogue.gameOverDeath, 'none', null, null, null);
 
   // Game Over - hydra
-  const gameOverHydra = new Scenario(34, null, 'GAME OVER', sDialogue.gameOverHydra, 'none', null, null);
+  const gameOverHydra = new Scenario(34, null, 'GAME OVER', sDialogue.gameOverHydra, 'none', null, null, null);
 
-  const gameOverKing = new Scenario(33, null, 'GAME OVER', sDialogue.gameOverKing, 'none', null, null);
+  const gameOverKing = new Scenario(33, null, 'GAME OVER', sDialogue.gameOverKing, 'none', null, null, null);
 
-  const gameOverWin = new Scenario(32, null, 'GAME OVER', sDialogue.gameOverWin, 'none', null, null)
+  const gameOverWin = new Scenario(32, null, 'GAME OVER', sDialogue.gameOverWin, 'none', null, null, null)
 
   // BOSS 5 : THE KING
   // fight three
   const theKing3Rolls = {
     attackPotential: { low: 50, high: 84 },
-    lowRoll: new Roll(1, null, 'Poor Roll', cDialogue.theKing3Rolls1, null, 35),
-    medRoll: new Roll(2, null, 'Fair Roll', cDialogue.theKing3Rolls2, null, 32),
-    highRoll: new Roll(3, null, 'Good Roll', cDialogue.theKing3Rolls3, null, 32)
+    lowRoll: new Roll(1, 'Poor Roll', null, cDialogue.theKing3Rolls1, null, 35),
+    medRoll: new Roll(2, 'Fair Roll', null, cDialogue.theKing3Rolls2, null, 32),
+    highRoll: new Roll(3, 'Good Roll', null, cDialogue.theKing3Rolls3, null, 32)
   }
 
   const theKing3 = new Scenario(31, null, 'Close Combat', sDialogue.theKing3, 'roll', 'Roll to see if you survived the battle', theKing3Rolls, null)
@@ -82,8 +82,8 @@ function createScenarios(sDialogue, cDialogue, loot) {
   const theKing2Rolls = {
     attackPotential: { low: 50, high: 84 },
     lowRoll: new Roll(1, null, 'Poor Roll', cDialogue.theKing2Rolls1, null, 33),
-    medRoll: new Roll(2, 5, 'Fair Roll', cDialogue.theKing2Rolls2, null, 31),
-    highRoll: new Roll(3, 2, 'Good Roll', cDialogue.theKing2Rolls2, null, 31)
+    medRoll: new Roll(2, 'Fair Roll', 5, cDialogue.theKing2Rolls2, null, 31),
+    highRoll: new Roll(3, 'Good Roll', 2, cDialogue.theKing2Rolls2, null, 31)
   }
 
   const theKing2 = new Scenario(30, null, 'Ranged Battle', sDialogue.theKing2, 'roll', `Roll to see the outcome of your first engagement with the King`, theKing2Rolls, null);

@@ -40,11 +40,16 @@ io.on('connection', (socket) => {
     }
   })
 
+  socket.on('choose character', charInfo => {
+    const game = liveGames[socket.gameId];
+    game.storeCharacters(charInfo);
+  })
+
   // ---- all players chose a character and send back name ---- //
   socket.on('start game', charInfo => {
     console.log(charInfo);
     const game = liveGames[socket.gameId];
-    game.storeCharacters(charInfo);
+    // game.storeCharacters(charInfo);
     startGame(charInfo);
   })
 

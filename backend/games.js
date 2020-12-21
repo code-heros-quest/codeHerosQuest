@@ -268,7 +268,8 @@ class Games {
   }
 
   storeCharacters(charInfo) {
-    this.charArray.push(charInfo.char);
+    console.log(charInfo);
+    this.charArray.push(charInfo);
     this.offerCharacters();
   }
 

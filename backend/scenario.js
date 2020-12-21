@@ -76,7 +76,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     highRoll: new Roll(3, null, 'Good Roll', cDialogue.theKing3Rolls3, null, 32)
   }
 
-  const theKing3 = new Scenario(31, 'Close Combat', sDialogue.theKing3, 'roll', 'Roll to see if you survived the battle', theKing3Rolls, null)
+  const theKing3 = new Scenario(31, null, 'Close Combat', sDialogue.theKing3, 'roll', 'Roll to see if you survived the battle', theKing3Rolls, null)
 
   // fight two
   const theKing2Rolls = {

@@ -306,7 +306,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'Go Around', cDialogue.atTheWallChoices2, null, 5)
   }
 
-  const atTheWall = new Scenario(2, 'https://player.vimeo.com/video/492252064', 'At the Wall', sDialogue.atTheWall, 'choice2', `Your group stops to discuss your options…`, atTheWallChoices, null);
+  const atTheWall = new Scenario(2, './images/img.png', 'At the Wall', sDialogue.atTheWall, 'choice2', `Your group stops to discuss your options…`, atTheWallChoices, null);
 
 
   // intro

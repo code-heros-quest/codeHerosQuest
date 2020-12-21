@@ -65,7 +65,8 @@ const GameButtons = (props) => {
       )
     default:
       return (
-        <Start scenario={scenario} />
+        <>
+        </>
       )
   }
 }

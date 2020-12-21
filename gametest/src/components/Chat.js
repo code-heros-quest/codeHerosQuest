@@ -5,34 +5,32 @@ import Form from 'react-bootstrap/Form'
 import client from './connect.js';
 import './Scroll.css'
 
+let chatArr = []
+
 const Chat = (props) => {
   const [character, setCharacter] = useState({});
   const [state, setState] = useState({ message: '', name: '' });
   const [chat, setChat] = useState([]);
-
   useEffect(() => {
     setCharacter(props.character)
-  }, [props])
-
+    console.log('setting chat character from props')
+  }, [props.character])
   useEffect(() => {
     setState({ name: character.name })
+    console.log('setting chat name state')
   }, [character])
-
   useEffect(() => {
     client.on('chat', ({ name, message }) => {
-      setChat([...chat, { name, message }])
+      chatArr.unshift({ name, message })
+      setChat(chatArr.slice(0))
+      //setChat([...chat, { name, message }])
+      console.log('setting chat')
     })
 
-    // client.on('result', payload => {
-    //   setChat([...payload, { name: payload.name, message: payload.dialogue }])
-    //   // do ready check, serve payload.num
-    // })
-  })
-
+  }, [setChat])
   const onTextChange = e => {
     setState({ ...state, [e.target.name]: e.target.value })
   }
-
   const onMessageSubmit = (e) => {
     e.preventDefault();
     const { message, name } = state;
@@ -42,7 +40,6 @@ const Chat = (props) => {
     let doc = document.getElementById('message');
     doc.value = '';
   }
-
   const renderChat = () => {
     return chat.map(({ name, message }, index) => (
       <div key={index}>
@@ -53,7 +50,6 @@ const Chat = (props) => {
       </div>
     ))
   }
-
   return (
     <div id="mario-chat" style={{ backgroundImage: 'url(./images/scrolly.png)', backgroundAttachment: 'scroll', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '550px', marginRight: '0' }} >
       <h2 style={{ fontSize: '2em', width: '300px', paddingLeft: '35px', paddingTop: '100px', margin: 'auto', textDecoration: 'underline', fontFamily: 'fantasy' }}><strong>Kingdom chat</strong></h2>
@@ -73,6 +69,4 @@ const Chat = (props) => {
     </div>
   )
 }
-
 export default Chat;
-

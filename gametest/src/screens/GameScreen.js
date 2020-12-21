@@ -1,6 +1,5 @@
-
 import '../App.css';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import SceneVideo from '../components/SceneVideo.js';
 import Loot from '../components/Loot.js';
 import Dialogue from '../components/Dialogue.js';
@@ -11,7 +10,7 @@ import './GameScreen.css';
 
 function GameScreen() {
   const [scenarioState, setScenarioState] = useState({})
-  const [characterState, setCharacterState] = useState({loot: [], stats: {health: 0, attack: 0}})
+  const [characterState, setCharacterState] = useState({ loot: [], stats: { health: 0, attack: 0 } })
 
   useEffect(() => {
     client.emit('ready', 1);
@@ -49,27 +48,27 @@ function GameScreen() {
 
   return (
     <div>
-      <div style={{ textAlign: 'center'}}>
-        <img src="./images/banner.png" alt="codeQuest" style={{ width: '40%'}}></img>
-        <div id='sceneWindow' style={{ display: 'inline-block', backgroundColor: 'black', width: '60vw', minWidth: '750px', height: 'auto', margin: 'auto', objectFit: 'contain'}}>
-          <SceneVideo scenario={scenarioState}/>
+      <div style={{ textAlign: 'center' }}>
+        <img src="./images/banner.png" alt="codeQuest" style={{ width: '40%' }}></img>
+        <div id='sceneWindow' style={{ display: 'inline-block', backgroundColor: 'black', width: '60vw', minWidth: '750px', height: 'auto', margin: 'auto', objectFit: 'contain' }}>
+          <SceneVideo scenario={scenarioState} />
         </div>
-          <div style={{display: 'inline-block', paddingLeft: '40px'}}>
-          <Loot character={characterState}/>
-          </div>
-      <div id='gameButtons' style={{ textAlign: 'center', verticalAlign: 'middle', paddingBottom: '20px'}}>
-      <GameButtons scenario={scenarioState} />
-      </div>
+        <div style={{ display: 'inline-block', paddingLeft: '40px' }}>
+          <Loot character={characterState} />
+        </div>
+        <div id='gameButtons' style={{ textAlign: 'center', verticalAlign: 'middle', paddingBottom: '20px' }}>
+          <GameButtons scenario={scenarioState} />
+        </div>
       </div>
       <section id='dc-container'>
         <div id='dialogue'>
-          <Dialogue scenario={scenarioState}/>
+          <Dialogue scenario={scenarioState} />
         </div>
         <div id='chat'>
-          <Chat character={characterState}/>
+          <Chat character={characterState} />
         </div>
       </section>
-      
+
     </div>
   );
 }

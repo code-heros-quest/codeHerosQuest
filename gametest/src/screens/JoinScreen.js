@@ -126,17 +126,17 @@ const JoinScreen = () => {
     })
   })
 
-  const buttonStyle={
-    color: 'white', 
-    boxShadow: '5px 5px 10px black', 
-    backgroundColor: '#595959', 
-    borderRadius: '10px', 
+  const buttonStyle = {
+    color: 'white',
+    boxShadow: '5px 5px 10px black',
+    backgroundColor: '#595959',
+    borderRadius: '10px',
     fontSize: '1em',
     padding: '5px 10px',
   }
 
   return (
-    <div style={{ background: 'none', marginTop: '250px', textAlign: 'center' }}>
+    <div style={{ background: 'none', marginTop: '125px', textAlign: 'center' }}>
       <div style={startTheme}>
         <Card.Body style={{ marginLeft: '70px', marginTop: '170px', width: '750px' }}>
           <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive' }}>JOIN A NEW GAME</Card.Title>

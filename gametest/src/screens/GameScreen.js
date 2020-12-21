@@ -20,24 +20,29 @@ function GameScreen() {
   useEffect(() => {
     client.on('scenario', (scenario) => {
       setScenarioState(scenario);
+      console.log('scenario updated - scenario')
     });
     client.on('result', result => {
       result.type = 'ready';
       setScenarioState(result);
+      console.log('scenario updated - result')
     })
     client.on('single result', result => {
       result.type = 'none';
       setScenarioState(result);
     })
-    client.on('character', charPayload => {
-      setCharacterState(charPayload);
-      console.log('char', charPayload);
-    })
     client.on('game over', payload => {
       setCharacterState(payload);
       client.emit('end');
     })
-  })
+  }, [setScenarioState]);
+
+  useEffect(() => {
+    client.on('character', charPayload => {
+      setCharacterState(charPayload);
+      console.log('char updated');
+    })
+  }, [setCharacterState]);
 
   // refactor passing client as props. Call it as an import
   // import client from '../components/connect.js';

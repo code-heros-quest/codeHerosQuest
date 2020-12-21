@@ -7,7 +7,8 @@ function Loot(props) {
 
     useEffect(() => {
         setCharacter(props.character)
-    }, [props])
+        console.log('updating character from props in loot');
+    }, [props.character])
 
     const styleLoot = {
         borderRadius: '7px',
@@ -32,9 +33,9 @@ function Loot(props) {
             <h1 style={{color: 'white', fontSize: '1.4em', fontFamily: 'cursive', textDecoration: 'underline lightgray'}}>{character.name}</h1>
             <div >
             <h5 style={style}>Health:</h5>
-            <meter min="0" low="10" optimum="25" high="18" max={character.maxHealth} value={character.stats.health} />
+            <meter min="0" low={character.lowHealth} optimum={character.maxHealth} high={character.highHealth} max={character.maxHealth} value={character.stats.health} />
             </div>
-            <div >
+            <div>
             <h5 style={style}>Attack:</h5>
             <meter min="0" low="9" optimum="23" high="17" max="27" value={character.stats.attack} />
             </div>

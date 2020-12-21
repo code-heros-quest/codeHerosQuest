@@ -8,7 +8,8 @@ const SceneVideo = (props) => {
 
   useEffect(() => {
     setScene([{ video: props.scenario.video }])
-  }, [props])
+    console.log('updating video in scene vid from props')
+  }, [props.scenario])
     
 
   const renderSceneVideo = () => {

@@ -40,11 +40,16 @@ io.on('connection', (socket) => {
     }
   })
 
+  socket.on('choose character', charInfo => {
+    const game = liveGames[socket.gameId];
+    game.storeCharacters(charInfo);
+  })
+
   // ---- all players chose a character and send back name ---- //
   socket.on('start game', charInfo => {
     console.log(charInfo);
     const game = liveGames[socket.gameId];
-    game.storeCharacters(charInfo);
+    // game.storeCharacters(charInfo);
     startGame(charInfo);
   })
 
@@ -156,10 +161,10 @@ io.on('connection', (socket) => {
 
   // -------------creates character instance--------------- //
   function createCharacters(charInfo) {
-    let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 25, 18, 10, 15)
-    let hunter = new Character('Silent Crash', 'Elf', 'Hunter', 20, 25, 18, 10, 15);
-    let warrior = new Character('Bristle Beard', 'Ogre', 'Warrior', 30, 35, 25, 15, 10);
-    let wizard = new Character('Ibus', 'Hobbit', 'Wizard', 30, 35, 25, 15, 10)
+    let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 25, 18, 10, 15, './images/Assassin.png');
+    let hunter = new Character('Silent Crash', 'Elf', 'Hunter', 20, 25, 18, 10, 15, './images/Hunter.png');
+    let warrior = new Character('Bristle Beard', 'Ogre', 'Warrior', 30, 35, 25, 15, 10, './images/Warrior.png');
+    let wizard = new Character('Ibus', 'Hobbit', 'Wizard', 30, 35, 25, 15, 10, './images/Wizard.png')
     let char = new Char(assassin, hunter, warrior, wizard);
     return char;
   }

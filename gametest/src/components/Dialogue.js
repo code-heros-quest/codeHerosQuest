@@ -9,7 +9,8 @@ const Dialogue = (props) => {
   const [scene, setScene] = useState([])
   useEffect(() => {
     setScene([{ name: props.scenario.name, message: props.scenario.dialogue }])
-  }, [props])
+    console.log('updating scene in dialogue from props')
+  }, [props.scenario])
 
 
 

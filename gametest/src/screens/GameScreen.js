@@ -1,4 +1,3 @@
-
 import '../App.css';
 import React, { useState, useEffect } from 'react';
 import SceneVideo from '../components/SceneVideo.js';
@@ -9,48 +8,40 @@ import client from '../components/connect.js';
 import GameButtons from '../components/GameButtons';
 import './GameScreen.css';
 
-
 function GameScreen() {
   const [scenarioState, setScenarioState] = useState({})
-  const [characterState, setCharacterState] = useState({ stats: { health: 0, attack: 0 } })
+  const [characterState, setCharacterState] = useState({ loot: [], stats: { health: 0, attack: 0 } })
 
   useEffect(() => {
     client.emit('ready', 1);
   }, [])
 
   useEffect(() => {
-    client.on('character', charPayload => {
-      setCharacterState(charPayload);
-      console.log('char', charPayload);
-    })
-  }, [setCharacterState])
-
-  useEffect(() => {
     client.on('scenario', (scenario) => {
       setScenarioState(scenario);
+      console.log('scenario updated - scenario')
     });
-  }, [scenarioState])
-
-  useEffect(() => {
     client.on('result', result => {
       result.type = 'ready';
       setScenarioState(result);
+      console.log('scenario updated - result')
     })
-  }, [scenarioState])
-
-  useEffect(() => {
     client.on('single result', result => {
       result.type = 'none';
       setScenarioState(result);
     })
-  }, [scenarioState])
-
-  useEffect(() => {
     client.on('game over', payload => {
       setCharacterState(payload);
       client.emit('end');
     })
-  }, [scenarioState])
+  }, [setScenarioState]);
+
+  useEffect(() => {
+    client.on('character', charPayload => {
+      setCharacterState(charPayload);
+      console.log('char updated');
+    })
+  }, [setCharacterState]);
 
   // refactor passing client as props. Call it as an import
   // import client from '../components/connect.js';

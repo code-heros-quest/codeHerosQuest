@@ -6,9 +6,6 @@ const Ready = (props) => {
   const [show, setShow] = useState('');
   const [style, setStyle] = useState('choiceButtons');
   const [buttonText, setButtonText] = useState('Ready');
-  
-  
-
 
   const ready = () => {
     if (props.scenario.next) {

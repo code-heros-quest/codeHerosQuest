@@ -18,8 +18,10 @@ function Loot(props) {
     }
 
     const styleImg = {
-        height: '80px',
-        width: 'auto'
+
+        height: '7vh',
+        width: '4vw' 
+
     }
 
     const style={
@@ -46,7 +48,9 @@ function Loot(props) {
             )}
             </ul>
 
+
             {/* <section style={{ backgroundImage: 'url(./images/Loot.png)', backgroundSize: '100% 100%', padding: '2px 20px 2px 20px', height: '500px', width: '250px', margin: 'auto', backgroundRepeat: 'no-repeat', borderRadius: '7px', display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr 1fr 1fr', border: '1px solid black', backgroundColor: 'gray' }}>
+
                 <div style={styleLoot}><img style={styleImg} src='./images/icons/axe.png'></img></div>
                 <div style={styleLoot}><img style={styleImg} src='./images/icons/book.png'></img></div>
                 <div style={styleLoot}><img style={styleImg} src='./images/icons/gold.png'></img></div>

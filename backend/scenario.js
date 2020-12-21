@@ -58,14 +58,14 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
   // Scenarios in reverse order, choices first
   // Game Over - death
-  const gameOverDeath = new Scenario(35, null, 'GAME OVER', sDialogue.gameOverDeath, 'none', null, null, null);
+  const gameOverDeath = new Scenario(35, './images/sceneImages/gameOverDeath.jpg', 'GAME OVER', sDialogue.gameOverDeath, 'none', null, null, null);
 
   // Game Over - hydra
-  const gameOverHydra = new Scenario(34, null, 'GAME OVER', sDialogue.gameOverHydra, 'none', null, null, null);
+  const gameOverHydra = new Scenario(34, './images/sceneImages/gameOverHydra.jpg', 'GAME OVER', sDialogue.gameOverHydra, 'none', null, null, null);
 
-  const gameOverKing = new Scenario(33, null, 'GAME OVER', sDialogue.gameOverKing, 'none', null, null, null);
+  const gameOverKing = new Scenario(33, './images/sceneImages/gameOverKing.jpg', 'GAME OVER', sDialogue.gameOverKing, 'none', null, null, null);
 
-  const gameOverWin = new Scenario(32, null, 'GAME OVER', sDialogue.gameOverWin, 'none', null, null, null)
+  const gameOverWin = new Scenario(32, './images/sceneImages/gameOverWin.jpg', 'GAME OVER', sDialogue.gameOverWin, 'none', null, null, null)
 
   // BOSS 5 : THE KING
   // fight three
@@ -76,7 +76,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     highRoll: new Roll(3, 'Good Roll', null, cDialogue.theKing3Rolls3, null, 32)
   }
 
-  const theKing3 = new Scenario(31, null, 'Close Combat', sDialogue.theKing3, 'roll', 'Roll to see if you survived the battle', theKing3Rolls, null)
+  const theKing3 = new Scenario(31, './images/sceneImages/theKingCloseCombat.jpg', 'Close Combat', sDialogue.theKing3, 'roll', 'Roll to see if you survived the battle', theKing3Rolls, null)
 
   // fight two
   const theKing2Rolls = {
@@ -86,7 +86,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     highRoll: new Roll(3, 'Good Roll', 2, cDialogue.theKing2Rolls2, null, 31)
   }
 
-  const theKing2 = new Scenario(30, null, 'Ranged Battle', sDialogue.theKing2, 'roll', `Roll to see the outcome of your first engagement with the King`, theKing2Rolls, null);
+  const theKing2 = new Scenario(30, './images/sceneImages/theKingRangeBattle.jpg', 'Ranged Battle', sDialogue.theKing2, 'roll', `Roll to see the outcome of your first engagement with the King`, theKing2Rolls, null);
 
   // fight one
   const theKing1Riddle = {
@@ -95,10 +95,10 @@ function createScenarios(sDialogue, cDialogue, loot) {
     riddle3: new Riddle(3, null, 'Group Loss', cDialogue.theKing1Riddle3, null, 33),
     riddle4: new Riddle(4, null, 'Group Win', cDialogue.theKing1Riddle4, null, 30),
   }
-  const theKing1 = new Scenario(29, null, 'Battle of Wits', sDialogue.theKing1, 'riddle', 'What a poor man has, a rich man wants, and if you eat it you die. What am I?', theKing1Riddle, null);
+  const theKing1 = new Scenario(29, './images/sceneImages/theKingRiddle.jpg', 'Battle of Wits', sDialogue.theKing1, 'riddle', 'What a poor man has, a rich man wants, and if you eat it you die. What am I?', theKing1Riddle, null);
 
   // the king intro
-  const theKingIntro = new Scenario(28, null, 'The King', sDialogue.theKingIntro, 'ready2', null, null, 29);
+  const theKingIntro = new Scenario(28, './images/sceneImages/theKing.jpg', 'The King', sDialogue.theKingIntro, 'ready2', null, null, 29);
 
   // NPC 6 : Mage-Smith
   const mageSmithChoices = {
@@ -106,7 +106,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'Match Him', cDialogue.mageSmithChoices2, [loot.mightyEnchantedSword], 28),
     choice3: new Choice(3, 'Walk Away', cDialogue.mageSmithChoices3, [loot.mysteriousSword], 28)
   }
-  const mageSmith = new Scenario(27, null, 'The Mage-Smith', sDialogue.mageSmith, 'choice3', `While it is a comical sight you are trying to avoid drawing attention to yourselves and you need to calm him down. Do you:`, mageSmithChoices, null);
+  const mageSmith = new Scenario(27, './images/sceneImages/theMageSmith.jpg', 'The Mage-Smith', sDialogue.mageSmith, 'choice3', `While it is a comical sight you are trying to avoid drawing attention to yourselves and you need to calm him down. Do you:`, mageSmithChoices, null);
 
 
   // wishing well ******
@@ -115,14 +115,14 @@ function createScenarios(sDialogue, cDialogue, loot) {
     badLuck: new Luck(2, 'Good Luck', cDialogue.wishingWellLuck2, [loot.blessedWater], 27)
   }
 
-  const wishingWell = new Scenario(26, null, 'Wishing Well', sDialogue.wishingWell, 'luck', `You hope for luck as you fall asleep`, wishingWellLuck, null);
+  const wishingWell = new Scenario(26, './images/sceneImages/wishingWell.jpg', 'Wishing Well', sDialogue.wishingWell, 'luck', `You hope for luck as you fall asleep`, wishingWellLuck, null);
 
   // horned animal
   const hornedAnimalChoices = {
     choice1: new Choice(1, 'Visit a Sprite', cDialogue.hornedAnimalChoices1, null, 26),
     choice2: new Choice(2, 'To the castle', cDialogue.hornedAnimalChoices2, null, 27)
   }
-  const hornedAnimal = new Scenario(25, null, 'The Horned Animal', sDialogue.hornedAnimal, 'choice2', `You know that water sprites can grant great blessings, will you detour from your path to visit the sprite?`, hornedAnimalChoices, null)
+  const hornedAnimal = new Scenario(25, './images/sceneImages/HornedAnimalTavern.jpg', 'The Horned Animal', sDialogue.hornedAnimal, 'choice2', `You know that water sprites can grant great blessings, will you detour from your path to visit the sprite?`, hornedAnimalChoices, null)
 
   // city before the palace
   const cityChoices = {
@@ -131,14 +131,14 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice3: new Choice(3, 'Monk Brotherhood', cDialogue.cityChoices3, null, 25)
   }
 
-  const cityAroundThePalace = new Scenario(24, null, 'Palace City', sDialogue.cityAroundThePalace, 'choice3', 'What kind of disguise do you think you should use?', cityChoices, null)
+  const cityAroundThePalace = new Scenario(24, './images/sceneImages/cityAroundTheWall.jpg', 'Palace City', sDialogue.cityAroundThePalace, 'choice3', 'What kind of disguise do you think you should use?', cityChoices, null)
 
   // NPC 5 : Rebellion
   const rebellionLuck = {
     badLuck: new Luck(1, 'Poor Luck', cDialogue.rebellionLuck1, [loot.brittleHeirloomBow, loot.rebelBandagesSmall, loot.rebelBandagesLarge], 24),
     goodLuck: new Luck(2, 'Good Luck', cDialogue.rebellionLuck2, [loot.strongHeirloomBow, loot.rebelBandagesSmall, loot.rebelBandagesLarge], 24)
   }
-  const rebellion = new Scenario(23, null, 'Rebellion', sDialogue.rebellion, 'luck', `flip for a chance to add your luck to the enchantress' spell`, rebellionLuck, null);
+  const rebellion = new Scenario(23, './images/sceneImages/Rebellion.jpg', 'Rebellion', sDialogue.rebellion, 'luck', `flip for a chance to add your luck to the enchantress' spell`, rebellionLuck, null);
 
 
   // BOSS 4 : Hydra
@@ -150,7 +150,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     highRoll: new Roll(3, 'Good Roll', 5, cDialogue.theHydraRolls3, null, 23)
   }
 
-  const theHydra = new Scenario(22, null, 'TheHydra', sDialogue.theHydra, 'roll', 'Roll the dice to determine the fate of your battle', theHydraRolls, null);
+  const theHydra = new Scenario(22, './images/sceneImages/theHydra.jpg', 'TheHydra', sDialogue.theHydra, 'roll', 'Roll the dice to determine the fate of your battle', theHydraRolls, null);
 
   // NPC 4 : Witch
   const theWitchRiddle = {
@@ -160,7 +160,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     riddle4: new Riddle(4, null, 'Group Win', cDialogue.theWitchRiddle4, [loot.gnarledStaff], 22)
   }
 
-  const theWitch = new Scenario(21, null, 'The Witch', sDialogue.theWitch, 'riddle', `“I don’t have eyes, But once I did see. I once had thoughts, Now white and empty. What am I?”`, theWitchRiddle, null);
+  const theWitch = new Scenario(21, './images/sceneImages/theWitch.jpg', 'The Witch', sDialogue.theWitch, 'riddle', `“I don’t have eyes, But once I did see. I once had thoughts, Now white and empty. What am I?”`, theWitchRiddle, null);
 
   // theRingAndTheRose
   const theRingAndTheRoseChoice = {
@@ -170,28 +170,28 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice4: new Choice(4, 'Hunter & Wizard', cDialogue.theRingAndTheRoseChoice4, [loot.roseLocket, loot.enchantedRing], 21)
   };
 
-  const theRingAndTheRose = new Scenario(20, null, 'Ring and the Rose', sDialogue.theRingAndTheRose, 'choice4', 'You may only select two members of your party to be tested for these items, who will you choose?', theRingAndTheRoseChoice, null);
+  const theRingAndTheRose = new Scenario(20, './images/sceneImages/ringAndTheRose.jpg', 'Ring and the Rose', sDialogue.theRingAndTheRose, 'choice4', 'You may only select two members of your party to be tested for these items, who will you choose?', theRingAndTheRoseChoice, null);
 
   // theKingMaker
   const theKingMakerChoices = {
     choice1: new Choice(1, `Don't tell him`, cDialogue.theKingMakerChoices1, null, 21),
     choice2: new Choice(2, 'Tell of your quest', cDialogue.theKingMakerChoices2, null, 20)
   }
-  const theKingMaker = new Scenario(19, null, 'The King Maker', sDialogue.theKingMaker, 'choice2', `Do you tell him of your quest to kill the King?`, theKingMakerChoices, null)
+  const theKingMaker = new Scenario(19, './images/sceneImages/theKingMaker.jpg', 'The King Maker', sDialogue.theKingMaker, 'choice2', `Do you tell him of your quest to kill the King?`, theKingMakerChoices, null)
 
   // backToTheSmithy 
   const backToTheSmithyChoices = {
     choice1: new Choice(1, `No, don't bring it up`, cDialogue.backToTheSmithyChoices1, [loot.improvedArmor], 21),
     choice2: new Choice(2, `Yes, ask him`, cDialogue.backToTheSmithyChoices2, [loot.improvedArmor], 19)
   }
-  const backToTheSmithy = new Scenario(18, null, 'To the Smithy', sDialogue.backToTheSmithy, 'choice2', 'Do you ask him about the broadsword?', backToTheSmithyChoices, null)
+  const backToTheSmithy = new Scenario(18, './images/sceneImages/toTheSmithy.jpg', 'To the Smithy', sDialogue.backToTheSmithy, 'choice2', 'Do you ask him about the broadsword?', backToTheSmithyChoices, null)
 
   // theShepherdsHouse
-  const theShepherdsHouse = new Scenario(17, null, `Shepherd's House`, sDialogue.theShepherdsHouse, 'ready2', null, null, 18);
+  const theShepherdsHouse = new Scenario(17, './images/sceneImages/TheSheperdsHouse.jpg', `Shepherd's House`, sDialogue.theShepherdsHouse, 'ready2', null, null, 18);
 
   // theBoisterousBaker
 
-  const theBoisterousBaker = new Scenario(16, null, 'Boisterous Baker', sDialogue.theBoisterousBaker, 'ready2', null, null, 18)
+  const theBoisterousBaker = new Scenario(16, './images/sceneImages/theBoisterousBaker_.jpg', 'Boisterous Baker', sDialogue.theBoisterousBaker, 'ready2', null, null, 18)
 
 
   // Iron Forge ***********
@@ -200,7 +200,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'Look for food', cDialogue.theIronForgeChoices2, [loot.travelRations], 16)
   }
 
-  const ironForge = new Scenario(15, null, 'Iron Forge', sDialogue.ironForge, 'choice2', `What supplies do you want to ask for?`, ironForgeChoices, null);
+  const ironForge = new Scenario(15, './images/sceneImages/ironForge.jpg', 'Iron Forge', sDialogue.ironForge, 'choice2', `What supplies do you want to ask for?`, ironForgeChoices, null);
 
   // neutralGround *******
   const neutralZoneLuck = {
@@ -208,7 +208,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     goodLuck: new Luck(2, 'Good Luck', cDialogue.neutralZoneLuck2, [loot.tinTownBandages], 21)
   }
 
-  const neutralZone = new Scenario(14, null, 'Neutral Zone', sDialogue.neutralZone, 'luck', 'Flip three coins for a chance to purchase supplies', neutralZoneLuck, null);
+  const neutralZone = new Scenario(14, './images/sceneImages/theNeutralZone.jpg', 'Neutral Zone', sDialogue.neutralZone, 'luck', 'Flip three coins for a chance to purchase supplies', neutralZoneLuck, null);
 
 
 
@@ -218,7 +218,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'Leave Town', cDialogue.curiosityChoices2, null, 21)
   }
 
-  const curiosityKilledTheCat = new Scenario(13, null, 'Curiosity', sDialogue.curiosityKilledTheCat, 'choice2', `Do you head to the Neutral Zone or leave town?`, curiosityKilledTheCatChoices, null);
+  const curiosityKilledTheCat = new Scenario(13, './images/sceneImages/TinTown.jpg', 'Curiosity', sDialogue.curiosityKilledTheCat, 'choice2', `Do you head to the Neutral Zone or leave town?`, curiosityKilledTheCatChoices, null);
 
 
   // Tin Town ************
@@ -228,7 +228,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice3: new Choice(3, 'Leave Town', cDialogue.tinTownChoices3, null, 21)
   };
 
-  const tinTown = new Scenario(12, null, 'Tin Town', sDialogue.tinTown, 'choice3', `Do you head further in seeking supplies, try to get more information before deciding, or cut your losses and follow the road winding south-east out of here?`, tinTownChoices, null);
+  const tinTown = new Scenario(12, './images/sceneImages/TinTown.jpg', 'Tin Town', sDialogue.tinTown, 'choice3', `Do you head further in seeking supplies, try to get more information before deciding, or cut your losses and follow the road winding south-east out of here?`, tinTownChoices, null);
 
 
   // NPC 3 : Merchant
@@ -240,7 +240,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
   }
 
-  const theMerchant = new Scenario(11, null, 'The Merchant', sDialogue.theMerchant, 'riddle', `"The more you take, the more you leave behind. What am I?"`, theMerchantRiddle, null);
+  const theMerchant = new Scenario(11, './images/sceneImages/Merchant.jpg', 'The Merchant', sDialogue.theMerchant, 'riddle', `"The more you take, the more you leave behind. What am I?"`, theMerchantRiddle, null);
 
   // FORK IN THE ROAD *****
   const forkInTheRoadChoices = {
@@ -248,7 +248,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'To the Hammer', cDialogue.forkInTheRoad2, null, 15)
   };
 
-  const forkInTheRoad = new Scenario(10, null, 'Fork in the Road', sDialogue.forkInTheRoad, 'choice2', `Will you follow the coins or the hammer?`, forkInTheRoadChoices, null)
+  const forkInTheRoad = new Scenario(10, './images/sceneImages/forkInTheRoad.jpg', 'Fork in the Road', sDialogue.forkInTheRoad, 'choice2', `Will you follow the coins or the hammer?`, forkInTheRoadChoices, null)
 
   // BOSS 3 : Troll
   const theTrollRolls = {
@@ -258,7 +258,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theTrollRolls3, [loot.falcon, loot.shimmeringVial], 10)
   }
 
-  const theTroll = new Scenario(9, null, `The Troll`, sDialogue.theTroll, 'roll', 'Roll to determine the fate of your battle', theTrollRolls, null);
+  const theTroll = new Scenario(9, './images/sceneImages/troll.jpg', `The Troll`, sDialogue.theTroll, 'roll', 'Roll to determine the fate of your battle', theTrollRolls, null);
 
   // BOSS 2 : Goblin
   const theGoblinRolls = {
@@ -267,28 +267,28 @@ function createScenarios(sDialogue, cDialogue, loot) {
     medRoll: new Roll(2, 'Fair Roll', 4, cDialogue.theGoblinRolls2, [loot.strongBandages], 9),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theGoblinRolls3, [loot.strongBandages], 9)
   }
-  const theGoblin = new Scenario(7, null, 'The Goblin', sDialogue.theGoblin, 'roll', 'Roll to determine the fate of your battle', theGoblinRolls, null);
+  const theGoblin = new Scenario(7, './images/sceneImages/TheGoblins.jpg', 'The Goblin', sDialogue.theGoblin, 'roll', 'Roll to determine the fate of your battle', theGoblinRolls, null);
 
   // poisonous bite
-  const thePoinsonousBite = new Scenario(8, null, 'The Poisonous Bite', sDialogue.thePoisonousBite, 'ready2', null, null, 9);
+  const thePoinsonousBite = new Scenario(8, './images/sceneImages/bite.jpg', 'The Poisonous Bite', sDialogue.thePoisonousBite, 'ready2', null, null, 9);
 
   // the village
   const theVillageChoices = {
     choice1: new Choice(1, 'Yes, help them', cDialogue.theVillageChoices1, null, 7),
     choice2: new Choice(2, 'No, be on your way', cDialogue.theVillageChoices2, null, 8)
   }
-  const theVillage = new Scenario(6, null, 'The Village', sDialogue.theVillage, 'choice2', `Will you risk your lives to help us with this other matter.`, theVillageChoices, null)
+  const theVillage = new Scenario(6, './images/sceneImages/theVillage.jpg', 'The Village', sDialogue.theVillage, 'choice2', `Will you risk your lives to help us with this other matter.`, theVillageChoices, null)
 
   // NPC 1
   const theWoodsmanLuck = {
     badLuck: new Luck(1, 'Poor Luck', cDialogue.theWoodsmanLuck1, null, 6),
     goodLuck: new Luck(2, 'Good Luck', cDialogue.theWoodsmanLuck2, [loot.herbalSalve], 6)
   }
-  const theWoodsman = new Scenario(5, null, 'The Woodsman', sDialogue.theWoodsman, 'luck', 'Since you were kind enough to carry wood back to the village the woodsman has much more than normal. Maybe if you are lucky he will reward you for your help. Roll for luck:', theWoodsmanLuck, null)
+  const theWoodsman = new Scenario(5, './images/sceneImages/theWoodsman.jpg', 'The Woodsman', sDialogue.theWoodsman, 'luck', 'Since you were kind enough to carry wood back to the village the woodsman has much more than normal. Maybe if you are lucky he will reward you for your help. Roll for luck:', theWoodsmanLuck, null)
 
 
   // NPC 2
-  const theOldFriend = new Scenario(4, null, 'The Old Friend', sDialogue.theOldFriend, 'ready2', null, null, 6);
+  const theOldFriend = new Scenario(4, './images/sceneImages/oldFriend.jpg', 'The Old Friend', sDialogue.theOldFriend, 'ready2', null, null, 6);
 
   //BOSS 1 : Orc Lord
   const theOrcLordRoll = {
@@ -297,7 +297,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     medRoll: new Roll(2, 'Fair Roll', 3, cDialogue.theOrcLordRoll2, [loot.orcLordMace], 4),
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theOrcLordRoll3, [loot.orcLordMace], 4)
   }
-  const theOrcLord = new Scenario(3, null, 'Orc Lord Battle', sDialogue.theOrcLord, 'roll', 'roll the dice', theOrcLordRoll, null)
+  const theOrcLord = new Scenario(3, './images/sceneImages/orcLordBattle.jpg', 'Orc Lord Battle', sDialogue.theOrcLord, 'roll', 'roll the dice', theOrcLordRoll, null)
 
 
   // At the wall
@@ -306,7 +306,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'Go Around', cDialogue.atTheWallChoices2, null, 5)
   }
 
-  const atTheWall = new Scenario(2, 'https://player.vimeo.com/video/492252064', 'At the Wall', sDialogue.atTheWall, 'choice2', `Your group stops to discuss your options…`, atTheWallChoices, null);
+  const atTheWall = new Scenario(2, './images/sceneImages/atTheWall.jpg', 'At the Wall', sDialogue.atTheWall, 'choice2', `Your group stops to discuss your options…`, atTheWallChoices, null);
 
 
   // intro

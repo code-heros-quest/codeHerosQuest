@@ -33,7 +33,8 @@ const JoinScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
-  const [startButton, setStartButton] = useState('');
+  const [startButton, setStartButton] = useState('true');
+  const [buttonText, setButtonText] = useState('Waiting for other players to join...')
 
   // ------------- Updates joined characters --------------//
   useEffect(() => {
@@ -43,10 +44,11 @@ const JoinScreen = () => {
   })
   useEffect(() => {
     client.on('begin game', () => {
-      setStartButton('true');
+      setStartButton('');
+      setButtonText('Start Game')
     })
     
-  }, [setStartButton])
+  }, [setStartButton, setButtonText])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
@@ -174,7 +176,7 @@ const JoinScreen = () => {
         <h3>{charInfo.char}:  {charInfo.name}</h3>
         <h1 style={{ paddingBottom: '30px', fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px' }}>Start Your Quest</h1>
         <Link to='/game'>
-          <button type="submit" style={buttonStyle} display={startButton}>Start</button>
+          <button type="submit" style={buttonStyle} disabled={startButton}>{buttonText}</button>
         </Link>
       </div>
 

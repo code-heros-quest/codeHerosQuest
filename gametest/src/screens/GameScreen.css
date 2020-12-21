@@ -1,3 +1,49 @@
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 800px) {
+/* Styles */
+
+#screen {
+    margin: 0 auto;
+    text-align: center;
+   }
+header {
+    height: 100px;
+    width: 100%;
+
+}
+#screen img {
+    align-self: center;
+    object-fit: contain;
+    height: 100%;
+    
+}   
+
+#sceneWindow {
+   display: inline-block;
+    background-color: black;
+    width: 50vw;
+    height: 53vh;
+     margin: auto;
+     object-fit: contain;
+}
+
+
+#dc-container{
+    display: flex;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+#dialogue-window{
+    margin: auto;
+}
+}
+
+
+
+
 #dialogue{
     margin: auto;
 }
@@ -8,6 +54,4 @@
 
 #dc-container{
     display: flex;
-    overflow: auto;
-
 }

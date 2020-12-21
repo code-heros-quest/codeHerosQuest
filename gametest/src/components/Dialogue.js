@@ -15,8 +15,8 @@ const Dialogue = (props) => {
 
   const renderScene = () => {
     return scene.map(({ name, message }, index) => (
-      <div key={index} style={{ height: '20px', width: 'auto'}}>
-        <h3 style={{ paddingTop: '20px', height: 'auto', width: '400px', verticalAlign: 'bottom', marginLeft: 'auto', marginRight: 'auto', fontSize: '1.6em', objectFit: 'contain', textAlign: 'center', fontFamily: 'fantasy', overflow: 'none'}}>
+      <div key={index} style={{ height: '100%', width: 'auto'}}>
+        <h3 style={{ paddingTop: '10px', height: '15%', width: '100%', verticalAlign: 'bottom', marginLeft: 'auto', marginRight: 'auto', objectFit: 'contain', textAlign: 'center', fontFamily: 'fantasy', overflow: 'none'}}>
           {name}
         </h3>
         <div className='scrollDiv' >
@@ -30,7 +30,7 @@ const Dialogue = (props) => {
 
   return (
 
-      <div id="dialogue-window" style={{ backgroundImage: 'url(./images/textBox/text2.png)', backgroundSize: '100% 100%', borderRadius: '10px', fontSize: '1.7em', color: 'black', display: 'inline-block', width: '778px', minHeight: '510px', height: 'auto', border: '6px solid black', padding: '5px 10px 10px 10px'}}>
+      <div id="dialogue-window" style={{ backgroundImage: 'url(./images/textBox/text2.png)', backgroundSize: '100% 100%', borderRadius: '10px', fontSize: '1.7em', color: 'black', display: 'inline-block', width: '35vw', height: '35vh', border: '6px solid black', padding: '5px 10px 10px 10px'}}>
         {renderScene()}
       </div>
 

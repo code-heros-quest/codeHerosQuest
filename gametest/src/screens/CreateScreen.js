@@ -31,7 +31,7 @@ const CreateScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
-  const [startButton, setStartButton] = useState(true);
+  const [startButton, setStartButton] = useState('');
   // const [availableCharacters, setAvailableCharacters] = useState([]);
 
   // useEffect(() => {
@@ -41,7 +41,7 @@ const CreateScreen = () => {
   // })
   useEffect(() => {
     socket.on('begin game', () => {
-      setStartButton();
+      setStartButton('true');
     })
     
   }, [setStartButton])
@@ -178,7 +178,7 @@ const CreateScreen = () => {
         <h1 style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px'}}>Start Your Quest</h1>
         <Card.Title style={{ fontSize: '1.3em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'black' }}>Share your game code with 3 friends: {gameData}</Card.Title>
         <Link to='/game' >
-        <button type="submit" style={buttonStyle}>Start</button>
+        <button type="submit" style={buttonStyle} disabled={startButton}>Start</button>
         </Link>
       </div>
 

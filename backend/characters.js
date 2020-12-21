@@ -47,6 +47,7 @@ class Character {
       this.addHealth(lootObj.health);
       this.addAttack(lootObj.attack);
       this.loot.push(lootObj);
+      console.log(this.name, lootObj);
     }
   }
 }

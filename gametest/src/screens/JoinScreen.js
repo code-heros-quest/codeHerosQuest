@@ -156,10 +156,6 @@ const JoinScreen = () => {
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '150px' }}>CHOOSE YOUR CHARACTER</Card.Title>
         <br></br>
         <ChooseCharacterButton characters={availableCharacters} chosenCharacter={chosenCharacter} />
-        {/* <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px' }} onClick={chosenCharacter}> <img src='./images/Hunter.png' style={{ height: '150px' }} name="char" alt="Hunter" /><p style={{ cursor: 'no-drop' }}>Hunter</p></button>
-        <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px' }} onClick={chosenCharacter}> <img src='./images/Assassin.png' style={{ height: '150px' }} name="char" alt="Assassin" /><p style={{ cursor: 'no-drop' }}>Assassin</p></button>
-        <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px' }} onClick={chosenCharacter}> <img src='./images/Wizard.png' style={{ height: '120px', marginTop: '30px' }} name="char" alt="Wizard" /><p style={{ cursor: 'no-drop' }}>Wizard</p></button>
-        <button style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none', marginRight: '30px' }} onClick={chosenCharacter}> <img src='./images/Warrior.png' style={{ height: '150px', paddingRight: '10px' }} name="char" alt="Warrior" /><p style={{ cursor: 'no-drop' }}>Warrior</p></button> */}
       </div>
 
       <div style={nameTheme}>
@@ -167,7 +163,6 @@ const JoinScreen = () => {
         <Card.Title style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'white' }}>{gameData}</Card.Title>
         <Form onSubmit={submitChar}>
           <Form.Control style={{ width: '40%', margin: '50px auto 10px auto' }} type="text" placeholder="name" name="name" onChange={(e) => onNameChange(e)} />
-          {/* <Form.Control style={{width: '40%', margin: '10px auto 10px auto'}} type="text" placeholder="role" name="char" onChange={(e) => onNameChange(e)}/> */}
           <button style={buttonStyle} type="submit" onClick={showGameLink}>Submit</button>
         </Form>
       </div>

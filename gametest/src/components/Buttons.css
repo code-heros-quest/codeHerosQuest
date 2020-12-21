@@ -32,3 +32,18 @@
     font-family: cursive;
 }
 
+.riddleButtons{
+    color: white;
+    box-shadow: -1px -1px 20px 1px white, 4px 4px 20px 2px gray;
+    background-color: #636363;
+    padding: 8px 10px;
+    margin-bottom: 35px;
+    margin-top: 8px;
+    margin-left: 15px;
+    border-radius: 10px;
+    font-weight: bolder;
+    font-size: 1.3em;
+    font-family: cursive;
+    cursor: pointer;
+
+}

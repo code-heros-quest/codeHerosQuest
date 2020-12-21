@@ -33,6 +33,8 @@ const JoinScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
+  const [startButton, setStartButton] = useState('true');
+  const [buttonText, setButtonText] = useState('Waiting for other players to join...')
 
   // ------------- Updates joined characters --------------//
   useEffect(() => {
@@ -41,8 +43,12 @@ const JoinScreen = () => {
     })
   })
   useEffect(() => {
-    console.log(availableCharacters)
-  }, [availableCharacters])
+    client.on('begin game', () => {
+      setStartButton('');
+      setButtonText('Start Game')
+    })
+    
+  }, [setStartButton, setButtonText])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
@@ -62,24 +68,28 @@ const JoinScreen = () => {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Hunter.png' style={{ height: '150px', marginTop: '110px' }} name="char" alt="Hunter" />;
+      client.emit('choose character', 'Hunter')
       return characterPicked;
     }
     if (e.target.alt === 'Assassin') {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Assassin.png' style={{ height: '120px', marginTop: '131px' }} name="char" alt="Assassin" />;
+      client.emit('choose character', 'Assassin')
       return characterPicked;
     }
     if (e.target.alt === 'Wizard') {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Wizard.png' style={{ height: '150px', marginTop: '110px' }} name="char" alt="Wizard" />;
+      client.emit('choose character', 'Wizard')
       return characterPicked;
     }
     if (e.target.alt === 'Warrior') {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Warrior.png' style={{ height: '150px', paddingRight: '10px', marginTop: '110px' }} name="char" alt="Warrior" />;
+      client.emit('choose character', 'Warrior')
       return characterPicked;
     }
     else {
@@ -110,6 +120,10 @@ const JoinScreen = () => {
       setGameData(game.id);
     })
 
+    // this is to emit an error if a player enters an invalid game code
+    socket.on('error', message => {
+      console.log(message);
+    })
   })
 
   const buttonStyle={
@@ -129,7 +143,7 @@ const JoinScreen = () => {
           <Form onSubmit={createGameHandler}>
             <Form.Group>
               <Form.Label>Enter your game code</Form.Label>
-              <Form.Control style={{ width: '40%', margin: 'auto' }} type="text" placeholder="name" onChange={(e) => onTextChange(e)} />
+              <Form.Control style={{ width: '40%', margin: 'auto' }} type="text" placeholder="code" onChange={(e) => onTextChange(e)} />
             </Form.Group>
             <button style={buttonStyle} type="submit">
               Submit
@@ -162,7 +176,7 @@ const JoinScreen = () => {
         <h3>{charInfo.char}:  {charInfo.name}</h3>
         <h1 style={{ paddingBottom: '30px', fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px' }}>Start Your Quest</h1>
         <Link to='/game'>
-          <button type="submit" style={buttonStyle}>Start</button>
+          <button type="submit" style={buttonStyle} disabled={startButton}>{buttonText}</button>
         </Link>
       </div>
 

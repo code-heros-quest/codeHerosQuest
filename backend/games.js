@@ -79,7 +79,7 @@ class Games {
     let incorrectDialogue = payload.scenario.choices.riddle1;
     if (answerArray.includes(payload.answer.toLowerCase())) {
       socket.emit('single result', correctDialogue);
-      this.evaluateForLootRiddle(possibleLoot, payload);
+      this.evaluateForLootRiddle(socket, possibleLoot, payload);
       this.count++
     } else {
       socket.emit('single result', incorrectDialogue);
@@ -103,7 +103,16 @@ class Games {
 
 
   // ---------- LUCK Evaluator ------------- //
-  luckEvaluator(payload) {
+  luckEvaluator(socket, payload) {
+    console.log(payload);
+    let singleResult = { name: 'Result Announcement', message: '' };
+    if (payload.luck === 0) {
+      singleResult.message = 'Sorry, your luck was bad. Hopefully the other members of your team faired better'
+    }
+    if (payload.luck === 1) {
+      singleResult.message = 'Congratulations, you had good luck. Hopefully the rest of your team does as well'
+    }
+    socket.emit('chat', singleResult);
     this.responseCount++;
     this.count += payload.luck;
     if (this.responseCount === 4) {
@@ -124,7 +133,9 @@ class Games {
 
 
   // ---------- NEW Dice Roll ------------//
-  rollEvaluator(payload) {
+  rollEvaluator(socket, payload) {
+    let singleResult = { name: 'Result Annoucement', message: `You rolled a ${payload.roll}. Your roll will be combined with the rest of your team to determine the outcome of your battle.` };
+    socket.emit('chat', singleResult);
     this.responseCount++;
     this.count += payload.roll;
     if (this.responseCount === 4) {
@@ -143,10 +154,11 @@ class Games {
       this.evaluateForLoot(rollResult.lootObject);
       this.players.forEach(player => {
         player.emit(`result`, rollResult);
+        let data = {name: 'Health Announcement', message: `Your health decreased by ${rollResult.damage} in this battle`}
+        player.emit('chat', data);
       });
       this.count = 0;
       this.responseCount = 0;
-      // add damage to each roll, add attackEval obj to each roll result
     }
   }
 
@@ -171,11 +183,12 @@ class Games {
   }
 
   evaluateForLoot(lootArray) {
+    console.log('evaluating for loot');
     if (lootArray !== null) {
       let lootMessage = '';
       lootArray.forEach(item => {
         item.role.forEach(reciever => {
-          lootMessage += `The ${reciever} recieved ${item.name}. `;
+          lootMessage += `The ${reciever} recieved ${item.name}. Item stats: Health ${item.health} Attack ${item.attack}. `;
         });
       });
       for (const character in this.char) {
@@ -184,17 +197,26 @@ class Games {
         });
       }
       let data = { name: 'Loot Announcement', message: lootMessage };
-      // console.log(data); this can be changed into a chat emit!
+      console.log(data);
+      if (data.message !== '') {
+        for (let player of this.players) {
+          player.emit('chat', data);
+        }
+      }
     }
   }
 
-  evaluateForLootRiddle(lootArray, payload) {
+  evaluateForLootRiddle(socket, lootArray, payload) {
+    console.log('in evaluate for Loot Riddle');
+    console.log('loot', lootArray);
+    console.log(payload, 'payload');
+    let charRole = socket.charType;
     if (lootArray !== null) {
       let lootMessage = '';
       lootArray.forEach(item => {
         item.role.forEach(reciever => {
-          if (payload.char === reciever.toLowerCase()) {
-            lootMessage += `The ${reciever} recieved ${item.name}. `;
+          if (charRole === reciever.toLowerCase()) {
+            lootMessage += `The ${reciever} recieved ${item.name}. Item stats: Health ${item.health} Attack ${item.attack}. `;
           }
         });
       });
@@ -204,7 +226,12 @@ class Games {
         }
       }
       let data = { name: 'Loot Announcement', message: lootMessage };
-      // console.log(data); this can be changed into a chat emit! only emit if message is not an empty string
+      console.log(data);
+      if (data.message !== '') {
+        for (let player of this.players) {
+          player.emit('chat', data);
+        }
+      }
     }
   }
 
@@ -212,7 +239,7 @@ class Games {
     for (const character in this.char) {
       this.char[character].loseHealth(value)
       if (this.char[character].stats.health < 1) {
-        gameOver(scenario.gameOverDeath);
+        this.gameOver(this.scenarios.gameOverDeath);
       }
     }
   }
@@ -241,7 +268,8 @@ class Games {
   }
 
   storeCharacters(charInfo) {
-    this.charArray.push(charInfo.char);
+    console.log(charInfo);
+    this.charArray.push(charInfo);
     this.offerCharacters();
   }
 

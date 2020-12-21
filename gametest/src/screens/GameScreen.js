@@ -11,25 +11,38 @@ import './GameScreen.css';
 
 function GameScreen() {
   const [scenarioState, setScenarioState] = useState({})
-  const [characterState, setCharacterState] = useState({})
+  const [characterState, setCharacterState] = useState({loot: [], stats: {health: 0, attack: 0}})
+
+  useEffect(() => {
+    client.emit('ready', 1);
+  }, [])
 
   useEffect(() => {
     client.on('scenario', (scenario) => {
       setScenarioState(scenario);
+      console.log('scenario updated - scenario')
     });
     client.on('result', result => {
       result.type = 'ready';
       setScenarioState(result);
+      console.log('scenario updated - result')
     })
     client.on('single result', result => {
       result.type = 'none';
       setScenarioState(result);
     })
+    client.on('game over', payload => {
+      setCharacterState(payload);
+      client.emit('end');
+    })
+  }, [setScenarioState]);
+
+  useEffect(() => {
     client.on('character', charPayload => {
       setCharacterState(charPayload);
-      console.log('char', charPayload);
+      console.log('char updated');
     })
-  })
+  }, [setCharacterState]);
 
   // refactor passing client as props. Call it as an import
   // import client from '../components/connect.js';

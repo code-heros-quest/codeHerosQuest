@@ -31,6 +31,22 @@ const CreateScreen = () => {
   const [charTheme, setCharTheme] = useState(styleHide);
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
+  const [startButton, setStartButton] = useState('true');
+  const [buttonText, setButtonText] = useState('Waiting for other players to join...')
+  // const [availableCharacters, setAvailableCharacters] = useState([]);
+
+  // useEffect(() => {
+  //   socket.on('char array', charArray => {
+  //     setAvailableCharacters(charArray);
+  //   }, [setAvailableCharacters])
+  // })
+  useEffect(() => {
+    socket.on('begin game', () => {
+      setStartButton('');
+      setButtonText('Start Game');
+    })
+    
+  }, [setStartButton, setButtonText])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 
@@ -53,24 +69,28 @@ const CreateScreen = () => {
       setCharTheme(styleHide);
       setNameTheme(styleShow);
        characterPicked = <img src='./images/Hunter.png' style={{height: '150px', marginTop: '110px'}} name="char" alt="Hunter"/>;
+      socket.emit('choose character', 'Hunter')
       return characterPicked;
     }
     if(e.target.alt === 'Assassin'){
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Assassin.png' style={{height: '120px', marginTop: '131px'}} name="char" alt="Assassin" />;
+      socket.emit('choose character', 'Assassin')
       return characterPicked;
     }
     if(e.target.alt === 'Wizard'){
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Wizard.png' style={{height: '150px', marginTop: '110px'}} name="char" alt="Wizard"/>;
+      socket.emit('choose character', 'Wizard')
       return characterPicked;
     }
     if(e.target.alt === 'Warrior'){
       setCharTheme(styleHide);
       setNameTheme(styleShow);
       characterPicked = <img src='./images/Warrior.png' style={{height: '150px', paddingRight: '10px', marginTop: '110px'}} name="char" alt="Warrior" />;
+      socket.emit('choose character', 'Warrior')
       return characterPicked;
     }
     else{
@@ -160,7 +180,7 @@ const CreateScreen = () => {
         <h1 style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px'}}>Start Your Quest</h1>
         <Card.Title style={{ fontSize: '1.3em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'black' }}>Share your game code with 3 friends: {gameData}</Card.Title>
         <Link to='/game' >
-        <button type="submit"  style={buttonStyle}>Start</button>
+        <button type="submit" style={buttonStyle} disabled={startButton}>{buttonText}</button>
         </Link>
       </div>
 

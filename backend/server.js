@@ -31,17 +31,25 @@ io.on('connection', (socket) => {
 
   // ---- adds players to an open game room ---- //
   socket.on('join game', gameId => {
-    const game = liveGames[gameId];
-    // if game id is not valid do we emit an error messgae?
-    joinGame(socket, game);
-    game.offerCharacters();
+    if (liveGames[gameId]) {
+      const game = liveGames[gameId];
+      joinGame(socket, game);
+      game.offerCharacters();
+    } else {
+      socket.emit('error', 'Incorrect game code');
+    }
+  })
+
+  socket.on('choose character', charInfo => {
+    const game = liveGames[socket.gameId];
+    game.storeCharacters(charInfo);
   })
 
   // ---- all players chose a character and send back name ---- //
   socket.on('start game', charInfo => {
     console.log(charInfo);
     const game = liveGames[socket.gameId];
-    game.storeCharacters(charInfo);
+    // game.storeCharacters(charInfo);
     startGame(charInfo);
   })
 
@@ -67,7 +75,7 @@ io.on('connection', (socket) => {
 
   socket.on('roll', payload => {
     const game = liveGames[socket.gameId];
-    game.rollEvaluator(payload);
+    game.rollEvaluator(socket, payload);
     console.log('recieved roll');
     // payload will have .scenario and .roll whcih will be that players roll
     // will emit a result with the rollResult attached
@@ -100,10 +108,17 @@ io.on('connection', (socket) => {
 
   socket.on('luck', payload => {
     const game = liveGames[socket.gameId];
-    game.luckEvaluator(payload);
+    game.luckEvaluator(socket, payload);
     console.log('recieved luck');
     // payload will have .scenario and .luck whcih will 0 or 1 depending on that players luck
     // will emit a result with the luckResult attached
+  })
+
+  socket.on('end', () => {
+    if (liveGames[socket.gameId]) {
+      delete liveGames[socket.gameId]
+    }
+    socket.disconnect()
   })
 
   //---------------- start game ------------------//
@@ -122,9 +137,7 @@ io.on('connection', (socket) => {
       let sDialogue = game.sDialogue;
       let cDialogue = game.cDialogue;
       game.scenarios = createScenarios(sDialogue, cDialogue, loot);
-      // for (let player of game.players) {
-      //   player.emit('scenario', game.scenarios.intro);
-      // }
+      game.players.forEach(player => player.emit('begin game'));
       game.responseCount = 0;
     }
     console.log(game);
@@ -146,10 +159,10 @@ io.on('connection', (socket) => {
 
   // -------------creates character instance--------------- //
   function createCharacters(charInfo) {
-    let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 25, 15)
-    let hunter = new Character('Silent Crash', 'Elf', 'Hunter', 20, 25, 15);
-    let warrior = new Character('Bristle Beard', 'Ogre', 'Warrior', 30, 25, 10);
-    let wizard = new Character('Ibus', 'Hobbit', 'Wizard', 30, 25, 10)
+    let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 25, 18, 10, 15, './images/Assassin.png');
+    let hunter = new Character('Silent Crash', 'Elf', 'Hunter', 20, 25, 18, 10, 15, './images/Hunter.png');
+    let warrior = new Character('Bristle Beard', 'Ogre', 'Warrior', 30, 35, 25, 15, 10, './images/Warrior.png');
+    let wizard = new Character('Ibus', 'Hobbit', 'Wizard', 30, 35, 25, 15, 10, './images/Wizard.png')
     let char = new Char(assassin, hunter, warrior, wizard);
     return char;
   }

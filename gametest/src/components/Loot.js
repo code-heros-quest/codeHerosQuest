@@ -7,7 +7,8 @@ function Loot(props) {
 
     useEffect(() => {
         setCharacter(props.character)
-    }, [props])
+        console.log('updating character from props in loot');
+    }, [props.character])
 
     const styleLoot = {
         borderRadius: '7px',

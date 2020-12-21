@@ -25,8 +25,8 @@ class Character {
 
   addHealth(value) {
     let newHealth = this.stats.health += value;
-    if (newHealth > this.healthBar.max) {
-      this.stats.health = this.healthBar.max;
+    if (newHealth > this.maxHealth) {
+      this.stats.health = this.maxHealth;
     } else {
       this.stats.health = newHealth;
     }

@@ -32,19 +32,19 @@ const CreateScreen = () => {
   const [gameTheme, setGameTheme] = useState(styleHide);
   const [nameTheme, setNameTheme] = useState(styleHide);
   const [startButton, setStartButton] = useState(true);
-  const [availableCharacters, setAvailableCharacters] = useState([]);
+  // const [availableCharacters, setAvailableCharacters] = useState([]);
 
+  // useEffect(() => {
+  //   socket.on('char array', charArray => {
+  //     setAvailableCharacters(charArray);
+  //   }, [setAvailableCharacters])
+  // })
   useEffect(() => {
-    socket.on('char array', charArray => {
-      setAvailableCharacters(charArray);
-    }, [setAvailableCharacters])
-  })
-  useEffect(() => {
-    console.log(availableCharacters, 'available')
-    if (availableCharacters.length === 0) {
+    socket.on('begin game', () => {
       setStartButton();
-    }
-  }, [availableCharacters, setStartButton])
+    })
+    
+  }, [setStartButton])
 
   // ------------ CHANGE THEMES/ SHOW SELECTED FORMS ------------- //
 

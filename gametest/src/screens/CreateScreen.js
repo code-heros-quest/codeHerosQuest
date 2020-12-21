@@ -175,8 +175,7 @@ const CreateScreen = () => {
         <h1 style={{ fontSize: '1.5em', fontWeight: 'bolder', fontFamily: 'cursive', marginTop: '30px' }}>Start Your Quest</h1>
         <Card.Title style={{ fontSize: '1.3em', fontWeight: 'bolder', fontFamily: 'cursive', color: 'black' }}>Share your game code with 3 friends: {gameData}</Card.Title>
         <Link to='/game' >
-          <button type="submit" style={buttonStyle}>Start</button>
-
+        <button type="submit" style={buttonStyle} disabled={startButton}>{buttonText}</button>
         </Link>
       </div>
 

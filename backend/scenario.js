@@ -218,7 +218,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     choice2: new Choice(2, 'Leave Town', cDialogue.curiosityChoices2, null, 21)
   }
 
-  const curiosityKilledTheCat = new Scenario(13, './images/sceneImages/TinTown.jpg', 'Curiosity', sDialogue.curiosityKilledTheCat, 'choice2', `Do you head to the Neutral Zone or leave town?`, curiosityKilledTheCatChoices, null);
+  const curiosityKilledTheCat = new Scenario(13, './images/sceneImages/curiosity.jpg', 'Curiosity', sDialogue.curiosityKilledTheCat, 'choice2', `Do you head to the Neutral Zone or leave town?`, curiosityKilledTheCatChoices, null);
 
 
   // Tin Town ************

@@ -268,9 +268,9 @@ class Games {
     let totalNumber = payload.scenario.choices.attackPotential.high - payload.scenario.choices.attackPotential.low;
     let percentage = baseNumber / totalNumber;
     let extraRoll = 0;
-    if (percentage > .6) {
+    if (percentage > .7) {
       extraRoll = 6;
-    } else if (percentage > .3) {
+    } else if (percentage > .4) {
       extraRoll = 3;
     } else {
       extraRoll = 1;

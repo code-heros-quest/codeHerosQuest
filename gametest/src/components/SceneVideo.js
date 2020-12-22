@@ -19,7 +19,7 @@ const SceneVideo = (props) => {
       ))
     } else {
       return scene.map(({ video }, index) => (
-        <img src={video} key={index} style={{ width: 'auto', minWidth: '700px', height: '525px', minHeight: '525px', border: 'none' }}></img>
+        <img src={video} key={index} style={{ width: 'auto', minWidth: 'auto', height: '525px', minHeight: '525px', border: '5px solid black', border: '5px solid black' }}></img>
       ))
     }
   }

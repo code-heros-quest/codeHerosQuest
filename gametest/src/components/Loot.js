@@ -24,7 +24,6 @@ function Loot(props) {
 
     }
     const styleLi = {
-        display: 'inline-block',
         color: 'white',
         marginRight: '15px',
     }
@@ -32,18 +31,18 @@ function Loot(props) {
     const style={
         display: 'inline-block',
         color: 'white',
-
+        textAlign: 'left',
     }
 
     return (
-        <div style={{ paddingTop: '20px', paddingBottom: '20px', marginLeft: '50%'}}>
+        <div style={{ paddingTop: '20px', paddingBottom: '20px', marginLeft: '5px'}}>
                 <div>
-                    <img src={character.img} style={{ height: '100px', float: 'left'}}></img>
+                    <img src={character.img} style={{ height: '100px', margin: 'auto'}}></img>
                 </div>
-            <div id='loot-container' style={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '1fr', height: '100px', textAlign: 'left'}}>
+            <div id='loot-container' style={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '1fr', height: '100px', textAlign: 'left', width: '200px'}}>
                 <div>
                     <div>
-                        <h1 style={{color: 'white', fontSize: '1.4em', fontFamily: 'cursive', textDecoration: 'underline lightgray'}}>{character.name}</h1>
+                        <h1 style={{textAlign: 'center', color: 'white', fontSize: '1.4em', fontFamily: 'cursive', textDecoration: 'underline lightgray'}}>{character.name}</h1>
                         <h5 style={style}>Health:</h5>
                         <meter style={{display: 'inline-block'}} min="0" low={character.lowHealth} optimum={character.maxHealth} high={character.highHealth} max={character.maxHealth} value={character.stats.health} />
                     </div>
@@ -53,9 +52,9 @@ function Loot(props) {
                     </div>
                 </div>
             </div>
-                    <div style={{ display: 'inline-block', float: 'right'}}>
+                    <div style={{ textAlign: 'left'}}>
                         <h5 style={style}>Loot:</h5>
-                        <ul style={{ display: 'inline-block'}}>
+                        <ul >
                             {character.loot.map(item =>
                             <li style={styleLi} key={item.name}>{item.name}</li>
                         )}

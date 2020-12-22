@@ -15,11 +15,11 @@ const SceneVideo = (props) => {
   const renderSceneVideo = () => {
     if (props.scenario.number === 1) {
       return scene.map(({ video }, index) => (
-        <iframe autoPlay src={video} key={index} style={{ width: '100%', minHeight: '500px', height: '30vw', border: 'none' }} autoPlay></iframe>
+        <iframe autoPlay src={video} key={index} style={{ width: '100%', minwidth: '700px',  minHeight: '525px', height: '100%', border: 'none' }} autoPlay></iframe>
       ))
     } else {
       return scene.map(({ video }, index) => (
-        <img src={video} key={index} style={{ width: 'auto', minHeight: 'auto', height: '30vw', border: 'none' }}></img>
+        <img src={video} key={index} style={{ width: '45vw', minWidth: '700px', height: 'auto', border: 'none' }}></img>
       ))
     }
   }

@@ -1,7 +1,7 @@
 
 /* Desktops and laptops ----------- */
 @media only screen 
-and (min-width : 800px) {
+and (min-width : 600px) {
 /* Styles */
 
 #screen {
@@ -21,14 +21,23 @@ header {
 }   
 
 #sceneWindow {
-   display: inline-block;
+    display: inline-block;
     background-color: black;
-    width: 50vw;
-    height: 53vh;
-     margin: auto;
-     object-fit: contain;
+    width: 65vw;
+    min-width: 700px;
+    min-height: 525px;
+    height: a;
+    margin: auto;
+    border-radius: 5px;
 }
 
+#buttonAndLoot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 15%;
+    padding-right: 15%;
+}
 
 #dc-container{
     display: flex;
@@ -39,9 +48,12 @@ header {
 #dialogue-window{
     margin: auto;
 }
+
+#dialogue{
+    margin: auto;
+    min-width: 300px;
 }
-
-
+}
 
 
 #dialogue{

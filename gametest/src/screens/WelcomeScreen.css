@@ -1,0 +1,14 @@
+#welcome-container {
+animation-name: rise;
+animation-duration: 4s;
+animation-fill-mode: forwards;
+}
+
+@keyframes rise {
+     from{
+        transform: translateY(700px);
+     }
+     to{
+         transform: translateY(0);
+     }
+}

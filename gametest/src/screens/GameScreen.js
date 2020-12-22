@@ -10,7 +10,7 @@ import './GameScreen.css';
 
 function GameScreen() {
   const [scenarioState, setScenarioState] = useState({})
-  const [characterState, setCharacterState] = useState({ loot: [], stats: { health: 0, attack: 0 } })
+  const [characterState, setCharacterState] = useState({ img: '', loot: [], stats: { health: 0, attack: 0 } })
 
   useEffect(() => {
     client.emit('ready', 1);
@@ -56,13 +56,16 @@ function GameScreen() {
         <div id='sceneWindow'>
           <SceneVideo scenario={scenarioState} />
         </div>
-        <div style={{ display: 'inline-block', paddingLeft: '40px' }}>
-          <Loot character={characterState} />
-        </div>
-        <div id='gameButtons' style={{ textAlign: 'center', verticalAlign: 'middle', paddingBottom: '20px' }}>
+    </div>            
+     <div id='buttonAndLoot'>
+        <div id='gameButtons' style={{ textAlign: 'center', verticalAlign: 'middle', paddingBottom: '20px'}}>
           <GameButtons scenario={scenarioState} />
         </div>
-      </div>
+        <div style={{ display: 'inline-block', paddingLeft: '40px' }}>
+          
+          <Loot character={characterState} />
+        </div>
+     </div>  
       <section id='dc-container'>
         <div id='dialogue'>
           <Dialogue scenario={scenarioState} />
@@ -71,9 +74,7 @@ function GameScreen() {
           <Chat character={characterState} />
         </div>
       </section>
-
-    </div>
-  );
-}
+      </div>     
+  )}
 
 export default GameScreen;

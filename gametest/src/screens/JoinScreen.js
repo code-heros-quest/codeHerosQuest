@@ -6,6 +6,8 @@ import socket from '../components/connect.js';
 import client from '../components/connect.js';
 import ChooseCharacterButton from '../components/ChooseCharacterButtons.js'
 
+
+
 const styleShow = {
   margin: 'auto',
   backgroundImage: 'url(./images/scroll.png)',

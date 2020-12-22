@@ -56,14 +56,14 @@ function GameScreen() {
         <div id='sceneWindow'>
           <SceneVideo scenario={scenarioState} />
         </div>
+        <div style={{ display: 'inline-block', paddingLeft: '0px', marginBottom: '0', position: 'absolute' }}>
+          
+          <Loot character={characterState} />
+        </div>
     </div>            
      <div id='buttonAndLoot'>
         <div id='gameButtons' style={{ textAlign: 'center', verticalAlign: 'middle', paddingBottom: '20px'}}>
           <GameButtons scenario={scenarioState} />
-        </div>
-        <div style={{ display: 'inline-block', paddingLeft: '40px' }}>
-          
-          <Loot character={characterState} />
         </div>
      </div>  
       <section id='dc-container'>

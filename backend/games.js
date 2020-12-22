@@ -28,10 +28,12 @@ class Games {
   // ------------------ CHOICE SCENARIOS ----------------//
   //expecting votes and scenario from paylod of socket.on 'choice'
   choiceVote(payload) {
+    console.log('choice vote payload', payload);
     this.tempArr.push(Number(payload.vote));
     let ch1 = 0;
     let ch2 = 0;
     let ch3 = 0;
+    let ch4 = 0
     if (this.tempArr.length === 4) {
       for (let i = 0; i < this.tempArr.length; i++) {
         if (this.tempArr[i] === 1) {
@@ -40,16 +42,21 @@ class Games {
           ch2++
         } else if (this.tempArr[i] === 3) {
           ch3++
+        } else if (this.tempArr[i] === 4) {
+          ch4++
         }
       }
-      if (ch1 > ch2 && ch1 > ch3) {
+      if (ch1 > ch2 && ch1 > ch3 && ch1 > ch4) {
         var choice = payload.scenario.choices.choice1
       }
-      else if (ch2 > ch1 && ch2 > ch3) {
+      else if (ch2 > ch1 && ch2 > ch3 && ch2 > ch4) {
         var choice = payload.scenario.choices.choice2
       }
-      else if (ch3 > ch2 && ch3 > ch1) {
+      else if (ch3 > ch2 && ch3 > ch1 && ch3 > ch4) {
         var choice = payload.scenario.choices.choice3
+      }
+      else if (ch4 > ch1 && ch4 > ch2 && ch4 > ch3) {
+        var choice = payload.scenario.choices.choice4
       }
       else {
         let random = this.tempArr[Math.floor(Math.random() * this.tempArr.length)]
@@ -62,10 +69,17 @@ class Games {
         if (random === 3) {
           var choice = payload.scenario.choices.choice3
         }
+        if (random === 4) {
+          var choice = payload.scenario.choices.choice4
+        }
       }
       this.tempArr = [];
+      if (choice.lootObject) {
+        this.evaluateForLoot(choice.lootObject);
+      }
       this.players.forEach(player => {
         player.emit(`result`, choice);
+        console.log('result emitted, ', choice);
       });
     }
   }

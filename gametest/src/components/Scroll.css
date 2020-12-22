@@ -1,4 +1,36 @@
+ /* ---------- DIALOGUE WINDOW -------------- */
 
+ #dialogue-window{
+    /* background-image: url(./images/textBox/text2.png); */
+    height: 380px;
+    min-height: 360px;
+    width: 100%;
+    background-size: 100% 100%;
+    min-width: 500px;
+    max-width: 700px;
+    /* backgroundSize: '100% 100%', 
+    borderRadius: '10px', 
+    fontSize: '1.7em', color: 'black', 
+    display: 'inline-block', 
+    width: '35vw', 
+    maxWidth: '560px', 
+    height: '35vh', 
+    border: '6px solid black', 
+    padding: '5px 10px 10px 10px', 
+    minWidth: '450px', 
+    minHeight: '325px' */
+ }
+ .scrollDiv2{
+    padding: 15px 30px 30px 35px;
+    scrollbar-color: black gray;
+    overflow: auto;
+    font-size: 1.5vw;
+    text-align: left;
+    height: 80%;
+}
+
+
+/* --------------- CHAT WINDOW --------------  */
 h2 {
     font-size: 2vw;
     margin-bottom: 5px;
@@ -19,21 +51,43 @@ h2 {
     text-align: left;
      width: 90%; 
      height: 48%; 
-     padding: 30px 0 30px 30px;
+     padding: 10px 0 10px 30px;
      scrollbar-color: black gray;
      overflow: auto;
-     font-size: 1.2em;
+}
+
+#chat-window{
+    font-size: 1.2em;
 }
 
 #mario-chat{
     background-attachment: scroll; 
     background-repeat: no-repeat; 
     background-size: 100% 100%; 
-    min-height: 250px;
+    min-height: 380px;
     min-width: 225px;
     max-width: 350px;
     width: 35vw; 
-    height: 38vh; 
+    height: 380px; 
     margin-right: 0;
     margin-left: 0;
+}
+
+#message{
+    height: 30px;
+    margin-left: 20px;
+    border-radius: 6px;
+}
+
+#send{
+    color: white; 
+    box-shadow: 5px 5px 10px black; 
+    background-color: #595959; 
+    margin-left: 5%;
+    padding: 7px 15px; 
+    margin-bottom: 35px; 
+    border-radius: 10px; 
+    font-size: 1em; 
+    text-align: center;
+    vertical-align: middle;
 }

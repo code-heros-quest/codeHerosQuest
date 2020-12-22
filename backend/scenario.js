@@ -258,7 +258,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
     highRoll: new Roll(3, 'Good Roll', 0, cDialogue.theTrollRolls3, [loot.falcon, loot.shimmeringVial], 10)
   }
 
-  const theTroll = new Scenario(9, './images/sceneImages/troll.jpg', `The Troll`, sDialogue.theTroll, 'roll', 'Roll to determine the fate of your battle', theTrollRolls, null);
+  const theTroll = new Scenario(9, './images/sceneImages/TrollBridge.jpg', `The Troll`, sDialogue.theTroll, 'roll', 'Roll to determine the fate of your battle', theTrollRolls, null);
 
   // BOSS 2 : Goblin
   const theGoblinRolls = {

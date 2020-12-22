@@ -45,9 +45,9 @@ function Luck(props) {
       <div className="container">
         <p>{luckTag}</p>
       </div>
-      <div id="coin" style={{ margin: 'auto', position: 'absolute', marginLeft: '35%', marginTop: '50px'}}>
-        <div className={heads} style={{backgroundImage: 'url(./images/heads.png)', height: '202px', width: '198px',}}/>
-        <div className={tails} style={{backgroundImage: 'url(./images/tails.png)', height: '202px', width: '198px',}}/>
+      <div id="coin" style={{ margin: 'auto', position: 'absolute', marginLeft: '35%'}}>
+        <div className={heads} style={{backgroundImage: 'url(./images/heads.png)', height: '202px', width: '198px'}}/>
+        <div className={tails} style={{backgroundImage: 'url(./images/tails.png)', height: '202px', width: '198px'}}/>
       </div>
         <button onClick={tossCoin} className={style} disabled={show}>Toss coin</button>
     </div>

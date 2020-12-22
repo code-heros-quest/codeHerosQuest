@@ -19,7 +19,7 @@ const Choice4 = (props) => {
   }
   return (
     <div>
-      <div style={{ padding: '10px 5px 5px 5px', borderRadius: '8px', border: '9px solid #854215', width: '50%', height: 'auto', margin: 'auto', backgroundImage: 'url(./images/textBox/text1.png)', backgroundSize: 'cover', backgroundAttachment: 'fixed' }}>
+      <div style={{ borderRadius: '8px', padding: '25px', backgroundImage: 'url(./images/choice.png)', backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%', objectFit: 'contain', overflow: 'auto' }}>
         <h5 style={{ color: 'black' }}>{props.scenario.choiceQuestion}</h5>
       </div>
       <button className={style} id="1" onClick={makeChoice} disabled={show}>{choice1}</button>

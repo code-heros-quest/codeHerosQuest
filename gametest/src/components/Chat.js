@@ -44,7 +44,7 @@ const Chat = (props) => {
       <div key={index}>
 
         <h3 style={{fontSize: '1vw'}}>
-        <strong>{name}:</strong> <span>{message}</span>
+        <strong style={{ fontSize: '1.2em'}}>{name}:</strong> <span style={{ fontSize: '1.1em'}}>{message}</span>
         <p style={{ fontSize: '8px', margin: '0'}}>___________________________</p>
         </h3>
 
@@ -53,21 +53,19 @@ const Chat = (props) => {
   }
   return (
 
-    <div id="mario-chat" style={{ backgroundImage: 'url(./images/scrolly.png)'}}>
-      <h2 style={{ fontSize: '2vw', width: 'auto', height: 'auto', paddingTop: '35px', marginBottom: '10px', textDecoration: 'underline', fontFamily: 'fantasy'}}><strong>Kingdom chat</strong></h2>
+    <div id="mario-chat" style={{ backgroundImage: 'url(./images/scroll2.png)'}}>
+      <h2 style={{ fontSize: '1.6em', width: 'auto', height: 'auto', paddingTop: '35px', marginBottom: '10px', textDecoration: 'underline', fontFamily: 'fantasy'}}><strong>Kingdom chat</strong></h2>
 
       <div id="chat-window" className='scrollChat'>
         {renderChat()}
       </div>
       <Form onSubmit={onMessageSubmit}>
-
         <Form.Label style={{ fontSize: '1em'}}><strong>Type Message:</strong></Form.Label>
         <span style={{display: 'flex', alignContent: 'center'}}>
-        <input style={{backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.3em', marginLeft: '10%', marginBottom: '15px', height: '4vh', width: '60%'}} id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)}/>
+        <input id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)}/>
         <p/>
-        <button id="send" type="submit" style={{ display: 'inline-block', color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', marginLeft: '5%', padding: '7px 15px', marginBottom: '35px', borderRadius: '10px', width: '21%', fontSize: '1em', textAlign: 'center', verticalAlign: 'middle'}}>Send</button>
+        <button id="send" type="submit" >Send</button>
         </span>
-
       </Form>
       <p />
     </div>

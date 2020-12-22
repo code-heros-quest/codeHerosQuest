@@ -156,9 +156,9 @@ class Games {
       let extraRoll = this.percentageEvaluator(stats, payload);
       this.count += extraRoll;
       let rollResult = {};
-      if (this.count >= 22) {
+      if (this.count >= 23) {
         rollResult = payload.scenario.choices.highRoll;
-      } else if (this.count >= 13) {
+      } else if (this.count >= 15) {
         rollResult = payload.scenario.choices.medRoll;
       } else {
         rollResult = payload.scenario.choices.lowRoll;

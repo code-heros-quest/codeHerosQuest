@@ -111,8 +111,8 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
   // wishing well ******
   const wishingWellLuck = {
-    goodLuck: new Luck(1, 'Bad Luck', cDialogue.wishingWellLuck1, null, 27),
-    badLuck: new Luck(2, 'Good Luck', cDialogue.wishingWellLuck2, [loot.blessedWater], 27)
+    badLuck: new Luck(1, 'Bad Luck', cDialogue.wishingWellLuck1, null, 27),
+    goodLuck: new Luck(2, 'Good Luck', cDialogue.wishingWellLuck2, [loot.blessedWater], 27)
   }
 
   const wishingWell = new Scenario(26, './images/sceneImages/wishingWell.jpg', 'Wishing Well', sDialogue.wishingWell, 'luck', `You hope for luck as you fall asleep`, wishingWellLuck, null);

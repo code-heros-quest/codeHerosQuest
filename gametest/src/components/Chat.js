@@ -65,7 +65,7 @@ const Chat = (props) => {
         <span style={{display: 'flex', alignContent: 'center'}}>
         <input style={{backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.3em', marginLeft: '10%', marginBottom: '15px', height: '4vh', width: '60%'}} id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)}/>
         <p/>
-        <button id="send" type="submit" style={{ display: 'inline-block', color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', marginLeft: '5%', padding: '7px 15px', marginBottom: '35px', borderRadius: '10px', width: '20%', fontSize: '1em', textAlign: 'center', verticalAlign: 'middle'}}>Send</button>
+        <button id="send" type="submit" style={{ display: 'inline-block', color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', marginLeft: '5%', padding: '7px 15px', marginBottom: '35px', borderRadius: '10px', width: '21%', fontSize: '1em', textAlign: 'center', verticalAlign: 'middle'}}>Send</button>
         </span>
 
       </Form>

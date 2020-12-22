@@ -37,7 +37,7 @@ function Loot(props) {
     return (
         <div style={{ paddingTop: '20px', paddingBottom: '20px', marginLeft: '5px'}}>
                 <div>
-                    <img src={character.img} style={{ height: '100px', margin: 'auto'}}></img>
+                    <img src={character.img} style={{ border: '1px solid black', backgroundColor: 'gray', height: '100px', margin: 'auto'}}></img>
                 </div>
             <div id='loot-container' style={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '1fr', height: '100px', textAlign: 'left', width: '200px'}}>
                 <div>

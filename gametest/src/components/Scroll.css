@@ -1,6 +1,9 @@
 
-h3 {
+h2 {
     font-size: 2vw;
+    margin-bottom: 5px;
+    text-align: center;
+    padding-left: 0px;
 
 }
 .scrollDiv{
@@ -13,11 +16,24 @@ h3 {
 }
 
 .scrollChat{
-    padding-top: 5px;
-     width: 100%; 
-     height: 62%; 
+    text-align: left;
+     width: 90%; 
+     height: 48%; 
      padding: 30px 0 30px 30px;
      scrollbar-color: black gray;
      overflow: auto;
-     font-size: 2vw;
+     font-size: 1.2em;
+}
+
+#mario-chat{
+    background-attachment: scroll; 
+    background-repeat: no-repeat; 
+    background-size: 100% 100%; 
+    min-height: 250px;
+    min-width: 225px;
+    max-width: 350px;
+    width: 35vw; 
+    height: 38vh; 
+    margin-right: 0;
+    margin-left: 0;
 }

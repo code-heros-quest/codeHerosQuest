@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 import client from './connect.js';
-import './Scroll.css'
+import './Scroll.css';
 
 let chatArr = []
 
@@ -53,8 +53,8 @@ const Chat = (props) => {
   }
   return (
 
-    <div id="mario-chat" style={{backgroundImage: 'url(./images/scrolly.png)', backgroundAttachment: 'scroll', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', width: '25vw', height: '35vh', marginRight: '0'}} >
-      <h2 style={{ fontSize: '2vw', width: 'auto', height: 'auto',paddingLeft: '35px', paddingTop: '15px', margin: 'auto', textDecoration: 'underline', fontFamily: 'fantasy'}}><strong>Kingdom chat</strong></h2>
+    <div id="mario-chat" style={{ backgroundImage: 'url(./images/scrolly.png)'}}>
+      <h2 style={{ fontSize: '2vw', width: 'auto', height: 'auto', paddingTop: '35px', marginBottom: '10px', textDecoration: 'underline', fontFamily: 'fantasy'}}><strong>Kingdom chat</strong></h2>
 
       <div id="chat-window" className='scrollChat'>
         {renderChat()}
@@ -63,9 +63,9 @@ const Chat = (props) => {
 
         <Form.Label style={{ fontSize: '1vw'}}><strong>Type Message:</strong></Form.Label>
         <span style={{display: 'flex', alignContent: 'center'}}>
-        <input style={{backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.4em', marginLeft: '10%', marginBottom: '15px', height: '4vh', width: '60%'}} id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)}/>
+        <input style={{backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.3em', marginLeft: '10%', marginBottom: '15px', height: '4vh', width: '60%'}} id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)}/>
         <p/>
-        <button id="send" type="submit" style={{ color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', marginLeft: '5%', padding: '10px 15px', marginBottom: '35px', borderRadius: '10px', height: '4vh', width: '20%'}}>Send</button>
+        <button id="send" type="submit" style={{ display: 'inline-block', color: 'white', boxShadow: '5px 5px 10px black', backgroundColor: '#595959', marginLeft: '5%', padding: '7px 15px', marginBottom: '35px', borderRadius: '10px', width: '21%', fontSize: '1em', textAlign: 'center', verticalAlign: 'middle'}}>Send</button>
         </span>
 
       </Form>

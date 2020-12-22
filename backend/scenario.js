@@ -149,7 +149,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
   const theHydraRolls = {
     attackPotential: { low: 50, high: 68 },
-    lowRoll: new Roll(1, './images/sceneImages/theHydra.jpg', 'Poor Roll', 20, cDialogue.theHydraRolls1, null, 23),
+    lowRoll: new Roll(1, './images/sceneImages/theHydra.jpg', 'Poor Roll', 9, cDialogue.theHydraRolls1, null, 23),
     medRoll: new Roll(2, './images/sceneImages/theHydra.jpg', 'Fair Roll', 9, cDialogue.theHydraRolls2, null, 23),
     highRoll: new Roll(3, './images/sceneImages/theHydra.jpg', 'Good Roll', 5, cDialogue.theHydraRolls3, null, 23)
   }

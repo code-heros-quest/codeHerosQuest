@@ -28,7 +28,6 @@ class Games {
   // ------------------ CHOICE SCENARIOS ----------------//
   //expecting votes and scenario from paylod of socket.on 'choice'
   choiceVote(payload) {
-    console.log('choice vote payload', payload);
     this.tempArr.push(Number(payload.vote));
     let ch1 = 0;
     let ch2 = 0;
@@ -79,7 +78,7 @@ class Games {
       }
       this.players.forEach(player => {
         player.emit(`result`, choice);
-        console.log('result emitted, ', choice);
+
       });
     }
   }
@@ -237,7 +236,6 @@ class Games {
       });
   
       let data = { name: 'Loot Announcement', message: lootMessage };
-      console.log(data);
       if (data.message !== '') {
         for (let player of this.players) {
           player.emit('chat', data);

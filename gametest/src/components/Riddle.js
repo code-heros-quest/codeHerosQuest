@@ -23,7 +23,7 @@ const Riddle = (props) => {
   return (
     <div style={{ paddingTop: '5px'}}>
       <form onSubmit={submitRiddle}>
-      <div style={{ padding: '10px 5px 5px 5px', borderRadius: '8px', border: '9px solid #945429', width: '50%', height: 'auto', margin: 'auto', backgroundImage: 'url(./images/textBox/text1.png)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}}>
+      <div style={{ borderRadius: '8px', padding: '25px', backgroundImage: 'url(./images/choice.png)', backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%', objectFit: 'contain', overflow: 'auto' }}>
       <h5 style={{ color: 'black'}}>{props.scenario.choiceQuestion}</h5>
       </div>
         <input style={{borderRadius: '7px', padding: '5px 5px'}} onChange={updateAnswer} type="text" placeholder="Enter your guess"/>

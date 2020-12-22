@@ -36,11 +36,11 @@ function Loot(props) {
     }
 
     return (
-        <div style={{ paddingTop: '20px', paddingBottom: '20px'}}>
-            <div id='loot-container' style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gridTemplateRows: '1fr', height: '100px', textAlign: 'left'}}>
+        <div style={{ paddingTop: '20px', paddingBottom: '20px', marginLeft: '50%'}}>
                 <div>
-                    <img src={character.img} style={{ height: '100px'}}></img>
+                    <img src={character.img} style={{ height: '100px', float: 'left'}}></img>
                 </div>
+            <div id='loot-container' style={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '1fr', height: '100px', textAlign: 'left'}}>
                 <div>
                     <div>
                         <h1 style={{color: 'white', fontSize: '1.4em', fontFamily: 'cursive', textDecoration: 'underline lightgray'}}>{character.name}</h1>
@@ -51,7 +51,9 @@ function Loot(props) {
                         <h5 style={style}>Attack:</h5>
                         <meter min="0" low="9" optimum="23" high="17" max="27" value={character.stats.attack} />
                     </div>
-                    <div>
+                </div>
+            </div>
+                    <div style={{ display: 'inline-block', float: 'right'}}>
                         <h5 style={style}>Loot:</h5>
                         <ul style={{ display: 'inline-block'}}>
                             {character.loot.map(item =>
@@ -59,8 +61,6 @@ function Loot(props) {
                         )}
                         </ul>
                     </div>
-                </div>
-            </div>
         </div>
     )
 }

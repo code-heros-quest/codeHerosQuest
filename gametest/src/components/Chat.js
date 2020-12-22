@@ -45,8 +45,8 @@ const Chat = (props) => {
 
         <h3 style={{fontSize: '1vw'}}>
         <strong>{name}:</strong> <span>{message}</span>
+        <p style={{ fontSize: '8px', margin: '0'}}>___________________________</p>
         </h3>
-        <p style={{fontSize: '1vw', margin: '0'}}>_____________________________________</p>
 
       </div>
     ))
@@ -61,7 +61,7 @@ const Chat = (props) => {
       </div>
       <Form onSubmit={onMessageSubmit}>
 
-        <Form.Label style={{ fontSize: '1vw'}}><strong>Type Message:</strong></Form.Label>
+        <Form.Label style={{ fontSize: '1em'}}><strong>Type Message:</strong></Form.Label>
         <span style={{display: 'flex', alignContent: 'center'}}>
         <input style={{backgroundColor: 'rgba(199, 199, 199, 0)', borderRadius: '7px', fontSize: '1.3em', marginLeft: '10%', marginBottom: '15px', height: '4vh', width: '60%'}} id="message" name="message" type="text" placeholder="Message..." onChange={(e) => onTextChange(e)}/>
         <p/>

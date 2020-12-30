@@ -1,6 +1,6 @@
 # CODE HEROS QUEST: battle-for-the-kingdom
 
-## Midterm project
+## Final project
 
 Description of scope of project
 
@@ -10,10 +10,23 @@ With that, I present this game engine called the “Code Heroes Quest.” Ever s
 
 The Code Heroes Quest is an easy to use, object-oriented game framework The engine is developed in Javascript, Node.js; which means games can be played in the console window.
 
+## Update - V2
+
+With all the greatness of the original console based Battle for the Kingdom. Now with a updated user expiriece built with a React front end. Using React as the main library and Inkarnate for visual effects, the storyline of Battle for the Kingdom is expanded with a full interactive userface. The game is still navigated via the written story line, but now there is a visual map, character images, status bars, dice rolls, coin flips, and much more!
+
+###### New Features
+
+- Live in game player chat room to talk game and strategy
+- Traverse through the game built with React components
+- Allow different responses and story possibilities to add replayability
+- Listens for users selections and evaluates user information to send appropriate responses
+- Stores live games and removes expired game from server
+- Formatted for multiple screen sizes from mobile to large screen
 
 
 # Developers: 
 
+- Kevin McNeil
 - Michael Eclavea
 - Spencer Lazzer
 - Czarl Jalos
@@ -38,6 +51,10 @@ The Code Heroes Quest is an easy to use, object-oriented game framework The engi
 +  Feature task: a form of feature that gives reward boss is defeated.
 *Stretch*: As a user, I want mini game that will increase the interaction of players.
 +  Feature task: create a function that  send out riddle to the players to answer.
+*Stretch*: As a user, I want a visual inventory with loot images.
++  Feature task: create a table to hold visual images of loot users collect
+*Stretch*: As a user, I want a visual map that clears depending on the path taken
++  Feature task: make the map dynamic depending on where the user is in the game
 
 ### What is the vision of this product? 
 
@@ -58,6 +75,7 @@ Defeat boredom and increase friends bonding that covid-19 causes.
 
 + Retro Based Adventure Game
 + Riddle Game
++ Game of Chance
 
 # Visual aids
 ![gameflow UML](./assets/gameflow.png)

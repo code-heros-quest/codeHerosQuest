@@ -314,6 +314,20 @@ io.on('connection', (socket) => {
 })
 
 
+ __dirname = path.resolve()
+
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/backend/server.js')))
+  
+  app.get('*', (req, res) => 
+    res.sendFile(path.resolve(__dirname, 'gametest', 'build', 'index.html'))
+  )
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running...')
+  })
+}
+
 
 // App setup
 http.listen(PORT, function () {

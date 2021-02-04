@@ -8,9 +8,9 @@ const io = require('socket.io')(http);
 require('dotenv').config();
 let PORT = process.env.PORT || 3000
 
-const char = require('./characters.js.js');
-const loot = require('./loot.js.js');
-const scenario = require('./scenario.js.js');
+const char = require('./characters.js');
+const loot = require('./loot.js');
+const scenario = require('./scenario.js');
 
 
 let responseCount = 0;

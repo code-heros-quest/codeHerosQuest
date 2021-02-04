@@ -158,9 +158,26 @@ io.on('connection', (socket) => {
   })
 
 
+  //------------- Create Unique Id ------------------//
+  function createID() {
+  let id = Math.floor(Math.random() * Math.floor(2000));
+  for (const games in liveGames) {
+    if (liveGames[games].id === id) {
+      return createID();
+    }
+  }
+  return id;
+  }
 
-
-
+  // -------------- Delete expired games ---------------- //
+  function deleteOldGames(today) {
+  for (const games in liveGames) {
+    if (today - liveGames[games].timeStamp > 86400000) {
+      console.log(liveGames[games].name, 'deleted');
+      delete liveGames[games];
+    }
+  }
+  }
 
   //------------------ READY FUNCTION ----------------//
   function readyStatus(result, emitStr, scenarioNum) {
@@ -177,9 +194,6 @@ io.on('connection', (socket) => {
       responseCount = 0;
     }
   }
-
-
-
 
   // ------------------ CHOICE SCENARIOS ----------------//
 
@@ -411,7 +425,6 @@ io.on('connection', (socket) => {
       game.players.forEach(player => player.emit('begin game'));
       game.responseCount = 0;
     }
-
   }
 
   // -------------Joins Game--------------//
@@ -421,8 +434,6 @@ io.on('connection', (socket) => {
     socket.join(id)
     socket.gameId = id;
   }
-
-
 
   // -------------creates character instance--------------- //
   function createCharacters() {
@@ -436,26 +447,7 @@ io.on('connection', (socket) => {
 
 })
 
-//------------- Create Unique Id ------------------//
-function createID() {
-  let id = Math.floor(Math.random() * Math.floor(2000));
-  for (const games in liveGames) {
-    if (liveGames[games].id === id) {
-      return createID();
-    }
-  }
-  return id;
-}
 
-// -------------- Delete expired games ---------------- //
-function deleteOldGames(today) {
-  for (const games in liveGames) {
-    if (today - liveGames[games].timeStamp > 86400000) {
-      console.log(liveGames[games].name, 'deleted');
-      delete liveGames[games];
-    }
-  }
-}
 
 __dirname = path.resolve()
 

@@ -6,7 +6,7 @@ const path = require('path')
 const http = require('http').createServer(app)
 const io = require('socket.io')(http);
 require('dotenv').config();
-let PORT = process.env.PORT
+let PORT = process.env.PORT || 3000
 
 
 const char = require('./characters.js');
@@ -313,17 +313,6 @@ io.on('connection', (socket) => {
 
 
 })
-
-__dirname = path.resolve()
-
-if(process.env.NODE_ENV === 'production') {
- app.use(express.static(path.join(__dirname, '/backend/server.js')))
- 
- app.get('*', (req, res) => 
-   res.sendFile(path.resolve(__dirname, 'backend', 'server.js'))
- )
-} 
-
 
 // App setup
 http.listen(PORT, function () {

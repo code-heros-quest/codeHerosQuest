@@ -6,7 +6,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http);
 require('dotenv').config();
 
-let PORT = process.env.PORT
+let PORT = process.env.PORT || 5000
 const { Char, Character } = require('./characters.js');
 const loot = require('./loot.js');
 const scenarioDialogue = require('./scenarioDialogue.js');
@@ -160,11 +160,11 @@ __dirname = path.resolve()
 if(process.env.NODE_ENV === 'production') {
  app.use(express.static(path.join(__dirname, '/gametest/build')))
  
- app.get('*', (req, res) => 
-   res.sendFile(path.resolve(__dirname, 'gametest', 'build', 'index.html'))
- )} 
-  else {
-    app.get('/', (req))
+ app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'gametest', 'build', 'index.html')))
+  } else {
+    app.get('/', (req, res) => {
+      res.send('App is running...')
+    })
   }
 
 http.listen(PORT, function () {

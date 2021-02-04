@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const app = express();
+const path = require('path')
 const http = require('http').createServer(app)
 const io = require('socket.io')(http);
 require('dotenv').config();
@@ -153,6 +154,18 @@ function deleteOldGames(today) {
     }
   }
 }
+
+__dirname = path.resolve()
+
+if(process.env.NODE_ENV === 'production') {
+ app.use(express.static(path.join(__dirname, '/gametest/build')))
+ 
+ app.get('*', (req, res) => 
+   res.sendFile(path.resolve(__dirname, 'gametest', 'build', 'index.html'))
+ )} 
+  else {
+    app.get('/', (req))
+  }
 
 http.listen(PORT, function () {
   console.log(`listening for requests on port ${PORT}`);

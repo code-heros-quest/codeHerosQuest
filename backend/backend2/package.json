@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend2/server",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix gametest && npm run build --prefix gametest"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",

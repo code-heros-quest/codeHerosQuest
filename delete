@@ -291,7 +291,7 @@ io.on('connection', (socket) => {
 
   }
 
-  // ----------- disconect functions ---------- //
+  // ----------- disconnect functions ---------- //
   // add client side game over listener?
 
   function gameOver(scenario) {

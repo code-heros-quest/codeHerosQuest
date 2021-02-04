@@ -107,70 +107,6 @@ io.on('connection', (socket) => {
     socket.disconnect()
   })
 
-  //---------------- start game ------------------//
-  function startGame(charInfo) {
-    const game = liveGames[socket.gameId];
-    game.char[charInfo.char.toLowerCase()].name = charInfo.name;
-    socket.charType = charInfo.char.toLowerCase();
-    socket.charName = charInfo.name;
-    game.responseCount++;
-    if (game.responseCount === 4) {
-      let char = game.char;
-      game.sDialogue = scenarioDialogue(char);
-      game.cDialogue = choiceDialogue(char);
-      let sDialogue = game.sDialogue;
-      let cDialogue = game.cDialogue;
-      game.scenarios = createScenarios(sDialogue, cDialogue, loot);
-      game.players.forEach(player => player.emit('begin game'));
-      game.responseCount = 0;
-    }
-
-  }
-
-  // -------------Joins Game--------------//
-  function joinGame(socket, game) {
-    game.players.push(socket);
-    let id = game.id;
-    socket.join(id)
-    socket.gameId = id;
-  }
-
-
-
-  // -------------creates character instance--------------- //
-  function createCharacters() {
-    let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 25, 18, 10, 15, './images/Assassin.png');
-    let hunter = new Character('Silent Crash', 'Elf', 'Hunter', 20, 25, 18, 10, 15, './images/Hunter.png');
-    let warrior = new Character('Bristle Beard', 'Ogre', 'Warrior', 30, 35, 25, 15, 10, './images/Warrior.png');
-    let wizard = new Character('Ibus', 'Hobbit', 'Wizard', 30, 35, 25, 15, 10, './images/Wizard.png')
-    let char = new Char(assassin, hunter, warrior, wizard);
-    return char;
-  }
-
-})
-
-//------------- Create Unique Id ------------------//
-function createID() {
-  let id = Math.floor(Math.random() * Math.floor(2000));
-  for (const games in liveGames) {
-    if (liveGames[games].id === id) {
-      return createID();
-    }
-  }
-  return id;
-}
-
-// -------------- Delete expired games ---------------- //
-function deleteOldGames(today) {
-  for (const games in liveGames) {
-    if (today - liveGames[games].timeStamp > 86400000) {
-      console.log(liveGames[games].name, 'deleted');
-      delete liveGames[games];
-    }
-  }
-}
-
-io.on('connection', (socket) => {
   socket.on('chat', function (data) {
     io.sockets.emit('chat', data);
   });
@@ -458,9 +394,68 @@ io.on('connection', (socket) => {
     }
   }
 
+  //---------------- start game ------------------//
+  function startGame(charInfo) {
+    const game = liveGames[socket.gameId];
+    game.char[charInfo.char.toLowerCase()].name = charInfo.name;
+    socket.charType = charInfo.char.toLowerCase();
+    socket.charName = charInfo.name;
+    game.responseCount++;
+    if (game.responseCount === 4) {
+      let char = game.char;
+      game.sDialogue = scenarioDialogue(char);
+      game.cDialogue = choiceDialogue(char);
+      let sDialogue = game.sDialogue;
+      let cDialogue = game.cDialogue;
+      game.scenarios = createScenarios(sDialogue, cDialogue, loot);
+      game.players.forEach(player => player.emit('begin game'));
+      game.responseCount = 0;
+    }
+
+  }
+
+  // -------------Joins Game--------------//
+  function joinGame(socket, game) {
+    game.players.push(socket);
+    let id = game.id;
+    socket.join(id)
+    socket.gameId = id;
+  }
+
+
+
+  // -------------creates character instance--------------- //
+  function createCharacters() {
+    let assassin = new Character('Athyrium', 'Human', 'Assassin', 20, 25, 18, 10, 15, './images/Assassin.png');
+    let hunter = new Character('Silent Crash', 'Elf', 'Hunter', 20, 25, 18, 10, 15, './images/Hunter.png');
+    let warrior = new Character('Bristle Beard', 'Ogre', 'Warrior', 30, 35, 25, 15, 10, './images/Warrior.png');
+    let wizard = new Character('Ibus', 'Hobbit', 'Wizard', 30, 35, 25, 15, 10, './images/Wizard.png')
+    let char = new Char(assassin, hunter, warrior, wizard);
+    return char;
+  }
 
 })
 
+//------------- Create Unique Id ------------------//
+function createID() {
+  let id = Math.floor(Math.random() * Math.floor(2000));
+  for (const games in liveGames) {
+    if (liveGames[games].id === id) {
+      return createID();
+    }
+  }
+  return id;
+}
+
+// -------------- Delete expired games ---------------- //
+function deleteOldGames(today) {
+  for (const games in liveGames) {
+    if (today - liveGames[games].timeStamp > 86400000) {
+      console.log(liveGames[games].name, 'deleted');
+      delete liveGames[games];
+    }
+  }
+}
 
 __dirname = path.resolve()
 

@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-const client = io.connect('https://codeheroesquest.herokuapp.com/', { transports: ['websocket'] });
+const client = io.connect('https://git.heroku.com/codeheroesquest.git', { transports: ['websocket'] });
 client.on('connect', () => {
   console.log('connected');
 });

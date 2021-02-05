@@ -6,7 +6,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http);
 require('dotenv').config();
 
-let PORT = process.env.PORT || 4001
+let PORT = process.env.PORT 
 const { Char, Character } = require('./characters.js');
 const loot = require('./loot.js');
 const scenarioDialogue = require('./scenarioDialogue.js');

@@ -6,7 +6,7 @@ const path = require('path')
 const http = require('http').createServer(app)
 const io = require('socket.io')(http);
 require('dotenv').config();
-let PORT = process.env.PORT || 3000
+let PORT = process.env.PORT 
 
 const char = require('./backend2/characters.js');
 const loot = require('./backend2/loot.js');

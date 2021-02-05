@@ -4,7 +4,6 @@ import Dice from 'react-dice-roll';
 
 let roll = (Math.floor(Math.random() * Math.floor(6))) + 1;
 
-
 const Roll = (props) => {
   const [scenario, setScenario] = useState({});
   const [show, setShow] = useState(false);
@@ -14,6 +13,7 @@ const Roll = (props) => {
   }, [])
   let rollTag = '';
   const rollDice = () => {
+    roll = (Math.floor(Math.random() * Math.floor(6))) + 1;
     setShow(true);
     rollTag = `You Rolled a ${roll}`
     let payload = { roll, scenario: scenario }

@@ -21,7 +21,7 @@ let playerCount = 0;
 let riddleCount = 0;
 
 
-
+// sockey io initial connection //
 io.on('connection', (socket) => {
   socket.on('chat', function (data) {
     io.sockets.emit('chat', data);

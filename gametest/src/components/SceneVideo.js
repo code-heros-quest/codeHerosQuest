@@ -16,7 +16,7 @@ const SceneVideo = (props) => {
     if (props.scenario.number === 1) {
       return scene.map(({ video }, index) => (
         // <iframe autoPlay src={video} key={index} style={{ width: '100%', minwidth: '700px',  minHeight: '525px', height: '100%', border: 'none' }} autoPlay></iframe>
-        <video autoPlay controls src={video} autoPlay></video>
+        <video controls src={video} ></video>
       ))
     } else {
       return scene.map(({ video }, index) => (

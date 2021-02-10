@@ -314,7 +314,7 @@ function createScenarios(sDialogue, cDialogue, loot) {
 
 
   // intro
-  const intro = new Scenario(1, 'https://youtu.be/doaTwN8a_c0', 'Introduction', sDialogue.intro, 'ready', null, null, 2);
+  const intro = new Scenario(1, 'https://www.youtube.com/embed/watch?v=doaTwN8a_c0', 'Introduction', sDialogue.intro, 'ready', null, null, 2);
 
   return {
     intro,

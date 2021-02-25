@@ -15,7 +15,7 @@ const SceneVideo = (props) => {
   const renderSceneVideo = () => {
     if (props.scenario.number === 1) {
       return scene.map(({ video }, index) => (
-        <video autoPlay src={video} key={index} style={{ width: '100%', minWidth: '700px',  minHeight: '525px', height: '100%', border: 'none' }} autoPlay></video>
+        <video src={video} key={index} style={{ width: '100%', minWidth: '700px',  minHeight: '525px', height: '100%', border: 'none' }} controls></video>
       ))
     } else {
       return scene.map(({ video }, index) => (
